@@ -12,5 +12,18 @@
   },
   "scripts": {
     "start": "node server"
-  }
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TP-MOSch/2016_1_MOSch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TP-MOSch/2016_1_MOSch/issues"
+  },
+  "homepage": "https://github.com/TP-MOSch/2016_1_MOSch#readme"
 }
