@@ -6,14 +6,17 @@ var HOSTNAME = 'localhost',
     PORT = 8080,
     PUBLIC_DIR = __dirname + '/public_html';
 
-app.use(function (req) {
+app.use(express.static('public_html'));
+
+app.use(function (req, res) {
 	// Здесь нужно написать журналирование в формате
 	// (журналирование - вывод в консоль)
 	// [время] [номер запроса по счету]
+	res.send('Hello, World!!! Ты зашел на localhost $)');
 });
 
 app
-	.use('/', express.static(PUBLIC_DIR))
+	//.use('/', express.static(PUBLIC_DIR))
 	.use(errorHandler());
 
 app.listen(PORT, function () {
