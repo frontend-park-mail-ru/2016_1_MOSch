@@ -8,16 +8,21 @@ var HOSTNAME = 'localhost',
 	request_count = 0;
 
 
-app.use(function (req, res) {
+app.use(function (req, res, done) {
 	// Здесь нужно написать журналирование в формате
 	// (журналирование - вывод в консоль)
 	// [время] [номер запроса по счету]
 	var current_date = new Date();
-	console.log("Date: [%s] Request No.:[%s], User Agent: [%s] IP: [%s] \n", current_date.toLocaleString(),
-		request_count++, req.headers['user-agent'].toLocaleString(),
+	console.log("Date: [%s] Request No.:[%s], User Agent: [%s] URL: [%s] IP: [%s] \n",
+		current_date.toLocaleString(),
+		request_count++,
+		req.headers['user-agent'].toLocaleString(),
+		req.url.toLocaleString(),
 		req.connection.remoteAddress.toLocaleString()
 				);
-	res.send('Hello, World!!! Ты зашел на localhost $)');
+	//res.send('Hello, World!!! Ты зашел на localhost $)');
+
+	done();
 });
 
 app
