@@ -1,11 +1,13 @@
 var express = require('express'),
     errorHandler = require('errorhandler'),
-    app = express();
+    app = express(),
+	proxy = require('express-http-proxy');
 
 var HOSTNAME = 'localhost',
     PORT = 8080,
     PUBLIC_DIR = __dirname + '/public_html',
 	request_count = 0;
+
 
 
 app.use(function (req, res, done) {
@@ -17,6 +19,7 @@ app.use(function (req, res, done) {
 		req.url.toLocaleString(),
 		req.connection.remoteAddress.toLocaleString()
 				);
+
 	done();
 });
 
@@ -27,3 +30,11 @@ app
 app.listen(PORT, function () {
 	console.log("Simple static server showing %s listening at http://%s:%s", PUBLIC_DIR, HOSTNAME, PORT);
 });
+
+
+app.use('/proxy', proxy('http://vk.com', {
+	forwardPath: function(req, res) {
+		console.log(1234);
+		return require('url').parse(req.url).path;
+	}
+}));
