@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 stdout: true,
                 stderr: true
             },
-            server: {
+            dev: {
                 command: 'npm start' /* запуск сервера */
             }
 		},
@@ -16,10 +16,22 @@ module.exports = function (grunt) {
 		watch: {
 			// запуск watcher'a, который следит за изенениями файлов  templates/*.xml
 			// и если они изменяются, то запускает таск сборки шаблонов (grunt fest)
+            fest: {
+                files: ['templates/*.xml'],
+                tasks: ['fest'],
+                options: {
+                    interrupt: true,
+                    atBegin: true
+                }
+            }
 		},
 		
 		concurrent: {
 			// одновременный запуска shell'a и watcher'a https://www.npmjs.com/package/grunt-concurrent
+            target: ['watch', 'shell'],
+            options: {
+                logConcurrentOutput: true /* Вывод логов */
+            }
 		},
 
 		fest: {
@@ -50,5 +62,5 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-fest');
 
     // результат команды grunt
-    grunt.registerTask('default', ['shell', 'watch']);
+    grunt.registerTask('default', ['concurrent']);
 };
