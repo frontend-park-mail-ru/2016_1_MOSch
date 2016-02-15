@@ -4,6 +4,13 @@ module.exports = function (grunt) {
 
 		shell: {
 			// запуск сервера через скрипт shell'a https://www.npmjs.com/package/grunt-shell
+			options: {
+                stdout: true,
+                stderr: true
+            },
+            server: {
+                command: 'npm start' /* запуск сервера */
+            }
 		},
 
 		watch: {
