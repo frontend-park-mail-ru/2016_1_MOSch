@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
-node_modules
 .DS_Store
->>>>>>> upstream/v2
 .idea
 # Logs
 logs
