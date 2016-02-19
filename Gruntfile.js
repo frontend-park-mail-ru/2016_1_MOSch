@@ -23,6 +23,15 @@ module.exports = function (grunt) {
 					interrupt: true,
 					atBegin: true
 				}
+			},
+			server: {
+				files: [
+					'public_html/js/**/*.js',
+					'public_html/css/**/*.css'
+				],
+				options: {
+					livereload: true
+				}
 			}
 		},
 		
@@ -51,16 +60,21 @@ module.exports = function (grunt) {
 					}
 				}
 			}
+		},
+		qunit: {
+			all: ['./public_html/tests/index.html']
 		}
 	});
 
 	// подключить все необходимые модули
-	grunt.loadNpmTasks('grunt-fest');
-	grunt.loadNpmTasks('grunt-shell');
-	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-qunit');
+	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-shell');
+	grunt.loadNpmTasks('grunt-fest');
 
-
+	// алиас для команды test
+	grunt.registerTask('test', ['qunit:all']);
 	// алиас для команды grunt
 	grunt.registerTask('default', ['concurrent']);
 };

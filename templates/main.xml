@@ -1,15 +1,3 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-	<div id="main">
-		<h1>HelloFEST!!!</h1>
-		<fest:text>"Hello, World!!!"</fest:text>
-		<ul>
-		<fest:for iterate="json.data" index="i" value="v">
-			<li>
-			Строка
-			<fest:space/>
-			<fest:value>v</fest:value>
-			</li>
-		</fest:for>
-		</ul>
-	</div>
+
 </fest:template>
