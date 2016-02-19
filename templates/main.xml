@@ -1,3 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="main"></div>
+	<div id="main">
+		<h1>HelloFEST!!!</h1>
+		<fest:text>"Hello, World!!!"</fest:text>
+	</div>
 </fest:template>

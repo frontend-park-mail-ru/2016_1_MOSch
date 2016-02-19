@@ -20,10 +20,19 @@ function hideLoginScreen() {
 }
 
 function showMainScreen() {
-	// TODO
+	// Конструктор экрана "Гравный экран"
+	$page.html(mainTmpl()); // Рендерим шаблон
+	// Инициализируем обработчики событий
+	$page.find('.js-scoreboard')
+		.on('click', showScoreboardScreen);
+	$page.find('.js-start-game').on('click', showGameScreen);
 }
 
 function hideMainScreen() {
-	// TODO
+	// Деструктор экрана "Главный экран"
+	// Удаляем установленные обработчики событий
+	$page.find('.js-scoreboard')
+		.off('click', showScoreboardScreen);
+	$page.find('.js-start-game').off('click', showGameScreen);
 }
 
