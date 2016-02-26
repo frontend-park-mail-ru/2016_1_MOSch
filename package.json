@@ -11,26 +11,31 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "body-parser": "^1.14.2",
-    "errorhandler": "^1.4.3",
-    "express": "^4.13.4",
-    "grunt": "~0.4.2",
-    "grunt-concurrent": "^1.0.0",
-    "grunt-contrib-connect": "~0.6.0",
-    "grunt-contrib-qunit": "^0.7.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-fest": "~0.1.4",
-    "grunt-shell": "^1.1.1"
+    "body-parser": "",
+    "errorhandler": "",
+    "express": "",
+    "grunt": "",
+    "grunt-concurrent": "",
+    "grunt-contrib-connect": "",
+    "grunt-contrib-qunit": "",
+    "grunt-contrib-watch": "",
+    "grunt-fest": "",
+    "grunt-shell": ""
   },
   "scripts": {
     "start": "node server"
   },
   "dependencies": {
-    "body-parser": "^1.15.0",
-    "errorhandler": "^1.4.3",
-    "express": "^4.13.4",
-    "express-http-proxy": "^0.6.0",
-    "express-rewrite": "0.0.4"
+    "body-parser": "",
+    "errorhandler": "",
+    "express": "",
+    "express-http-proxy": "",
+    "express-rewrite": "",
+    "grunt-concurrent": "",
+    "grunt-contrib-connect": "",
+    "grunt-contrib-qunit": "",
+    "grunt-contrib-watch": "",
+    "latest-version": ""
   },
   "repository": {
     "type": "git",
