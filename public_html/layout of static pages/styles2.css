@@ -18,7 +18,7 @@
 	vertical-align: middle;
 	font-family: 'BravoRG', arial, serif;
 	font-size: 28px;
-	font-style: oblique;
+	font-style: normal;
 	background-color: rgba(256, 256, 256, 0.35);
 	transition: background-color 0.7s ease;
 	padding-top: 2px;
@@ -51,7 +51,7 @@
 	vertical-align: top;
 	font-family: 'BravoRG', arial, serif;
 	font-size: 26px;
-	font-style: oblique;
+	font-style: normal;
 	margin-top: -30px;
 }
 
@@ -91,6 +91,7 @@
 .about-block {
 	margin: 0;
 	width: 640px;
+	height: 175px;
 	display: inline-block;
 	float: left;
 	text-align: justify;
@@ -101,6 +102,7 @@
 .creators-block {
 	margin: 0;
 	width: 430px;
+	height: 200px;
 	display: inline-block;
 	float: right;
 	margin-bottom: 22px;

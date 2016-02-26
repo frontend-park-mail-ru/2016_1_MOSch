@@ -333,7 +333,9 @@
 	font-family: 'Wire One';
 	src: local('Wire One'),
 		 local('WireOne'),
-		 url('WireOne.ttf') format('truetype');
+		 url('wireone.woff2') format('woff2'),
+		 url('wireone.woff') format('woff'),
+		 url('wireone.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
 }
@@ -364,7 +366,7 @@
 .menu-item-block__comment {
 	font-family: 'BravoRG', arial, serif;
 	font-size: 22px;
-	font-style: oblique;
+	font-style: normal;
 	padding-left: 10px;
 	padding-right: 10px;
 	width: 180px;
