@@ -35,9 +35,9 @@
 				</div>
 				<div class="attendance">
 					<div class="title">Attendance</div>
-					<div class="attendance-data">Attendance record &mdash; <div class="attendance-data__number"><fest:value>data.reqrating</fest:value></div> requests per minute</div>
-					<div class="attendance-data">The maximum online &mdash; <div class="attendance-data__number"><fest:value>data.onlinerating</fest:value></div> visitors played the game at the same time</div>
+					<div class="attendance-data">Attendance record &amp;mdash; <div class="attendance-data__number"><fest:value>data.reqrating</fest:value></div> requests per minute</div>
+					<div class="attendance-data">The maximum online &amp;mdash;; <div class="attendance-data__number"><fest:value>data.onlinerating</fest:value></div> visitors played the game at the same time</div>
 				</div>
-				<div class="copyright">Copyright &copy; 2016 <strong>The MOSch-Team</strong> &mdash; all rights reserved </div>
+				<div class="copyright">Copyright &amp;copy; 2016 <strong>The MOSch-Team</strong> &amp;mdash; all rights reserved </div>
 			</div>
 </fest:template>
