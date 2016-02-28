@@ -6,7 +6,7 @@ define([
 	tmpl
 ){
 
-	var loginView = Backbone.View.extend({
+	var menuView = Backbone.View.extend({
 
 		template: tmpl,
 		initialize: function () {
@@ -24,5 +24,5 @@ define([
 
 	});
 
-	return new loginView();
+	return new menuView();
 });
