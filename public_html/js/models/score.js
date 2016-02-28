@@ -1,11 +1,14 @@
 define([
-    'backbone'
+	'backbone'
 ], function(
-    Backbone
+	Backbone
 ){
-
-    var Model = Backbone.Model.extend({
-    });
-
-    return Model;
+	var playerModel = Backbone.Model.extend({
+		defaults: {
+			username: '',
+			email: '',
+			rate: 0
+		}
+	});
+	return playerModel;
 });
