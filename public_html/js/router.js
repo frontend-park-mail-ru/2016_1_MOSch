@@ -11,7 +11,7 @@ define([
 		menuView = require('views/menu'),
 		registerView = require('views/register'),
 		aboutView = require('views/about'),
-		upgradeView = require('views/upgrade'),
+		upgradeView = require('views/game'),
 		multiView = require('views/game'),
 		singleView = require('views/game');
 

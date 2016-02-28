@@ -1,28 +1,30 @@
 define([
-    'backbone',
-    'tmpl/game'
+	'backbone',
+	'tmpl/scoreboard'
 ], function(
-    Backbone,
-    tmpl
+	Backbone,
+	tmpl
 ){
 
-    var scoreboardView = Backbone.View.extend({
+	var scoreboardView = Backbone.View.extend({
 
-        template: tmpl,
-        initialize: function () {
-            // TODO
-        },
-        render: function () {
-            // TODO
-        },
-        show: function () {
-            // TODO
-        },
-        hide: function () {
-            // TODO
-        }
+		template: tmpl,
+		initialize: function () {
+			// TODO
+		},
+		render: function () {
+			// TODO
+			this.$el.html(this.template());
+			return this;
+		},
+		show: function () {
+			// TODO
+		},
+		hide: function () {
+			// TODO
+		}
 
-    });
+	});
 
-    return new scoreboardView();
+	return new scoreboardView();
 });
