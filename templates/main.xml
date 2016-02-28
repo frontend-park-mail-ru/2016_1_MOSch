@@ -1,3 +1,36 @@
-<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+			<div class="content__wrapper">
+				<a href="#login" class="menu-item">
+					<div class="menu-item__icon">
+						<div class="menu-item__icon__mask menu-item__login--part0"></div>
+						<div class="menu-item__icon__mask menu-item__login--part1"></div>
+					</div>
+					<div class="menu-item__title">login</div>
+					<div class="menu-item__comment">Sign in and play</div>
+				</a>
+				<a href="#register" class="menu-item">
+					<div class="menu-item__icon">
+						<div class="menu-item__icon__mask menu-item__register--part0"></div>
+						<div class="menu-item__icon__mask menu-item__register--part1"></div>
+					</div>
+					<div class="menu-item__title">sign up</div>
+					<div class="menu-item__comment">Sign up and join the game</div>
+				</a>
+				<a href="#scoreboard" class="menu-item">
+					<div class="menu-item__icon">
+						<div class="menu-item__icon__mask menu-item__scoreboard--part0"></div>
+						<div class="menu-item__icon__mask menu-item__scoreboard--part1"></div>
+					</div>
+					<div class="menu-item__title">scoreboard</div>
+					<div class="menu-item__comment">Ratings and achievements</div>
+				</a>
+				<a href="#about" class="menu-item">
+					<div class="menu-item__icon">
+						<div class="menu-item__icon__mask menu-item__about--part0"></div>
+						<div class="menu-item__icon__mask menu-item__about--part1"></div>
+					</div>
+					<div class="menu-item__title">about us</div>
+					<div class="menu-item__comment">About us, about the site and something else</div>
+				</a>
+			</div>
 </fest:template>
