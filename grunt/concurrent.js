@@ -3,13 +3,9 @@ module.exports = {
 	options: {
 		logConcurrentOutput: true
 	},
-	// Очищаем директории
-	target1: [
-		'clean'
-	],
 	// Запуск сервера
-	target2: [
-		'watch',
+	target: [
+		'watch',	
 		'shell:dev'
 	]
 };

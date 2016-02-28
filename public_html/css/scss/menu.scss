@@ -1,3 +1,5 @@
+@import 'config';
+
 .menu-item {
 	position: relative;
 	width: 200px;
@@ -12,7 +14,7 @@
 
 	&:hover {
 		background-color: #D8D8D8;
-		color: $hover-color:;
+		color: $hover-color;
 	}
 
 	&__title {
@@ -113,7 +115,7 @@
 .menu-item__scoreboard--part1 {
 	background-image: url('/img/scoreboard_orig__pt1.png');
 
-	&hover {
+	&:hover {
 		background-image: url('/img/scoreboard_orig__pt2.png');
 		@include prefix('animation', 'scoreboard--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
 	}

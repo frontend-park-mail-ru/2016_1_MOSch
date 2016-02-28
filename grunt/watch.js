@@ -16,10 +16,18 @@ module.exports = {
 	server: {
 		files: [
 			'public_html/js/**/*.js',
-			'public_html/css/**/*.css'
+			'public_html/css/*.css'
 		],
 		options: {
 			livereload: true
 		}
+	},
+	sass: {
+		files: ['public_html/css/scss/*.scss'],
+		tasks: ['sass:dev']
+	},
+	css: {
+		files: ['public_html/css/gen/*.css'],
+		tasks: ['concat:css', 'cssmin']
 	}
 };

@@ -1,5 +1,8 @@
 default:
-  - 'concurrent:target1'
-  - 'concurrent:target2'
+  - 'clean'
+  - 'sass:dev'
+  - 'concat:css'
+  - 'cssmin:dev'
+  - 'concurrent:target'
 test:
   - 'qunit:all'

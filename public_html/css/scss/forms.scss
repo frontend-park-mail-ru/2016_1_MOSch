@@ -1,3 +1,5 @@
+@import 'config';
+
 .form {
 	display: block;
 	width: 700px;
@@ -113,16 +115,16 @@
 		bottom: 0;
 		background: $hover-color;
 		height: 4px;
-		@include prefix('transition', 'left 0.3s ease-out');
-		@include prefix('transition', 'right 0.3s ease-out');
+		@include prefix('transition', 'left right');
+		@include prefix('transition', ' 0.3s ease-out');
 	}
 
-	&:hover::before, .&:focus::before, .&:active::before {
+	&:hover::before, &:focus::before, &:active::before {
 		left: 0;
 		right: 0;
 	}
 
-	.&:hover {
+	&:hover {
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 		@include prefix('transition', 'box-shadow 0.5s ease');
 	}
