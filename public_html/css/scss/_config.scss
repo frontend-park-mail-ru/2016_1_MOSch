@@ -1,0 +1,30 @@
+@mixin prefix($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}
+
+@font-face {
+	font-family: 'BravoRG';
+	src: local('BravoRG'), 
+		 url('/res/bravorg.woff2') format('woff2'), 
+		 url('/res/bravorg.woff') format('woff'), 
+		 url('/res/bravorg.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wire One';
+	src: local('Wire One'),
+		 local('WireOne'),
+		 url('/res/wireone.woff2') format('woff2'),
+		 url('/res/wireone.woff') format('woff'),
+		 url('/res/wireone.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+$wire-font: 'Wire One', arial, serif;
+$bravo-font: 'BravoRG',  arial, serif;
+$hover-color: #990100;
+$gray-color: #aaa;
