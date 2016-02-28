@@ -1,17 +1,5 @@
 default:
-	description: 'Сборка по умолчанию (разработка)'
-	tasks:
-		- dev
-
-
-dev:
-	description: 'Сборка для разработки'
-	tasks:
-		- 'concurrent:target1'
-		- 'concurrent:target2'
-
-task:
-	description: 'Запуск всех тестов'
-	tesks:
-		- 'qunit:all'
-
+  - 'concurrent:target1'
+  - 'concurrent:target2'
+test:
+  - 'qunit:all'
