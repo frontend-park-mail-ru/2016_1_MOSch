@@ -1,11 +1,9 @@
 define([
 	'backbone'
-], function(
-	Backbone
-){
-	var Backbone = require('backbone');
-		mainView = require('views/main'),
+], function(Backbone) {
+	var Backbone = require('backbone'),
 		loginView = require('views/login'),
+		mainView = require('views/main'),
 		gameView = require('views/game'),
 		scoreboardView = require('views/scoreboard');
 		menuView = require('views/menu'),

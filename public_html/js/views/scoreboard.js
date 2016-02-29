@@ -1,9 +1,11 @@
 define([
 	'backbone',
-	'tmpl/scoreboard'
+	'tmpl/scoreboard',
+	'collections/scores'
 ], function(
 	Backbone,
-	tmpl
+	tmpl,
+	collection
 ){
 
 	var scoreboardView = Backbone.View.extend({
@@ -13,8 +15,12 @@ define([
 			// TODO
 		},
 		render: function () {
+			collection.add();
+			collection.sort();
 			// TODO
-			this.$el.html(this.template());
+			this.$el.html(this.template({
+				items: collection
+			}));
 			return this;
 		},
 		show: function () {
