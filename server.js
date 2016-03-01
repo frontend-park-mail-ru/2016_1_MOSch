@@ -12,13 +12,13 @@ var HOSTNAME = 'localhost',
 
 app.use(function (req, res, done) {
 	var current_date = new Date();
-	console.log("Date: [%s] Request No.:[%s], User Agent: [%s] URL: [%s] IP: [%s] \n",
+	console.log("Date: [%s] Request No.:[%s], URL: [%s]",
 		current_date.toLocaleString(),
 		request_count++,
-		req.headers['user-agent'].toLocaleString(),
-		req.url.toLocaleString(),
-		req.connection.remoteAddress.toLocaleString()
-				);
+		//req.headers['user-agent'].toLocaleString(),
+		req.url.toLocaleString()
+		//req.connection.remoteAddress.toLocaleString()
+	);
 
 	done();
 });

@@ -1,67 +1,82 @@
 define([
-	'backbone'
-], function(Backbone) {
-	var Backbone = require('backbone'),
-		loginView = require('views/login'),
-		mainView = require('views/main'),
-		gameView = require('views/game'),
-		scoreboardView = require('views/scoreboard');
-		menuView = require('views/menu'),
-		registerView = require('views/register'),
-		aboutView = require('views/about'),
-		upgradeView = require('views/game'),
-		multiView = require('views/game'),
-		singleView = require('views/game');
-
+	'backbone',
+	'views/about',
+	'views/login',
+	'views/main',
+	'views/game',
+	'views/scoreboard',
+	'views/menu',
+	'views/register'
+], function(
+	Backbone,
+	aboutView,
+	loginView,
+	mainView,
+	gameView,
+	scoreboardView,
+	menuView,
+	registerView
+) {
 	var Router = Backbone.Router.extend({
 		routes: {
-			'scoreboard': 'scoreboardAction',
-			'register': 'registerAction',
-			'login': 'loginAction',
-			'about': 'aboutAction',
-			'upgrade': 'upgradeAction',
-			'multi': 'multiAction',
-			'single': 'singleAction',
-			'menu': 'menuAction',
+			'': 'defaultActions',
+			'scoreboard': 'scoreboardActions',
+			'register': 'registerActions',
+			'login': 'loginActions',
+			'about': 'aboutActions',
+			'upgrade': 'upgradeActions',
+			'multi': 'multiActions',
+			'single': 'singleActions',
+			'menu': 'menuActions',
+			'main': 'mainActions',
 			'*default': 'defaultActions'
 		},
+		initialize: function (argument) {
+			argument.inittt = "test";
+		},
 		defaultActions: function () {
-			console.log(mainView);
-			$('.content').html(mainView.render().$el);
+			console.log('the default route');
+			alert("!!!");
+			//var view = new mainView();
+			$('body').html((new mainView()).render().$el);
 		},
 		menuActions: function () {
-			console.log(menuView);
-			$('.content').html(menuView.render().$el);
+			console.log('the #menu route');
+			$('body').html((new menuView()).render().$el);
 		},
-		scoreboardAction: function () {
+		mainActions: function () {
+			console.log('the #menu route');
+			$('body').html((new mainView()).render().$el);
+		},
+		scoreboardActions: function () {
 			console.log('the #scoreboard route');
-			$('.content').html(scoreboardView.render().$el);
+			$('body').html((new scoreboardView()).render().$el);
 		},
-		registerAction: function () {
+		registerActions: function () {
 			console.log('the #register route');
-			$('.content').html(registerView.render().$el);
+			$('body').html((new registerView()).render().$el);
 		},
-		loginAction: function () {
+		loginActions: function () {
 			console.log('the #login route');
-			$('.content').html(loginView.render().$el);
+			$('body').html((new loginView()).render().$el);
 		},
-		aboutAction: function () {
+		aboutActions: function () {
 			console.log('the #about route');
-			$('.content').html(aboutView.render().$el);
+			$('body').html((new aboutView()).render().$el);
 		},
-		upgradeAction: function () {
+		upgradeActions: function () {
 			console.log('the #upgrade route');
-			$('body').html(upgradeView.render().$el);
+			$('body').html((new gameView({mode: "upgrade"})).render().$el);
 		},
-		multiAction: function () {
+		multiActions: function () {
 			console.log('the #multi route');
-			$('body').html(multiView.render().$el);
+			$('body').html((new gameView({mode: "multi"})).render().$el);
 		},
-		singleAction: function () {
+		singleActions: function () {
 			console.log('the #single route');
-			$('body').html(singleView.render().$el);
+			$('body').html((new gameView({mode: "route"})).render().$el);
 		}
 	});
 
-	return new Router();
+	return Router;
 });

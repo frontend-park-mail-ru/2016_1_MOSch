@@ -31,14 +31,20 @@ function(
 		
 		this.connectAPI();
 
-		this.router = Router(this);
-		$('body').html(this.views.main.render().$el);
+		this.router = new Router(this);
+		Backbone.history.start();
+
+
+		//alert(this.inittt);
+		//$('body').html(this.views.main.render().$el);
 	};
 
 	App.prototype = {
 		views: {},
 		router: undefined,
+		inittt: undefined,
 		connectAPI: function() {
+			//alert("connectAPI()");
 			this.apiManager = new ApiManager();
 		}
 	};
