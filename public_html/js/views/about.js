@@ -1,20 +1,24 @@
 define([
 	'backbone',
-	'tmpl/about'
+	'tmpl/about',
+	'tmpl/wrapper'
 ], function(
 	Backbone,
-	tmpl
+	tmpl,
+	wrapper
 ){
 
 	var aboutView = Backbone.View.extend({
 
+		wrap: wrapper,
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
-		render: function () {
-			// TODO
-			this.$el.html(this.template());
+		render: function (data) {
+			// TODO			
+			this.$el.html(this.wrap())
+			this.$('.content').html(this.template(data));
 			return this;
 		},
 		show: function () {
@@ -26,5 +30,5 @@ define([
 
 	});
 
-	return new aboutView();
+	return aboutView;
 });

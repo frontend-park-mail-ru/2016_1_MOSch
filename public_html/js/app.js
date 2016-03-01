@@ -19,10 +19,15 @@ function(
 	registerView
 ) {
 	var App = function() {
-		this.views.app = new mainView();
-		console.log(mainView);
-		$('.content').html(this.views.app.render().$el);
-
+		this.views.main = new mainView();
+		this.views.login = new loginView();
+		this.views.about = new aboutView();
+		this.views.game = new gameView();
+		this.views.scoreboard = new scoreboardView();
+		this.views.menu = new menuView();
+		this.views.register = new registerView();
+		//console.log(mainView);
+		$('body').html(this.views.main.render().$el);
 		this.connectAPI();
 	};
 

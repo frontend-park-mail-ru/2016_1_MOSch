@@ -1,24 +1,24 @@
 define([
 	'backbone',
 	'tmpl/scoreboard',
-	'collections/scores'
+	'tmpl/wrapper'
 ], function(
 	Backbone,
 	tmpl,
-	collection
+	wrapper
 ){
 
 	var scoreboardView = Backbone.View.extend({
 
+		wrap: wrapper,
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
-		render: function () {
-			collection.add();
-			collection.sort();
+		render: function (collection) {
 			// TODO
-			this.$el.html(this.template({
+			this.$el.html(this.wrap())
+			this.$('.content').html(this.template({
 				items: collection
 			}));
 			return this;
@@ -32,5 +32,5 @@ define([
 
 	});
 
-	return new scoreboardView();
+	return scoreboardView;
 });

@@ -1,0 +1,9 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<div class="allpage">
+		<div class="background"></div>
+		<div class="logo">
+			<div class="logo__image"></div>
+		</div>
+		<div class="content"></div>
+	</div>
+</fest:template>
