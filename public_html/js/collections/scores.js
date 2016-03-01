@@ -3,25 +3,29 @@ define([
 	'models/score'
 ], function(
 	Backbone,
-	playerModel
+	scoreModel
 ){
-	var playersCollection = Backbone.Collection.extend({
-		model: playerModel,
-		comparator: function (player) {
-			return -(+player.get('rate'));
+	var scoresCollection = Backbone.Collection.extend({
+		model: scoreModel,
+		comparator: function (score) {
+			return -(+score.get('rate'));
+		},		
+
+		getExample: function() {
+			return new scoresCollection([
+				{ username: 'Andrew', 		rate: 72000, 	level: 100	},
+				{ username: 'Sawoder', 		rate: 7851, 	level: 17	},
+				{ username: 'Nick', 		rate: 5895, 	level: 0	},
+				{ username: 'Alexey', 		rate: 9485, 	level: 22	},
+				{ username: 'KOPTE3', 		rate: 5765, 	level: 0	},
+				{ username: 'Pupkin', 		rate: 42 , 		level: 0	},
+				{ username: 'Hero', 		rate: 9999, 	level: 1	},
+				{ username: 'Devil Player', rate: 666, 		level: 0	},
+				{ username: 'Pi', 			rate: 3, 		level: 14	},
+				{ username: 'Voloshin LOL', rate: 9876, 	level: 7	}
+			]);
 		}
 	});
 
-	return new playersCollection([
-		{ name: 'Andrew', email: 'mail@mail.ru', rate: 72000 },
-		{ name: 'Sawoder', email: 'mail@mail.ru', rate: 7851 },
-		{ name: 'Nick', email: 'mail@mail.ru', rate: 5895 },
-		{ name: 'Alexey', email: 'mail@mail.ru', rate: 9485 },
-		{ name: 'KOPTE3', email: 'mail@mail.ru', rate: 5765 },
-		{ name: 'Pupkin', email: 'mail@mail.ru', rate: 42 },
-		{ name: 'Hero', email: 'mail@mail.ru', rate: 9999 },
-		{ name: 'Devil Player', email: 'mail@mail.ru', rate: 666 },
-		{ name: 'Pi', email: 'mail@mail.ru', rate: 3 },
-		{ name: 'Voloshin LOL', email: 'mail@mail.ru', rate: 9876 }
-	]);
+	return scoresCollection;
 });
