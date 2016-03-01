@@ -6,7 +6,8 @@ define([
 	'views/game',
 	'views/scoreboard',
 	'views/menu',
-	'views/register'
+	'views/register',
+	'router'
 ],
 function(
 	ApiManager,
@@ -16,7 +17,8 @@ function(
 	gameView,
 	scoreboardView,
 	menuView,
-	registerView
+	registerView,
+	Router
 ) {
 	var App = function() {
 		this.views.main = new mainView();
@@ -26,14 +28,16 @@ function(
 		this.views.scoreboard = new scoreboardView();
 		this.views.menu = new menuView();
 		this.views.register = new registerView();
-		//console.log(mainView);
-		$('body').html(this.views.main.render().$el);
+		
 		this.connectAPI();
+
+		this.router = Router(this);
+		$('body').html(this.views.main.render().$el);
 	};
 
 	App.prototype = {
 		views: {},
-		
+		router: undefined,
 		connectAPI: function() {
 			this.apiManager = new ApiManager();
 		}
