@@ -1,80 +1,55 @@
 define([
-	'backbone',
-	'views/about',
-	'views/login',
-	'views/main',
-	'views/game',
-	'views/scoreboard',
-	'views/menu',
-	'views/register'
+	'backbone'
 ], function(
-	Backbone,
-	aboutView,
-	loginView,
-	mainView,
-	gameView,
-	scoreboardView,
-	menuView,
-	registerView
+	Backbone
 ) {
 	var Router = Backbone.Router.extend({
 		routes: {
-			'': 'defaultActions',
-			'scoreboard': 'scoreboardActions',
-			'register': 'registerActions',
-			'login': 'loginActions',
-			'about': 'aboutActions',
+			'': 'showMenu',
+			'about': 'showAbout',
+			'scoreboard': 'showScore',
+			'login': 'showLoginForm',
+			'register': 'showRegisterForm',
 			'upgrade': 'upgradeActions',
-			'multi': 'multiActions',
-			'single': 'singleActions',
-			'menu': 'menuActions',
-			'main': 'mainActions',
-			'*default': 'defaultActions'
+			'multi': 'multiplayerActions',
+			'single': 'singleplayerActions',
+			'*default': 'showMenu'
 		},
 		initialize: function (argument) {
-			argument.inittt = "test";
+			this.view = argument;
 		},
-		defaultActions: function () {
-			console.log('the default route');
-			alert("!!!");
-			//var view = new mainView();
-			$('body').html((new mainView()).render().$el);
+		showMenu: function () {
+			console.log('The default route. We show main menu');
+			$('body').html(this.view.render({ 'view': 'mainMenu' }).$el);
 		},
-		menuActions: function () {
-			console.log('the #menu route');
-			$('body').html((new menuView()).render().$el);
+		showAbout: function () {
+			console.log('The #about route. We show about screen');
+			$('body').html(this.view.render({ 'view': 'about' }).$el);
 		},
-		mainActions: function () {
-			console.log('the #menu route');
-			$('body').html((new mainView()).render().$el);
+		showScore: function () {
+			console.log('The #scoreboard route. We show scores');
+			$('body').html(this.view.render({ 'view': 'scoreboard' }).$el);
 		},
-		scoreboardActions: function () {
-			console.log('the #scoreboard route');
-			$('body').html((new scoreboardView()).render().$el);
+		showLoginForm: function () {
+			console.log('The #login route. We show login form');
+			$('body').html(this.view.render({ 'view': 'login' }).$el);
 		},
-		registerActions: function () {
-			console.log('the #register route');
-			$('body').html((new registerView()).render().$el);
+		showRegisterForm: function () {
+			console.log('The #register route. We show registration form');
+			$('body').html(this.view.render({ 'view': 'register' }).$el);
 		},
-		loginActions: function () {
-			console.log('the #login route');
-			$('body').html((new loginView()).render().$el);
-		},
-		aboutActions: function () {
-			console.log('the #about route');
-			$('body').html((new aboutView()).render().$el);
-		},
+
 		upgradeActions: function () {
-			console.log('the #upgrade route');
-			$('body').html((new gameView({mode: "upgrade"})).render().$el);
+			console.log('The #upgrade route. We show upgrade screen');
+			$('body').html(this.view.render({ 'view': 'game', 'action': 'upgrade' }).$el);
 		},
-		multiActions: function () {
-			console.log('the #multi route');
-			$('body').html((new gameView({mode: "multi"})).render().$el);
+		multiplayerActions: function () {
+			console.log('The #multi route. We start multiplayer game');
+			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'multiplayer' }).$el);
 		},
-		singleActions: function () {
-			console.log('the #single route');
-			$('body').html((new gameView({mode: "route"})).render().$el);
+		singleplayerActions: function () {
+			console.log('The #single route. We start singleplayer game');
+			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'singleplayer' }).$el);
 		}
 	});
 

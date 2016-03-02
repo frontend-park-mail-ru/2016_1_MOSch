@@ -24,14 +24,3 @@ require(['app'],
 function(App) {
 	window.bTask = new App();
 });
-
-
-// define([
-// 	'backbone',
-// 	'router'
-// ], function(
-// 	Backbone,
-// 	router
-// ){
-// 	Backbone.history.start();
-// });
