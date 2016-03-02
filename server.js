@@ -12,11 +12,13 @@ var HOSTNAME = 'localhost',
 
 app.use(function (req, res, done) {
 	var current_date = new Date();
-	console.log("Date: [%s] Request No.:[%s], URL: [%s]",
+	console.log("Date: [%s] Request No.:[%s], Request: [%s %s %s]",
 		current_date.toLocaleString(),
 		request_count++,
 		//req.headers['user-agent'].toLocaleString(),
-		req.url.toLocaleString()
+		req.method,
+		req.url.toLocaleString(),
+		req.body
 		//req.connection.remoteAddress.toLocaleString()
 	);
 
@@ -31,10 +33,16 @@ app.listen(PORT, function () {
 	console.log("Simple static server showing %s listening at http://%s:%s", PUBLIC_DIR, HOSTNAME, PORT);
 });
 
-
-app.use('/proxy', proxy('http://vk.com', {
-	forwardPath: function(req, res) {
-		console.log(1234);
-		return require('url').parse(req.url).path;
-	}
-}));
+app.use(
+	'/api',
+	proxy(
+		'http://localhost', 
+		{
+			port: 31072,
+			forwardPath: function(req, res) {
+				console.log(req.originalUrl);
+				return '/api'+require('url').parse(req.url).path;
+			}
+		}
+	)
+);
