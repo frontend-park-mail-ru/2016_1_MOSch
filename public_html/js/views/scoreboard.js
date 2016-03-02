@@ -1,26 +1,26 @@
 define([
 	'backbone',
 	'tmpl/scoreboard',
-	'tmpl/wrapper'
+	'collections/scores'
 ], function(
 	Backbone,
 	tmpl,
-	wrapper
-){
+	scoresCollection
+) {
 
 	var scoreboardView = Backbone.View.extend({
 
-		wrap: wrapper,
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
-		render: function (collection) {
+		render: function () {
 			// TODO
-			this.$el.html(this.wrap())
-			this.$('.content').html(this.template({
-				items: collection
-			}));
+			var coll = new scoresCollection();
+			var data = {
+				items: coll.getExample().toJSON().sort()
+			};
+			this.$el.html(this.template(data));
 			return this;
 		},
 		show: function () {

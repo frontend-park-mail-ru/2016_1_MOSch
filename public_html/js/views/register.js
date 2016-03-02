@@ -1,24 +1,20 @@
 define([
 	'backbone',
-	'tmpl/register',
-	'tmpl/wrapper'
+	'tmpl/register'
 ], function(
 	Backbone,
-	tmpl,
-	wrapper
-){
+	tmpl
+) {
 
 	var registerView = Backbone.View.extend({
 
-		wrap: wrapper,
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
 		render: function () {
 			// TODO
-			this.$el.html(this.wrap())
-			this.$('.content').html(this.template());
+			this.$el.html(this.template());
 			return this;
 		},
 		show: function () {

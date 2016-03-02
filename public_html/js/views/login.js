@@ -1,24 +1,20 @@
 define([
 	'backbone',
-	'tmpl/login',
-	'tmpl/wrapper'
+	'tmpl/login'
 ], function(
 	Backbone,
-	tmpl,
-	wrapper
-){
+	tmpl
+) {
 
 	var loginView = Backbone.View.extend({
 
-		wrap: wrapper,
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
 		render: function () {
 			// TODO
-			this.$el.html(this.wrap())
-			this.$('.content').html(this.template());
+			this.$el.html(this.template());
 			return this;
 		},
 		show: function () {

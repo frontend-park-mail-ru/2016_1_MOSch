@@ -2,8 +2,7 @@ define([
 	'serverAPI',
 	'views/application',
 	'router'
-],
-function(
+], function(
 	ApiManager,
 	appView,
 	Router
@@ -19,7 +18,7 @@ function(
 		view: null,
 		router: null,
 		connectAPI: function() {
-			alert("connectAPI()");
+			//alert("connectAPI()");
 			this.apiManager = new ApiManager();
 		}
 	};

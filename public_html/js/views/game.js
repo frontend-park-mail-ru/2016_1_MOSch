@@ -4,8 +4,8 @@ define([
 ], function(
 	Backbone,
 	tmpl
-){
-
+) {
+	
 	var gameView = Backbone.View.extend({
 
 		template: tmpl,
