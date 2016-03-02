@@ -1,5 +1,4 @@
 .DS_Store
-.idea
 # Logs
 logs
 *.log
@@ -38,3 +37,6 @@ node_modules
 public_html/js/tmpl
 public_html/css/gen/
 public_html/css/*.css
+
+# Package Files
+*.jar
