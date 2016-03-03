@@ -91,6 +91,7 @@ define([
 			this.$el.html(this.wrap());
 			if (this._session.get('logged_in') == false){
 				this.$('.content').html(this.views.login.render().$el);
+				
 			}
 			else
 			{
@@ -126,8 +127,6 @@ define([
 				Backbone.history.navigate('refresh', {trigger: true});
 			}
 		}
-
 	});
-
 	return applicationView;
 });
