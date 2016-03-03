@@ -25,8 +25,9 @@ define([
 		wrap: wrapper,
 		views: {},
 		activeView: null,
-		initialize: function (_api) {
-			this.api = _api;
+		initialize: function (_api, _session) {
+			this._api = _api;
+			this._session = _session;			
 			this.views.main = new mainView();
 			this.views.menu = new menuView();
 			this.views.register = new registerView();
@@ -42,28 +43,22 @@ define([
 			options = options || {};
 			switch (options['view']) {
 				case 'about':
-					alert( 'Окно "Об игре"' );
 					this.showAboutScreen();
 					break;
 				case 'scoreboard':
-					alert( 'Окно с таблицей лидеров' );
 					this.showScoreboardScreen();
 					break;
 				case 'login':
-					alert( 'Окно с формой логина' );
 					this.showLoginScreen();
 					break;
 				case 'register':
-					alert( 'Окно с формой регистрации' );
 					this.showRegisterScreen();
 					break;
 				case 'game':
-					alert( 'Игровой экран' );
 					this.showGameScreen(options);
 					break;
 				case 'mainMenu':
 				default:
-					alert( 'Главное меню' );
 					this.showMainScreen();
 					break;
 			}
@@ -78,36 +73,58 @@ define([
 
 		showMainScreen: function(options) {
 			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.main.render().$el);
-			
+			if (this._session.get('logged_in') == false){
+				this.$('.content').html(this.views.main.render().$el);
+			}
+			else
+			{
+				this.$('.content').html(this.views.menu.render().$el);
+			}
 		},
 
 		showAboutScreen: function(options) {
 			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.about.render().$el);
-			
+			this.$('.content').html(this.views.about.render().$el);			
 		},
 
 		showLoginScreen: function(options) {
 			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.login.render().$el);
-			
+			if (this._session.get('logged_in') == false){
+				this.$('.content').html(this.views.login.render().$el);
+			}
+			else
+			{
+				console.log('refresh window');
+				Backbone.history.navigate('refresh', {trigger: true});
+			}
 		},
 
 		showRegisterScreen: function(options) {
-			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.register.render().$el);
-			
+			this.$el.html(this.wrap());			
+			if (this._session.get('logged_in') == false){
+				this.$('.content').html(this.views.register.render().$el);
+			}
+			else
+			{
+				console.log('refresh window');
+				Backbone.history.navigate('refresh', {trigger: true});
+			}
 		},
 
 		showScoreboardScreen: function(options) {
 			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.scoreboard.render().$el);
-			
+			this.$('.content').html(this.views.scoreboard.render().$el);			
 		},
 
 		showGameScreen: function(options) {
-			this.$('body').html(this.views.game.render().$el);
+			if (this._session.get('logged_in') == true){
+				this.$el.html(this.views.game.render().$el);			
+			}
+			else
+			{
+				console.log('refresh window');
+				Backbone.history.navigate('refresh', {trigger: true});
+			}
 		}
 
 	});

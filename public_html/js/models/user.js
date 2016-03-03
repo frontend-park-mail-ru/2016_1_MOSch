@@ -1,20 +1,16 @@
 define([
-	'backbone',
-	'models/score'
+	'backbone'
 ], function(
-	Backbone,
-	scoreModel
+	Backbone
 ){
 	var userModel = Backbone.Model.extend({
 		defaults: {
-			username: '',
-			email: '',
+			id: '',
+			login: '',
 			password: '',
-			score: {
-				rate: 0,
-				level: 0
-			}
+			role: ''
 		}
 	});
+
 	return userModel;
 });

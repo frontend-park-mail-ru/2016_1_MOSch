@@ -13,11 +13,15 @@ define([
 			'upgrade': 'upgradeActions',
 			'multi': 'multiplayerActions',
 			'single': 'singleplayerActions',
+			'refresh': 'refreshWindow',
 			'*default': 'showMenu'
 		},
 		initialize: function (argument) {
 			this.view = argument;
 			this.last = null;
+		},
+		refreshWindow:function () {
+			this.showMenu({forced:true});
 		},
 		showMenu: function (options) {
 			options = options || { 'forced': false };
@@ -59,21 +63,20 @@ define([
 				this.last = this.showRegisterForm;
 			}
 		},
-
 		upgradeActions: function () {
 			console.log('The #upgrade route. We show upgrade screen');
 			$('body').html(this.view.render({ 'view': 'game', 'action': 'upgrade' }).$el);
-			this.last = upgradeActions;
+			this.last = this.upgradeActions;
 		},
 		multiplayerActions: function () {
 			console.log('The #multi route. We start multiplayer game');
 			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'multiplayer' }).$el);
-			this.last = multiplayerActions;
+			this.last = this.multiplayerActions;
 		},
 		singleplayerActions: function () {
 			console.log('The #single route. We start singleplayer game');
 			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'singleplayer' }).$el);
-			this.last = singleplayerActions;
+			this.last = this.singleplayerActions;
 		}
 	});
 
