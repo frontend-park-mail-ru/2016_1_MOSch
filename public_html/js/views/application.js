@@ -36,25 +36,11 @@ define(function(
 					break;
 				case 'login':
 					this.$el.html(this.wrap());
-					if (this._session.get('logged_in') == false){
-						this.$('.content').html((new loginView()).render().$el);
-					}
-					else
-					{
-						console.log('refresh window');
-						Backbone.history.navigate('refresh', {trigger: true});
-					}
+					this.CheckLoginAndShow(false, loginView);
 					break;
 				case 'register':
 					this.$el.html(this.wrap());
-					if (this._session.get('logged_in') == false){
-						this.$('.content').html((new registerView()).render().$el);
-					}
-					else
-					{
-						console.log('refresh window');
-						Backbone.history.navigate('refresh', {trigger: true});
-					}
+					this.CheckLoginAndShow(false, registerView);					
 					break;
 				case 'game':
 					if (this._session.get('logged_in') == true){
@@ -85,6 +71,17 @@ define(function(
 		},
 		hide: function () {
 			// TODO
+		},
+
+		CheckLoginAndShow: function(bool, view){
+			if (this._session.get('logged_in') == bool){
+				this.$('.content').html((new view()).render().$el);
+			}
+			else
+			{
+				console.log('refresh window');
+				Backbone.history.navigate('', {trigger: true});
+			}
 		}
 	});
 	return applicationView;
