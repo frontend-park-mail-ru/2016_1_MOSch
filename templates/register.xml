@@ -9,7 +9,7 @@
 						<input type="text" name="username" id="username" placeholder="Your username" class="input__text input__username-input" required="required" pattern="[A-Za-z0-9]&#123;&#123;6,32&#125;&#125;" spellcheck="false" />
 						<span class="input__label">Choose your username (6-32 characters: latin letters and digits only):</span>
 					</label>
-					<input type="submit" class="submit-button" value="Sign In" />
+					<button class="submit-button">Sign Up</button>
 				</form>
 			</div>
 </fest:template>

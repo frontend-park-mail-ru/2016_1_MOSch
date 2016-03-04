@@ -15,18 +15,10 @@ define(function(
 	var applicationView = Backbone.View.extend({
 
 		wrap: wrapper,
-		views: {},
 		activeView: null,
 		initialize: function (_api, _session) {
 			this._api = _api;
-			this._session = _session;			
-			this.views.main = new mainView();
-			this.views.menu = new menuView();
-			this.views.register = new registerView();
-			this.views.login = new loginView();
-			this.views.scoreboard = new scoreboardView();
-			this.views.about = new aboutView();
-			this.views.game = new gameView();
+			this._session = _session;
 		},
 		render: function (options) {
 			if (this.activeView != null) {
@@ -35,23 +27,55 @@ define(function(
 			options = options || {};
 			switch (options['view']) {
 				case 'about':
-					this.showAboutScreen();
+					this.$el.html(this.wrap());
+					this.$('.content').html((new aboutView()).render().$el);
 					break;
 				case 'scoreboard':
-					this.showScoreboardScreen();
+					this.$el.html(this.wrap());
+					this.$('.content').html((new scoreboardView()).render().$el);
 					break;
 				case 'login':
-					this.showLoginScreen();
+					this.$el.html(this.wrap());
+					if (this._session.get('logged_in') == false){
+						this.$('.content').html((new loginView()).render().$el);
+					}
+					else
+					{
+						console.log('refresh window');
+						Backbone.history.navigate('refresh', {trigger: true});
+					}
 					break;
 				case 'register':
-					this.showRegisterScreen();
+					this.$el.html(this.wrap());
+					if (this._session.get('logged_in') == false){
+						this.$('.content').html((new registerView()).render().$el);
+					}
+					else
+					{
+						console.log('refresh window');
+						Backbone.history.navigate('refresh', {trigger: true});
+					}
 					break;
 				case 'game':
-					this.showGameScreen(options);
+					if (this._session.get('logged_in') == true){
+						this.$el.html((new gameView(options)).render().$el);
+					}
+					else
+					{
+						console.log('refresh window');
+						Backbone.history.navigate('', {trigger: true});
+					}
 					break;
 				case 'mainMenu':
 				default:
-					this.showMainScreen();
+					this.$el.html(this.wrap());
+					if (this._session.get('logged_in') == false){
+						this.$('.content').html((new mainView()).render().$el);
+					}
+					else
+					{
+						this.$('.content').html((new menuView()).render().$el);
+					}
 					break;
 			}
 			return this;
@@ -61,63 +85,6 @@ define(function(
 		},
 		hide: function () {
 			// TODO
-		},
-
-		showMainScreen: function(options) {
-			this.$el.html(this.wrap());
-			if (this._session.get('logged_in') == false){
-				this.$('.content').html(this.views.main.render().$el);
-			}
-			else
-			{
-				this.$('.content').html(this.views.menu.render().$el);
-			}
-		},
-
-		showAboutScreen: function(options) {
-			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.about.render().$el);			
-		},
-
-		showLoginScreen: function(options) {
-			this.$el.html(this.wrap());
-			if (this._session.get('logged_in') == false){
-				this.$('.content').html(this.views.login.render().$el);
-				
-			}
-			else
-			{
-				console.log('refresh window');
-				Backbone.history.navigate('refresh', {trigger: true});
-			}
-		},
-
-		showRegisterScreen: function(options) {
-			this.$el.html(this.wrap());			
-			if (this._session.get('logged_in') == false){
-				this.$('.content').html(this.views.register.render().$el);
-			}
-			else
-			{
-				console.log('refresh window');
-				Backbone.history.navigate('refresh', {trigger: true});
-			}
-		},
-
-		showScoreboardScreen: function(options) {
-			this.$el.html(this.wrap());
-			this.$('.content').html(this.views.scoreboard.render().$el);			
-		},
-
-		showGameScreen: function(options) {
-			if (this._session.get('logged_in') == true){
-				this.$el.html(this.views.game.render().$el);			
-			}
-			else
-			{
-				console.log('refresh window');
-				Backbone.history.navigate('refresh', {trigger: true});
-			}
 		}
 	});
 	return applicationView;
