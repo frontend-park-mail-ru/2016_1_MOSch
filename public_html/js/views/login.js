@@ -11,7 +11,7 @@ define([
 	var loginView = Backbone.View.extend({
 
 		events: {
-			'click button': 'submitForm'
+			'submit': 'submitForm'
 		},
 		template: tmpl,
 		initialize: function () {
@@ -30,8 +30,8 @@ define([
 			// TODO
 		},
 
-		submitForm: function() {
-			alert();
+		submitForm: function(e) {
+			event.preventDefault();
 			console.log("submit login");
 		}
 	});

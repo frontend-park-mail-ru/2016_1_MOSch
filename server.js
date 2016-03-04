@@ -36,7 +36,7 @@ app.listen(PORT, function () {
 app.use(
 	'/api',
 	proxy(
-		'http://localhost', 
+		'http://localhost',
 		{
 			port: 31072,
 			forwardPath: function(req, res) {

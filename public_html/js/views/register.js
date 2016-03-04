@@ -31,7 +31,7 @@ define([
 		},
 
 		submitForm: function(e) {
-			alert();
+			event.preventDefault();
 			console.log("submit register");
 		}
 	});
