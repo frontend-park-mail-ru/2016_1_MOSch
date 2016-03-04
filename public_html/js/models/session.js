@@ -40,7 +40,8 @@ define([
 			this.store = this.cookie;
 
 			// try loading the session
-			var localSession = this.store.get('session');
+			// var localSession = this.store.get('session');
+			var localSession = null;
 			
 			if( !(_.isNull(localSession) || _.isUndefined(localSession))) {
 				this.set( JSON.parse( localSession ) );
@@ -54,21 +55,7 @@ define([
 			this.on('logout', this.logout);
 		},
 		
-		sync: function( method, model, options ) {
-			// fallbacks
-			options = options || {};
-			console.log("method", method);
-			// intercept local store actions
-			switch(method){
-				case "read":
-
-				break;
-				case "update":
-					//this.store.set("session", JSON.stringify( model.toJSON() ) );
-				break;
-			}
-			return Backbone.sync.call(this, method, model, options);
-		},
+		
 		// Fxn to update user attributes after recieving API response
 		update: function( userData ){
 			this.user.set(_.pick(userData, _.keys(this.user.defaults)));
@@ -104,43 +91,7 @@ define([
 		error: function( model, req, options, error ){
 			// consider redirecting based on statusCode
 			console.log( req );
-		},
-
-		// Stores
-		cookie : {
-			get : function( name ) {
-				var i,key,value,cookies=document.cookie.split(";");
-				for (i=0;i<cookies.length;i++){
-					key=cookies[i].substr(0,cookies[i].indexOf("="));
-					value=cookies[i].substr(cookies[i].indexOf("=")+1);
-					key=key.replace(/^\s+|\s+$/g,"");
-					if (key==name){
-						return unescape(value);
-					}
-				}
-			},
-
-			set : function( name, val ){
-				// automatically expire session in a day
-				var expiry = 86400000;
-				var date = new Date( ( new Date() ).getTime() + parseInt(expiry) );
-				var value=escape(val) + ((expiry==null) ? "" : "; expires="+date.toUTCString());
-				document.cookie=name + "=" + value;
-			},
-
-			check : function( name ){
-				var cookie=this.get( name );
-				if (cookie!=null && cookie!=""){
-					return true;
-				} else {
-					return false;
-				}
-			},
-
-			clear: function( name ) {
-				document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-			}
-		},
+		},		
 
 		// Helpers
 		// - Creates a unique id for identification purposes
