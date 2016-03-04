@@ -11,18 +11,16 @@ define([
 	var loginView = Backbone.View.extend({
 
 		events: {
-			'click .submit-button': 'submitForm'
+			'click button': 'submitForm'
 		},
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
 		render: function () {
-			_.bindAll(this, 'submitForm');
-			// TODO
 			var templatee = this.template();
 			this.$el.html(templatee);
-			this.delegateEvents();
+			//this.delegateEvents();
 			return this;
 		},
 		show: function () {
@@ -33,6 +31,7 @@ define([
 		},
 
 		submitForm: function() {
+			alert();
 			console.log("submit login");
 		}
 	});

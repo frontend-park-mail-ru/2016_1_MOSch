@@ -11,18 +11,16 @@ define([
 	var registerView = Backbone.View.extend({
 		
 		events: {
-			'click .submit-button': 'submitForm'
+			'submit': 'submitForm'
 		},
 		template: tmpl,
 		initialize: function () {
 			// TODO
 		},
 		render: function () {
-			_.bindAll(this, 'submitForm');
-			// TODO
 			var templatee = this.template();
 			this.$el.html(templatee);
-			this.delegateEvents();
+			//this.delegateEvents();
 			return this;
 		},
 		show: function () {
@@ -32,7 +30,8 @@ define([
 			// TODO
 		},
 
-		submitForm: function() {
+		submitForm: function(e) {
+			alert();
 			console.log("submit register");
 		}
 	});
