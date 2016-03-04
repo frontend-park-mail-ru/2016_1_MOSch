@@ -1,0 +1,8 @@
+default:
+  - 'clean'
+  - 'sass:dev'
+  - 'concat:css'
+  - 'cssmin:dev'
+  - 'concurrent:target'
+test:
+  - 'qunit:all'

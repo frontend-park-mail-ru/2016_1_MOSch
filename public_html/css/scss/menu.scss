@@ -1,0 +1,219 @@
+@import 'config';
+
+.menu-item {
+	position: relative;
+	width: 200px;
+	height: 300px;
+	margin: 3px;
+	float: left;
+	color: #000;
+	text-decoration: none;
+	background-color: #fff;
+	@include prefix('box-shadow', '3px 3px 19px -5px rgba(0,0,0,1)');
+	@include prefix('transition', 'all 0.5s');
+
+	&:hover {
+		background-color: #D8D8D8;
+		color: $hover-color;
+	}
+
+	&__title {
+		width: 180px;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-top: 190px;
+		margin-bottom: 5px;
+		font-family: $wire-font;
+		font-size: 48px;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-shadow: 0px 1px 1px black;
+	}
+
+	&__comment {
+		width: 180px;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-family: $bravo-font;
+		font-size: 22px;
+		font-style: normal;
+	}
+}
+
+.menu-item__icon {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	&__mask {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-size: auto 140px;
+		background-position: center 30px;
+		background-repeat: no-repeat;
+	}
+}
+
+.menu-item__login--part0 {
+	background-image: url('/img/login_orig__pt0.png');
+}
+
+@keyframes login--part {
+	to {
+	 -webkit-transform: translateX(-7px);
+	-ms-transform: translateX(-7px);
+	-o-transform: translateX(-7px);
+	transform: translateX(-7px);
+	}
+}
+
+.menu-item__login--part1 {
+	background-image: url('/img/login_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/login_orig__pt2.png');
+		@include prefix('animation', 'login--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}
+
+.menu-item__register--part0 {
+	background-image: url('/img/register_orig__pt0.png');
+}
+
+@keyframes register--part {
+	to {
+		-webkit-transform: translate(5px, -5px);
+		-ms-transform: translate(5px, -5px);
+		-o-transform: translate(5px, -5px);
+		transform: translate(5px, -5px);
+	}
+}
+
+.menu-item__register--part1 {
+	background-image: url('/img/register_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/register_orig__pt2.png');
+		@include prefix('animation', 'register--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}
+
+.menu-item__scoreboard--part0 {
+	background-image: url('/img/scoreboard_orig__pt0.png');
+}
+
+@keyframes scoreboard--part {
+	to {
+		-webkit-transform: translateY(-7px);
+		-ms-transform: translateY(-7px);
+		-o-transform: translateY(-7px);
+		transform: translateY(-7px);
+	}
+}
+
+.menu-item__scoreboard--part1 {
+	background-image: url('/img/scoreboard_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/scoreboard_orig__pt2.png');
+		@include prefix('animation', 'scoreboard--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}
+
+.menu-item__about--part0 {
+	background-image: url('/img/about_orig__pt0.png');
+}
+
+@keyframes about--part {
+	from {
+		-webkit-transform: translateY(-4px);
+		-ms-transform: translateY(-4px);
+		-o-transform: translateY(-4px);
+		transform: translateY(-4px);
+	}
+	to {
+		-webkit-transform: translateY(4px);
+		-ms-transform: translateY(4px);
+		-o-transform: translateY(4px);
+		transform: translateY(4px);
+	}
+}
+
+.menu-item__about--part1 {
+	background-image: url('/img/about_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/about_orig__pt2.png');
+		@include prefix('animation', 'about--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		-webkit-animation-delay: -0.225s;
+		-o-animation-delay: -0.225s;
+		animation-delay: -0.225s;
+	}
+}
+
+.menu-item__single--part0 {
+	background-image: url('/img/singleplayer_orig__pt0.png');
+}
+
+@keyframes single--part {
+	to {
+		-webkit-transform: translateY(-8px);
+		-ms-transform: translateY(-8px);
+		-o-transform: translateY(-8px);
+		transform: translateY(-8px);
+	}
+}
+
+.menu-item__single--part1 {
+	background-image: url('/img/singleplayer_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/singleplayer_orig__pt2.png');
+		@include prefix('animation', 'single--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}
+
+.menu-item__multi--part0 {
+	background-image: url('/img/multiplayer_orig__pt0.png');
+}
+
+@keyframes multi--part {
+	to {
+		-webkit-transform: translateY(-30px);
+		-ms-transform: translateY(-30px);
+		-o-transform: translateY(-30px);
+		transform: translateY(-30px);
+	}
+}
+
+.menu-item__multi--part1 {
+	background-image: url('/img/multiplayer_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/multiplayer_orig__pt2.png');
+		@include prefix('animation', 'multi--part 0.95s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}
+
+.menu-item__upgrade--part0 {
+	background-image: url('/img/upgrade_orig__pt0.png');
+}
+
+@keyframes upgrade--part {
+	to {
+		-webkit-transform: translateY(-22px);
+		-ms-transform: translateY(-22px);
+		-o-transform: translateY(-22px);
+		transform: translateY(-22px);
+	}
+}
+
+.menu-item__upgrade--part1 {
+	background-image: url('/img/upgrade_orig__pt1.png');
+
+	&:hover {
+		background-image: url('/img/upgrade_orig__pt2.png');
+		@include prefix('animation', 'upgrade--part 0.75s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+	}
+}

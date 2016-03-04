@@ -1,3 +1,15 @@
-<fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="login"></div>
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+			<div class="content__wrapper">
+				<form action="" name="login-form" class="form" autocomplete="off">
+					<label for="email-address" class="input">
+						<input type="email" name="email-address" id="email-address" placeholder="Your E-mail"  class="input__text input__email-input" required="required" spellcheck="false" />
+						<span class="input__label">Enter your e-mail:</span>
+					</label>
+					<label for="password" class="input">
+						<input type="password" name="password" id="password" placeholder="Your password" class="input__text input__password-input" required="required" spellcheck="false" />
+						<span class="input__label">Enter your password:</span>
+					</label>
+					<button type="submit" class="submit-button">Sign In</button>
+				</form>
+			</div>
 </fest:template>
