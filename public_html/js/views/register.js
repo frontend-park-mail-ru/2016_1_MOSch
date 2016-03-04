@@ -11,7 +11,7 @@ define([
 	var registerView = Backbone.View.extend({
 		
 		events: {
-			'submit form': 'submitForm'
+			'submit .form': 'submitForm'
 		},
 		template: tmpl,
 		initialize: function () {
