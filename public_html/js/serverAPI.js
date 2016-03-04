@@ -1,6 +1,6 @@
 define(
-['configAPI'],
-function(configAPI) {
+['configAPI', 'underscore', 'backbone'],
+function(configAPI, _, Backbone) {
 	function ApiManager() {
 		this.LoadAPI();
 	}

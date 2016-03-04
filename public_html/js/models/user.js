@@ -3,7 +3,7 @@ define([
 ], function(
 	Backbone
 ){
-	var userModel = Backbone.Model.extend({
+	var UserModel = Backbone.Model.extend({
 		defaults: {
 			id: '',
 			login: '',
@@ -12,5 +12,5 @@ define([
 		}
 	});
 
-	return userModel;
+	return UserModel;
 });

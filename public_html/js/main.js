@@ -13,14 +13,11 @@ require.config({
 		},
 		'underscore': {
 			exports: '_'
-		},
-		'app': {
-			deps: ['backbone', 'underscore']
 		}
 	}
 });
 
 require(['app'],
 function(App) {
-	window.bTask = new App();
+	var app = new App();
 });

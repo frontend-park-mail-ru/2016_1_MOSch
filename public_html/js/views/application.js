@@ -1,24 +1,16 @@
-define([
-	'backbone',
-	'tmpl/wrapper',
-	'views/main',
-	'views/menu',
-	'views/register',
-	'views/login',
-	'views/scoreboard',
-	'views/about',
-	'views/game'
-], function(
-	Backbone,
-	wrapper,
-	mainView,
-	menuView,
-	registerView,
-	loginView,
-	scoreboardView,
-	aboutView,
-	gameView
+define(function(
+	require
 ) {
+
+	var mainView = require('views/main'),
+		menuView = require('views/menu'),
+		registerView = require('views/register'),
+		loginView = require('views/login'),
+		scoreboardView = require('views/scoreboard'),
+		aboutView = require('views/about'),
+		gameView = require('views/game'),
+		Backbone = require('backbone'),
+		wrapper = require('tmpl/wrapper');
 
 	var applicationView = Backbone.View.extend({
 
