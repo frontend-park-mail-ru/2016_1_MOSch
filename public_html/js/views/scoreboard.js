@@ -1,11 +1,11 @@
 define([
 	'backbone',
-	'tmpl/scoreboard',
-	'collections/scores'
+	'getExampleScoresCollection',
+	'tmpl/scoreboard'
 ], function(
 	Backbone,
-	tmpl,
-	scoresCollection
+	getExample,
+	tmpl
 ) {
 
 	var scoreboardView = Backbone.View.extend({
@@ -15,10 +15,8 @@ define([
 			// TODO
 		},
 		render: function () {
-			// TODO
-			var coll = new scoresCollection();
 			var data = {
-				items: coll.getExample().toJSON().sort()
+				items: getExample().toJSON().sort()
 			};
 			this.$el.html(this.template(data));
 			return this;
