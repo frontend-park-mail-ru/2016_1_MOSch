@@ -67,10 +67,10 @@ define(function(
 			return this;
 		},
 		show: function () {
-			// TODO
+			
 		},
 		hide: function () {
-			// TODO
+			
 		},
 
 		CheckLoginAndShow: function(bool, view){
