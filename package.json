@@ -1,6 +1,6 @@
 {
   "name": "killthebirds",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "action and shooter game",
   "main": "index.js",
   "author": "a.mezin@corp.mail.ru",

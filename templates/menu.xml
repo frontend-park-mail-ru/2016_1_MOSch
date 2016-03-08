@@ -1,44 +1,30 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-			<div class="content__wrapper">
-				<a href="#single" class="menu-item">
-					<div class="menu-item__icon">
-						<div class="menu-item__icon__mask menu-item__single--part0"></div>
-						<div class="menu-item__icon__mask menu-item__single--part1"></div>
-					</div>
-					<div class="menu-item__title">singleplayer</div>
-					<div class="menu-item__comment">Play offline and kill them all!</div>
-				</a>
-				<a href="#multi" class="menu-item">
-					<div class="menu-item__icon">
-						<div class="menu-item__icon__mask menu-item__multi--part0"></div>
-						<div class="menu-item__icon__mask menu-item__multi--part1"></div>
-					</div>
-					<div class="menu-item__title">multiplayer</div>
-					<div class="menu-item__comment">Play online and score points</div>
-				</a>
-				<a href="#upgrade" class="menu-item">
-					<div class="menu-item__icon">
-						<div class="menu-item__icon__mask menu-item__upgrade--part0"></div>
-						<div class="menu-item__icon__mask menu-item__upgrade--part1"></div>
-					</div>
-					<div class="menu-item__title">skills</div>
-					<div class="menu-item__comment">Upgrade and improve your capabilities</div>
-				</a>
-				<a href="#scoreboard" class="menu-item">
-					<div class="menu-item__icon">
-						<div class="menu-item__icon__mask menu-item__scoreboard--part0"></div>
-						<div class="menu-item__icon__mask menu-item__scoreboard--part1"></div>
-					</div>
-					<div class="menu-item__title">scoreboard</div>
-					<div class="menu-item__comment">Ratings and achievements</div>
-				</a>
-				<a href="#about" class="menu-item">
-					<div class="menu-item__icon">
-						<div class="menu-item__icon__mask menu-item__about--part0"></div>
-						<div class="menu-item__icon__mask menu-item__about--part1"></div>
-					</div>
-					<div class="menu-item__title">about us</div>
-					<div class="menu-item__comment">About us, about the site and something else</div>
-				</a>
-			</div>
+	<fest:include context_name="" src="./blocks/menu-button.xml"/>
+	<div class="content__wrapper">
+		<fest:get name="menu-button">{
+			name: "single",
+			title: "singleplayer",
+			comment: "Play offline and kill them all!"
+		}</fest:get>
+		<fest:get name="menu-button">{
+			name: "multi",
+			title: "multiplayer",
+			comment: "Play online and score points"
+		}</fest:get>
+		<fest:get name="menu-button">{
+			name: "upgrade",
+			title: "skills",
+			comment: "Upgrade and improve your capabilities"
+		}</fest:get>
+		<fest:get name="menu-button">{
+			name: "scoreboard",
+			title: "scoreboard",
+			comment: "Ratings and achievements"
+		}</fest:get>
+		<fest:get name="menu-button">{
+			name: "about",
+			title: "about us",
+			comment: "About us, about this site and something else"
+		}</fest:get>
+	</div>
 </fest:template>

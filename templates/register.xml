@@ -1,15 +1,21 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-			<div class="content__wrapper">
-				<form action="" name="register-form" class="form" autocomplete="off">
-					<label for="email-address" class="input">
-						<input type="email" name="email-address" id="email-address" placeholder="Your E-mail"  class="input__text input__email-input" required="required" spellcheck="false" />
-						<span class="input__label">Enter your e-mail:</span>
-					</label>
-					<label for="username" class="input">
-						<input type="text" name="username" id="username" placeholder="Your username" class="input__text input__username-input" required="required" pattern="[A-Za-z0-9]&#123;&#123;6,32&#125;&#125;" spellcheck="false" />
-						<span class="input__label">Choose your username (6-32 characters: latin letters and digits only):</span>
-					</label>
-					<button type="submit" class="submit-button">Sign Up</button>
-				</form>
-			</div>
+	<fest:include context_name="" src="./blocks/input.xml"/>
+	<div class="content__wrapper">
+		<form action="" name="register-form" class="form" autocomplete="off">
+			<fest:get name="input">{
+				input_name: "email-address",
+				type: "email",
+				placeholder: "Your E-mail",
+				label: "Enter your e-mail:"
+			}</fest:get>
+			<fest:get name="input">{
+				input_name: "username",
+				type: "text",
+				placeholder: "Your username",
+				label: "Choose your username (6-32 characters: latin letters and digits only):",
+				pattern: "[A-Za-z0-9]{6,32}"
+			}</fest:get>
+			<button type="submit" class="submit-button">Sign Up</button>
+		</form>
+	</div>
 </fest:template>
