@@ -23,7 +23,7 @@ define([
 		this.connectAPI();
 		this.view = new appView(this.apiManager, this.session);
 		this.router = new Router(this.view);
-		
+
 		Backbone.history.start();
 	};
 

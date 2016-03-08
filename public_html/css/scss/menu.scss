@@ -9,8 +9,8 @@
 	color: #000;
 	text-decoration: none;
 	background-color: #fff;
-	@include prefix('box-shadow', '3px 3px 19px -5px rgba(0,0,0,1)');
-	@include prefix('transition', 'all 0.5s');
+	box-shadow: 3px 3px 19px -5px rgba(0,0,0,1);
+	transition: all 0.5s;
 
 	&:hover {
 		background-color: #D8D8D8;
@@ -61,10 +61,7 @@
 
 @keyframes login--part {
 	to {
-	 -webkit-transform: translateX(-7px);
-	-ms-transform: translateX(-7px);
-	-o-transform: translateX(-7px);
-	transform: translateX(-7px);
+		transform: translateX(-7px);
 	}
 }
 
@@ -73,7 +70,7 @@
 
 	&:hover {
 		background-image: url('/img/login_orig__pt2.png');
-		@include prefix('animation', 'login--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: login--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
 
@@ -83,9 +80,6 @@
 
 @keyframes register--part {
 	to {
-		-webkit-transform: translate(5px, -5px);
-		-ms-transform: translate(5px, -5px);
-		-o-transform: translate(5px, -5px);
 		transform: translate(5px, -5px);
 	}
 }
@@ -95,7 +89,7 @@
 
 	&:hover {
 		background-image: url('/img/register_orig__pt2.png');
-		@include prefix('animation', 'register--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: register--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
 
@@ -105,9 +99,6 @@
 
 @keyframes scoreboard--part {
 	to {
-		-webkit-transform: translateY(-7px);
-		-ms-transform: translateY(-7px);
-		-o-transform: translateY(-7px);
 		transform: translateY(-7px);
 	}
 }
@@ -117,7 +108,7 @@
 
 	&:hover {
 		background-image: url('/img/scoreboard_orig__pt2.png');
-		@include prefix('animation', 'scoreboard--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: scoreboard--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
 
@@ -127,15 +118,9 @@
 
 @keyframes about--part {
 	from {
-		-webkit-transform: translateY(-4px);
-		-ms-transform: translateY(-4px);
-		-o-transform: translateY(-4px);
 		transform: translateY(-4px);
 	}
 	to {
-		-webkit-transform: translateY(4px);
-		-ms-transform: translateY(4px);
-		-o-transform: translateY(4px);
 		transform: translateY(4px);
 	}
 }
@@ -145,9 +130,7 @@
 
 	&:hover {
 		background-image: url('/img/about_orig__pt2.png');
-		@include prefix('animation', 'about--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
-		-webkit-animation-delay: -0.225s;
-		-o-animation-delay: -0.225s;
+		animation: about--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 		animation-delay: -0.225s;
 	}
 }
@@ -158,9 +141,6 @@
 
 @keyframes single--part {
 	to {
-		-webkit-transform: translateY(-8px);
-		-ms-transform: translateY(-8px);
-		-o-transform: translateY(-8px);
 		transform: translateY(-8px);
 	}
 }
@@ -170,7 +150,7 @@
 
 	&:hover {
 		background-image: url('/img/singleplayer_orig__pt2.png');
-		@include prefix('animation', 'single--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: single--part 0.45s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
 
@@ -180,9 +160,6 @@
 
 @keyframes multi--part {
 	to {
-		-webkit-transform: translateY(-30px);
-		-ms-transform: translateY(-30px);
-		-o-transform: translateY(-30px);
 		transform: translateY(-30px);
 	}
 }
@@ -192,7 +169,7 @@
 
 	&:hover {
 		background-image: url('/img/multiplayer_orig__pt2.png');
-		@include prefix('animation', 'multi--part 0.95s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: multi--part 0.95s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
 
@@ -202,9 +179,6 @@
 
 @keyframes upgrade--part {
 	to {
-		-webkit-transform: translateY(-22px);
-		-ms-transform: translateY(-22px);
-		-o-transform: translateY(-22px);
 		transform: translateY(-22px);
 	}
 }
@@ -214,6 +188,6 @@
 
 	&:hover {
 		background-image: url('/img/upgrade_orig__pt2.png');
-		@include prefix('animation', 'upgrade--part 0.75s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95)');
+		animation: upgrade--part 0.75s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }

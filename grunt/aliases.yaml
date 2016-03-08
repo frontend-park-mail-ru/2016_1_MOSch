@@ -1,6 +1,7 @@
 default:
   - 'clean'
   - 'sass:dev'
+  - 'autoprefixer:dev'
   - 'concat:css'
   - 'cssmin:dev'
   - 'concurrent:target'
