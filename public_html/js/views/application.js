@@ -2,14 +2,14 @@ define(function(
 	require
 ) {
 
-	var mainView = require('views/main'),
+	var Backbone = require('backbone'),
+		mainView = require('views/main'),
 		menuView = require('views/menu'),
 		registerView = require('views/register'),
 		loginView = require('views/login'),
 		scoreboardView = require('views/scoreboard'),
 		aboutView = require('views/about'),
 		gameView = require('views/game'),
-		Backbone = require('backbone'),
 		wrapper = require('tmpl/wrapper');
 
 	var applicationView = Backbone.View.extend({
@@ -21,11 +21,11 @@ define(function(
 			this._session = _session;
 		},
 		render: function (options) {
-			if (this.activeView != null) {
+			if (this.activeView !== null) {
 				this.activeView.hide();
 			}
 			options = options || {};
-			switch (options['view']) {
+			switch (options.view) {
 				case 'about':
 					this.$el.html(this.wrap());
 					this.$('.content').html((new aboutView()).render().$el);
@@ -40,10 +40,10 @@ define(function(
 					break;
 				case 'register':
 					this.$el.html(this.wrap());
-					this.CheckLoginAndShow(false, registerView);					
+					this.CheckLoginAndShow(false, registerView);
 					break;
 				case 'game':
-					if (this._session.get('logged_in') == true){
+					if (this._session.get('logged_in') === true){
 						this.$el.html((new gameView(options)).render().$el);
 					}
 					else
@@ -55,7 +55,7 @@ define(function(
 				case 'mainMenu':
 				default:
 					this.$el.html(this.wrap());
-					if (this._session.get('logged_in') == false){
+					if (this._session.get('logged_in') === false){
 						this.$('.content').html((new mainView()).render().$el);
 					}
 					else
@@ -67,10 +67,10 @@ define(function(
 			return this;
 		},
 		show: function () {
-			
+
 		},
 		hide: function () {
-			
+
 		},
 
 		CheckLoginAndShow: function(bool, view){

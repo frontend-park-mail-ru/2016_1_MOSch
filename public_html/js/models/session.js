@@ -1,15 +1,13 @@
-define([
-	'underscore',
-	'backbone',
-	'models/user'
-], function(
-	_,
-	Backbone,
-	UserModel
-){
+define(function(
+	require
+) {
+
+	var Backbone = require('backbone'),
+		_ = require('underscore'),
+		UserModel = require('models/user');
 
 	var Session = Backbone.Model.extend({
-		url: function(){ return this.options.host + '/session' },
+		url: function() { return this.options.host + '/session'; },
 
 		defaults: {
 			session_uid: '',
@@ -42,7 +40,7 @@ define([
 			// try loading the session
 			// var localSession = this.store.get('session');
 			var localSession = null;
-			
+
 			if( !(_.isNull(localSession) || _.isUndefined(localSession))) {
 				this.set( JSON.parse( localSession ) );
 				console.log(this.get('session_uid'));
@@ -54,8 +52,8 @@ define([
 			}
 			this.on('logout', this.logout);
 		},
-		
-		
+
+
 		// Fxn to update user attributes after recieving API response
 		update: function( userData ){
 			this.user.set(_.pick(userData, _.keys(this.user.defaults)));
@@ -91,7 +89,7 @@ define([
 		error: function( model, req, options, error ){
 			// consider redirecting based on statusCode
 			console.log( req );
-		},		
+		},
 
 		// Helpers
 		// - Creates a unique id for identification purposes

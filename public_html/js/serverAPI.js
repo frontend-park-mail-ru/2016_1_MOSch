@@ -1,6 +1,12 @@
-define(
-['configAPI', 'underscore', 'backbone'],
-function(configAPI, _, Backbone) {
+define(function(
+	require
+) {
+
+	var Backbone = require('backbone'),
+		_ = require('underscore'),
+		configAPI = require('configAPI');
+
+
 	function ApiManager() {
 		this.LoadAPI();
 	}
@@ -17,7 +23,7 @@ function(configAPI, _, Backbone) {
 	};
 
 	Backbone.sync = function(method, model, options) {
-		options || (options = {});
+		options = options || {};
 		switch (method) {
 			case 'create':
 			break;

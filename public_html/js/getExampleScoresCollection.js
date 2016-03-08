@@ -1,6 +1,7 @@
 define(function(
 	require
 ) {
+
 	var ScoresCollection = require('collections/scores');
 
 	var getExample = function() {

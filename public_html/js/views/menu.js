@@ -1,27 +1,25 @@
-define([
-	'backbone',
-	'tmpl/menu'
-], function(
-	Backbone,
-	tmpl
+define(function(
+	require
 ) {
+
+	var Backbone = require('backbone'),
+		tmpl = require('tmpl/menu');
 
 	var menuView = Backbone.View.extend({
 
 		template: tmpl,
 		initialize: function () {
-			// TODO
+
 		},
 		render: function () {
-			// TODO
 			this.$el.html(this.template());
 			return this;
 		},
 		show: function () {
-			// TODO
+
 		},
 		hide: function () {
-			// TODO
+
 		}
 
 	});

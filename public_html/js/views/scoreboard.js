@@ -1,18 +1,16 @@
-define([
-	'backbone',
-	'getExampleScoresCollection',
-	'tmpl/scoreboard'
-], function(
-	Backbone,
-	getExample,
-	tmpl
+define(function(
+	require
 ) {
+
+	var Backbone = require('backbone'),
+		getExample = require('getExampleScoresCollection'),
+		tmpl = require('tmpl/scoreboard');
 
 	var scoreboardView = Backbone.View.extend({
 
 		template: tmpl,
 		initialize: function () {
-			// TODO
+
 		},
 		render: function () {
 			var data = {
@@ -22,10 +20,10 @@ define([
 			return this;
 		},
 		show: function () {
-			// TODO
+
 		},
 		hide: function () {
-			// TODO
+
 		}
 
 	});
