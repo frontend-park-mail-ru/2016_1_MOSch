@@ -3,18 +3,20 @@
 	<div class="content__wrapper">
 		<form action="" name="login-form" class="form" autocomplete="off">
 			<fest:get name="input">{
-				input_name: "email-address",
-				type: "email",
-				placeholder: "Your E-mail",
-				label: "Enter your e-mail:"
+				input_name: "username",
+				type: "text",
+				placeholder: "Your username",
+				label: "Enter your username:",
+				pattern: "[A-Za-z0-9]{1,32}"
 			}</fest:get>
 			<fest:get name="input">{
 				input_name: "password",
 				type: "password",
 				placeholder: "Your password",
-				label: "Enter your password:"
+				label: "Enter your password:",
+				pattern: "[A-Za-z0-9]{6,32}"
 			}</fest:get>
-			<button type="submit" class="submit-button">Sign In</button>
+			<button class="submit-button">Sign In</button>
 		</form>
 	</div>
 </fest:template>

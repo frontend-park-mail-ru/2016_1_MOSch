@@ -2,7 +2,9 @@ define(function(
 	require
 ) {
 
-	var Backbone = require('backbone');
+	var Backbone = require('backbone'),
+		Session = require('models/session'),
+		appView = require('views/application');
 
 	var Router = Backbone.Router.extend({
 		routes: {
@@ -14,70 +16,42 @@ define(function(
 			'upgrade': 'upgradeActions',
 			'multi': 'multiplayerActions',
 			'single': 'singleplayerActions',
-			'refresh': 'refreshWindow',
 			'*default': 'showMenu'
 		},
-		initialize: function (argument) {
-			this.view = argument;
-			this.last = null;
-		},
-		refreshWindow:function () {
-			this.showMenu({forced:true});
+		initialize: function () {
+			this._view = new appView();
 		},
 		showMenu: function (options) {
-			options = options || { 'forced': false };
-			if (this.last !== this.showMenu || options['forced'] === true) {
-				console.log('The default route. We show main menu');
-				$('body').html(this.view.render({ 'view': 'mainMenu' }).$el);
-				this.last = this.showMenu;
-			}
+			console.log('The default route. We show main menu');
+			this._view.render({ 'view': 'mainMenu' });
 		},
 		showAbout: function (options) {
-			options = options || { 'forced': false };
-			if (this.last !== this.showAbout || options['forced'] === true) {
-				console.log('The #about route. We show about screen');
-				$('body').html(this.view.render({ 'view': 'about' }).$el);
-				this.last = this.showAbout;
-			}
+			console.log('The #about route. We show about screen');
+			this._view.render({ 'view': 'about' });
 		},
 		showScore: function (options) {
-			options = options || { 'forced': false };
-			if (this.last !== this.showScore || options['forced'] === true) {
-				console.log('The #scoreboard route. We show scores');
-				$('body').html(this.view.render({ 'view': 'scoreboard' }).$el);
-				this.last = this.showScore;
-			}
+			console.log('The #scoreboard route. We show scores');
+			this._view.render({ 'view': 'scoreboard' });
 		},
 		showLoginForm: function (options) {
-			options = options || { 'forced': false };
-			if (this.last !== this.showLoginForm || options['forced'] === true) {
-				console.log('The #login route. We show login form');
-				$('body').html(this.view.render({ 'view': 'login' }).$el);
-				this.last = this.showLoginForm;
-			}
+			console.log('The #login route. We show login form');
+			this._view.render({ 'view': 'login' });
 		},
 		showRegisterForm: function (options) {
-			options = options || { 'forced': false };
-			if (this.last !== this.showRegisterForm || options['forced'] === true) {
-				console.log('The #register route. We show registration form');
-				$('body').html(this.view.render({ 'view': 'register' }).$el);
-				this.last = this.showRegisterForm;
-			}
+			console.log('The #register route. We show registration form');
+			this._view.render({ 'view': 'register' });
 		},
 		upgradeActions: function () {
 			console.log('The #upgrade route. We show upgrade screen');
-			$('body').html(this.view.render({ 'view': 'game', 'action': 'upgrade' }).$el);
-			this.last = this.upgradeActions;
+			this._view.render({ 'view': 'game', 'action': 'upgrade' });
 		},
 		multiplayerActions: function () {
 			console.log('The #multi route. We start multiplayer game');
-			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'multiplayer' }).$el);
-			this.last = this.multiplayerActions;
+			this._view.render({ 'view': 'game', 'action': 'play', 'mode': 'multiplayer' });
 		},
 		singleplayerActions: function () {
 			console.log('The #single route. We start singleplayer game');
-			$('body').html(this.view.render({ 'view': 'game', 'action': 'play', 'mode': 'singleplayer' }).$el);
-			this.last = this.singleplayerActions;
+			this._view.render({ 'view': 'game', 'action': 'play', 'mode': 'singleplayer' });
 		}
 	});
 

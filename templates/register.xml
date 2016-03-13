@@ -3,19 +3,20 @@
 	<div class="content__wrapper">
 		<form action="" name="register-form" class="form" autocomplete="off">
 			<fest:get name="input">{
-				input_name: "email-address",
-				type: "email",
-				placeholder: "Your E-mail",
-				label: "Enter your e-mail:"
-			}</fest:get>
-			<fest:get name="input">{
 				input_name: "username",
 				type: "text",
 				placeholder: "Your username",
-				label: "Choose your username (6-32 characters: latin letters and digits only):",
+				label: "Enter your username (latin letters and digits only):",
+				pattern: "[A-Za-z0-9]{1,32}"
+			}</fest:get>
+			<fest:get name="input">{
+				input_name: "password",
+				type: "text",
+				placeholder: "Your password",
+				label: "Choose your password (6-32 characters: latin letters and digits only):",
 				pattern: "[A-Za-z0-9]{6,32}"
 			}</fest:get>
-			<button type="submit" class="submit-button">Sign Up</button>
+			<button class="submit-button">Sign Up</button>
 		</form>
 	</div>
 </fest:template>

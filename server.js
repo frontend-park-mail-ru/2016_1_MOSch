@@ -1,7 +1,8 @@
 var express = require('express'),
 	errorHandler = require('errorhandler'),
 	app = express(),
-	proxy = require('express-http-proxy');
+	proxy = require('express-http-proxy'),
+	bodyParser = require('body-parser');
 
 var HOSTNAME = 'localhost',
 	PORT = 8080,
@@ -12,22 +13,20 @@ var HOSTNAME = 'localhost',
 
 app.use(function (req, res, done) {
 	var current_date = new Date();
-	console.log("Date: [%s] Request No.:[%s], Request: [%s %s %s]",
-		current_date.toLocaleString(),
+	console.log("[%s] №:[%s], Request: [%s %s]",
+		current_date.toLocaleTimeString(),
 		request_count++,
-		//req.headers['user-agent'].toLocaleString(),
 		req.method,
-		req.url.toLocaleString(),
-		req.body
-		//req.connection.remoteAddress.toLocaleString()
+		req.url.toLocaleString()
 	);
-
 	done();
 });
 
 app
 	.use('/', express.static(PUBLIC_DIR))
 	.use(errorHandler());
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(PORT, function () {
 	console.log("Simple static server showing %s listening at http://%s:%s", PUBLIC_DIR, HOSTNAME, PORT);
@@ -40,7 +39,7 @@ app.use(
 		{
 			port: 31072,
 			forwardPath: function(req, res) {
-				console.log(req.originalUrl);
+				console.log("proxy: [%s %s %s]", req.method, req.originalUrl, JSON.stringify(req.body));
 				return '/api'+require('url').parse(req.url).path;
 			}
 		}

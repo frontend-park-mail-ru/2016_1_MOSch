@@ -3,7 +3,8 @@ require.config({
 	paths: {
 		jquery: "lib/jquery.min",
 		underscore: "lib/underscore",
-		backbone: "lib/backbone"
+		backbone: "lib/backbone",
+		jscookie: "lib/js.cookie"
 	},
 	shim: {
 		'backbone': {

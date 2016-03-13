@@ -7,6 +7,7 @@ define(function(
 
 	var menuView = Backbone.View.extend({
 
+		el: '.content',
 		template: tmpl,
 		initialize: function () {
 

@@ -6,10 +6,11 @@ define(function(
 
 	var UserModel = Backbone.Model.extend({
 		defaults: {
-			id: '',
-			login: '',
-			password: '',
-			role: ''
+			token: null,
+			userID: -1,
+			email: null,
+			username: null,
+			role: null
 		}
 	});
 

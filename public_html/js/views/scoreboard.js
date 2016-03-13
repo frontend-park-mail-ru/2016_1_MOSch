@@ -8,6 +8,7 @@ define(function(
 
 	var scoreboardView = Backbone.View.extend({
 
+		el: '.content',
 		template: tmpl,
 		initialize: function () {
 

@@ -3,6 +3,7 @@ define(function(
 ) {
 
 	var Backbone = require('backbone'),
+		Session = require('models/session'),
 		mainView = require('views/main'),
 		menuView = require('views/menu'),
 		registerView = require('views/register'),
@@ -13,38 +14,31 @@ define(function(
 		wrapper = require('tmpl/wrapper');
 
 	var applicationView = Backbone.View.extend({
-
+		el: 'body',
 		wrap: wrapper,
-		activeView: null,
-		initialize: function (_api, _session) {
-			this._api = _api;
-			this._session = _session;
+		initialize: function ( options ) {
+			this._session = new Session();
+			this._is_wrap_rendered = false;
+			this.currentView = null;
 		},
 		render: function (options) {
-			if (this.activeView !== null) {
-				this.activeView.hide();
-			}
 			options = options || {};
 			switch (options.view) {
 				case 'about':
-					this.$el.html(this.wrap());
-					this.$('.content').html((new aboutView()).render().$el);
+					this.renderToWrap(aboutView);
 					break;
 				case 'scoreboard':
-					this.$el.html(this.wrap());
-					this.$('.content').html((new scoreboardView()).render().$el);
+					this.renderToWrap(scoreboardView);
 					break;
 				case 'login':
-					this.$el.html(this.wrap());
-					this.CheckLoginAndShow(false, loginView);
+					this.CheckUnLoginAndShow(loginView);
 					break;
 				case 'register':
-					this.$el.html(this.wrap());
-					this.CheckLoginAndShow(false, registerView);
+					this.CheckUnLoginAndShow(registerView);
 					break;
 				case 'game':
 					if (this._session.get('logged_in') === true){
-						this.$el.html((new gameView(options)).render().$el);
+						this.$el.html((new gameView(this._session, options)).render().$el);
 					}
 					else
 					{
@@ -54,13 +48,12 @@ define(function(
 					break;
 				case 'mainMenu':
 				default:
-					this.$el.html(this.wrap());
-					if (this._session.get('logged_in') === false){
-						this.$('.content').html((new mainView()).render().$el);
+					if (this._session.get('logged_in') === false) {
+						this.renderToWrap(mainView);
 					}
 					else
 					{
-						this.$('.content').html((new menuView()).render().$el);
+						this.renderToWrap(menuView);
 					}
 					break;
 			}
@@ -73,15 +66,27 @@ define(function(
 
 		},
 
-		CheckLoginAndShow: function(bool, view){
-			if (this._session.get('logged_in') == bool){
-				this.$('.content').html((new view()).render().$el);
+		CheckUnLoginAndShow: function(view){
+			if (this._session.get('logged_in') === false){
+				this.renderToWrap(view);
 			}
 			else
 			{
 				console.log('refresh window');
 				Backbone.history.navigate('', {trigger: true});
 			}
+		},
+
+		renderToWrap: function(view) {
+			if (this._is_wrap_rendered === false) {
+				this.$el.html(this.wrap());
+				this._is_wrap_rendered = true;
+			}
+			if (this.currentView) {
+				this.currentView.undelegateEvents();
+			}
+			this.currentView = new view(this._session);
+			this.currentView.render();
 		}
 	});
 	return applicationView;
