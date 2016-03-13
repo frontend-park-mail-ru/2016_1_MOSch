@@ -5,12 +5,12 @@ define(function(
 	var Backbone = require('backbone'),
 		scoreModel = require('models/score');
 
-	var scoresCollection = Backbone.Collection.extend({
+	var ScoresCollection = Backbone.Collection.extend({
 		model: scoreModel,
 		comparator: function (score) {
 			return -(+score.get('rate'));
 		}
 	});
 
-	return scoresCollection;
+	return ScoresCollection;
 });
