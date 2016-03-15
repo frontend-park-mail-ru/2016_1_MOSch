@@ -3,6 +3,7 @@ define(function(
 ) {
 
 	var Backbone = require('backbone'),
+		$ = require('jquery'),
 		tmpl = require('tmpl/menu');
 
 	var menuView = Backbone.View.extend({
@@ -17,6 +18,7 @@ define(function(
 		},
 		render: function () {
 			this.$el.html(this.template());
+			this.$('.username').html('You are logged as ' + this._session.get('login') + ' (id ' + this._session.get('userID') + ')');
 			return this;
 		},
 		show: function () {

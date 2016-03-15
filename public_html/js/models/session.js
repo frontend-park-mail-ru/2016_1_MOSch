@@ -16,7 +16,8 @@ define(function(
 			session_guid: null,
 			auth_token: null,
 			logged_in: false,
-			userID: null
+			userID: null,
+			login: null
 		},
 
 		options: {
@@ -109,6 +110,7 @@ define(function(
 					}.bind(this)
 				});
 			} else if (options.username && options.password_phrase) {
+				this.set('login', options.username);
 				JQuery.ajax({
 					method: 'PUT',
 					dataType: 'json',
@@ -218,7 +220,8 @@ define(function(
 				session_guid: null,
 				auth_token: null,
 				logged_in: false,
-				userID: null
+				userID: null,
+				login: null
 			});
 			this.update({ clear: true });
 		},
