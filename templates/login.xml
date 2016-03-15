@@ -6,17 +6,15 @@
 				input_name: "username",
 				type: "text",
 				placeholder: "Your username",
-				label: "Enter your username:",
-				pattern: "[A-Za-z0-9]{1,32}"
+				label: "Enter your username:"
 			}</fest:get>
 			<fest:get name="input">{
 				input_name: "password",
 				type: "password",
 				placeholder: "Your password",
-				label: "Enter your password:",
-				pattern: "[A-Za-z0-9]{6,32}"
+				label: "Enter your password:"
 			}</fest:get>
-			<button class="submit-button">Sign In</button>
+			<button type="submit" class="submit-button">Sign In</button>
 		</form>
 	</div>
 </fest:template>

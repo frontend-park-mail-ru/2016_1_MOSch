@@ -10,7 +10,7 @@ define(function(
 	var registerView = Backbone.View.extend({
 
 		events: {
-			'click .submit-button': 'submitForm'
+			'submit .form': 'submitForm'
 		},
 		template: tmpl,
 		initialize: function ( options ) {
@@ -80,6 +80,7 @@ define(function(
 					'password_phrase': password
 				});
 			}
+			return check;
 		}
 	});
 
