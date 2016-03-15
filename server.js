@@ -25,11 +25,9 @@ app.use(function (req, res, done) {
 app
 	.use('/', express.static(PUBLIC_DIR))
 	.use(errorHandler());
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(PORT, function () {
-	console.log("Simple static server showing %s listening at http://%s:%s", PUBLIC_DIR, HOSTNAME, PORT);
+	console.log("BEST game server listening at http://%s:%s", HOSTNAME, PORT);
 });
 
 app.use(
