@@ -8,13 +8,14 @@ define(function(
 		tmpl = require('tmpl/login');
 
 	var loginView = Backbone.View.extend({
-		el: '.content',
+
 		events: {
 			'click .submit-button': 'submitForm'
 		},
 		template: tmpl,
-		initialize: function (session) {
-			this._session = session;
+		initialize: function ( options ) {
+			this._session = options.session;
+			this.$el.hide();
 		},
 		render: function () {
 			var templatee = this.template();
@@ -22,29 +23,63 @@ define(function(
 			return this;
 		},
 		show: function () {
-
+			if (this._session.get('logged_in')) {
+				Backbone.Events.trigger('showToast', {
+					'type': 'info',
+					'text': 'You are already registered'
+				});
+				Backbone.history.navigate('menu', { trigger: true });
+				return;
+			}
+			this.render();
+			this.$el.show();
+			return this;
 		},
 		hide: function () {
-
+			this.$el.hide();
+			return this;
 		},
 
 		submitForm: function(e) {
 			e.preventDefault();
-			var username = String($('#username').val());
-			var password = String($('#password').val());
-			if (! /[A-Za-z0-9]{1,32}/.test(username)) {
-				Backbone.Events.trigger('showAlert', 'Введите правильный username');
-				return;
+			var username = String(this.$('#username').val());
+			var password = String(this.$('#password').val());
+			var check = true;
+
+			if (username === "") {
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Enter username'
+				});
+				check = false;
+			} else if (! /[A-Za-z0-9]{1,32}/.test(username)) {
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Enter valid username'
+				});
+				check = false;
 			}
-			if (! /[A-Za-z0-9]{6,32}/.test(password)) {
-				Backbone.Events.trigger('showAlert', 'Введите правильный пароль');
-				return;
+
+			if (password === "") {
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Enter password'
+				});
+				check = false;
+			} else if (! /[A-Za-z0-9]{6,32}/.test(password)) {
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Enter valid password'
+				});
+				check = false;
 			}
-			console.log("submit login " + username + " " + password);
-			this._session.login({
-				'username': username,
-				'password_phrase': password
-			});
+			if (check) {
+				console.log("submit login: " + username + " " + password);
+				this._session.login({
+					'username': username,
+					'password_phrase': password
+				});
+			}
 		}
 	});
 

@@ -14,7 +14,7 @@ define(function(
 
 		defaults: {
 			session_guid: null,
-			token: null,
+			auth_token: null,
 			logged_in: false,
 			userID: null
 		},
@@ -28,22 +28,30 @@ define(function(
 
 		initialize: function( options ){
 			_.extend(this.options, options);
-			this.on('change:logged_in', function() { Backbone.history.navigate('', { trigger: true }); });
-			var cookies = Cookie.get();
-			if (_.has(cookies, 'token') && _.has(cookies, 'session_guid')) {
-				cookies.nowarnings = true;
-				this.login(cookies);
-			}
+			this.on('change:logged_in', function() {
+				console.log('logged = '+this.get('logged_in'));
+				if (this.get('logged_in')) {
+					Backbone.history.navigate('menu', { trigger: true }); // когда пользователь залогинился
+				} else {
+					Backbone.history.navigate('main', { trigger: true });
+				}
+			});
+			// var cookies = Cookie.get();
+			// if (_.has(cookies, 'auth_token') && _.has(cookies, 'session_guid')) {
+			// 	cookies.nowarnings = true;
+			// 	this.login(cookies);
+			// }
 		},
 
 		// эта функция сохраняет/обновляет в куках данные о текущей сессии
 		// если options.clear === true, то все куки сессии удаляются
-		update: function( options ){
+		update: function( options ) {
 			Cookie.remove('session_guid');
-			Cookie.remove('token');
+			Cookie.remove('auth_token');
 			if (options.clear !== true) {
-				if (this.has('token') && this.has('session_guid')) {
-					Cookie.set('token', this.get('token'), { expires: this.options.default_expires_time });
+				if (this.has('auth_token') && this.has('session_guid')) {
+					console.log('Save cookies');
+					Cookie.set('auth_token', this.get('auth_token'), { expires: this.options.default_expires_time });
 					Cookie.set('session_guid', this.get('session_guid'), { expires: this.options.default_expires_time });
 				}
 			}
@@ -51,80 +59,86 @@ define(function(
 
 		// завершает текущую сессию (logout)
 		logout: function( options ) {
+			options = options || {};
+			if (!this.get('logged_in')) {
+				return;
+			}
+			JQuery.ajax({
+				method: 'DELETE',
+				contentType: 'application/json;charset=utf-8',
+				url: this.urlSession(),
+				success: function( data, textStatus ) {
+					console.log('logout succ '+textStatus);
+					this.resetSession();
+				}.bind(this),
+				error: function( XMLHttpRequest, textStatus, error ) {
+					console.log('logout error '+textStatus);
+					Backbone.Events.trigger('showToast', {
+						'type': 'info',
+						'text': 'Unable to logout'
+					});
+				}.bind(this)
+			});
+		},
+
+		// производится попытка создать сессию, используя auth_token, или залогиниться,
+		// используя логин и пароль пользователя
+		login: function( options ) {
+			options = options || {};
 			if (this.get('logged_in')) {
+				return;
+			}
+			if (options.auth_token) {
 				JQuery.ajax({
-					method: 'DELETE',
+					method: 'PUT',
 					dataType: 'json',
 					contentType: 'application/json;charset=utf-8',
 					processData: false,
 					url: this.urlSession(),
+					data: JSON.stringify({
+						'auth_token': options.auth_token
+					}),
 					success: function( data, textStatus ) {
-						console.log('logout succ '+textStatus);
-						this.resetSession();
-					},
+						this.set('auth_token', data.auth_token);
+						console.log('login succ '+textStatus);
+						this.afterLogin();
+					}.bind(this),
 					error: function( XMLHttpRequest, textStatus, error ) {
-						console.log('logout error '+textStatus);
-						Backbone.Events.trigger('showMessage', 'Не удалось разлогиниться на сервере');
-					}
+						console.log('login error '+textStatus);
+						this.resetSession();
+					}.bind(this)
 				});
-			}
-		},
-
-		// производится попытка создать сессию, используя token, или залогиниться,
-		// используя логин и пароль пользователя
-		login: function( options ) {
-			if (this.get('logged_in') === false) {
-				if (_.has(options, 'token')) {
-					JQuery.ajax({
-						method: 'PUT',
-						dataType: 'json',
-						contentType: 'application/json;charset=utf-8',
-						processData: false,
-						url: this.urlSession(),
-						data: JSON.stringify({
-							'token': options.token
-						}),
-						success: function( data, textStatus ) {
-							this.set('token', data.token);
-							console.log('login succ '+textStatus);
-							this.afterLogin();
-						},
-						error: function( XMLHttpRequest, textStatus, error ) {
-							console.log('login error '+textStatus);
-							this.resetSession();
-						}
-					});
-				}
-				else if (_.has(options, 'username') && _.has(options, 'password_phrase')) {
-					JQuery.ajax({
-						method: 'PUT',
-						dataType: 'json',
-						contentType: 'application/json;charset=utf-8',
-						processData: false,
-						url: this.urlSession(),
-						data: JSON.stringify({
-							'login': options.username,
-							'password': options.password_phrase
-						}),
-						success: function( data, textStatus ) {
-							this.set('token', data.token);
-							console.log('login succ '+textStatus);
-							this.afterLogin();
-						},
-						error: function( XMLHttpRequest, textStatus, error ) {
-							console.log('login error '+textStatus);
-							Backbone.Events.trigger('showAlert', 'Не удалось войти на сервер');
-						}
-					});
-				}
-				else
-				{
-					this.resetSession();
-				}
+			} else if (options.username && options.password_phrase) {
+				JQuery.ajax({
+					method: 'PUT',
+					dataType: 'json',
+					contentType: 'application/json;charset=utf-8',
+					processData: false,
+					url: this.urlSession(),
+					data: JSON.stringify({
+						'login': options.username,
+						'password': options.password_phrase
+					}),
+					success: function( data, textStatus ) {
+						this.set('auth_token', data.auth_token);
+						console.log('login succ '+textStatus);
+						this.afterLogin();
+					}.bind(this),
+					error: function( XMLHttpRequest, textStatus, error ) {
+						console.log('login error '+textStatus);
+						Backbone.Events.trigger('showToast', {
+							'type': 'alert',
+							'text': 'Unable to login'
+						});
+					}.bind(this)
+				});
+			} else {
+				this.resetSession();
 			}
 		},
 
 		afterLogin: function( options ) {
+			options = options || {};
 			this.set('session_guid', this.generateUid());
 			JQuery.ajax({
 				method: 'GET',
@@ -133,49 +147,57 @@ define(function(
 				processData: false,
 				url: this.urlSession(),
 				data: JSON.stringify({
-					'token': this.get('token')
+					'auth_token': this.get('auth_token')
 				}),
 				success: function( data, textStatus ) {
 					console.log('afterLogin succ '+textStatus);
-					this.set('userID', data.userID);
+					this.set('userID', data.id);
 					this.set('logged_in', true);
-				},
+				}.bind(this),
 				error: function( XMLHttpRequest, textStatus, error ) {
 					console.log('afterLogin error '+textStatus);
-					Backbone.Events.trigger('showMessage', 'Ошибка связи');
+					Backbone.Events.trigger('showToast', {
+						'type': 'alert',
+						'text': 'Failure with connection'
+					});
 					this.resetSession();
-				}
+				}.bind(this)
 			});
 		},
 
-		// регистрирует нового пользователя, используя логин (адрес электронной почты)
+		// регистрирует нового пользователя, используя логин
 		// и выбранный пользователем пароль
 		signup: function( options ) {
-			if (this.get('logged_in') === false) {
-				if (_.has(options, 'username') && _.has(options, 'password_phrase')) {
-					JQuery.ajax({
-						method: 'PUT',
-						dataType: 'json',
-						contentType: 'application/json;charset=utf-8',
-						processData: false,
-						url: this.urlUser(),
-						data: JSON.stringify({
-							'login': options.username,
-							'password': options.password_phrase
-						}),
-						success: function( data, textStatus ) {
-							console.log('signup succ '+textStatus);
-							this.login({
-								'username': options.username,
-								'password_phrase': options.password_phrase
-							});
-						},
-						error: function( XMLHttpRequest, textStatus, error ) {
-							console.log('signup error '+textStatus);
-							Backbone.Events.trigger('showAlert', 'Не удалось зарегистрироваться на сервере');
-						}
-					});
-				}
+			options = options || {};
+			if (this.get('logged_in')) {
+				return;
+			}
+			if (options.username && options.password_phrase) {
+				JQuery.ajax({
+					method: 'PUT',
+					dataType: 'json',
+					contentType: 'application/json;charset=utf-8',
+					processData: false,
+					url: this.urlUser(),
+					data: JSON.stringify({
+						'login': options.username,
+						'password': options.password_phrase
+					}),
+					success: function( data, textStatus ) {
+						console.log('signup succ '+textStatus);
+						this.login({
+							'username': options.username,
+							'password_phrase': options.password_phrase
+						});
+					}.bind(this),
+					error: function( XMLHttpRequest, textStatus, error ) {
+						console.log('signup error '+textStatus);
+						Backbone.Events.trigger('showToast', {
+							'type': 'alert',
+							'text': 'Unable to signup'
+						});
+					}.bind(this)
+				});
 			}
 		},
 
@@ -183,7 +205,7 @@ define(function(
 		getUser: function( options ) {
 			if (this.get('logged_in')) {
 				return new UserModel({
-					token: this.get('token'),
+					auth_token: this.get('auth_token'),
 					userID: this.get('userID')
 				});
 			}
@@ -194,7 +216,7 @@ define(function(
 		resetSession: function( options ) {
 			this.set({
 				session_guid: null,
-				token: null,
+				auth_token: null,
 				logged_in: false,
 				userID: null
 			});

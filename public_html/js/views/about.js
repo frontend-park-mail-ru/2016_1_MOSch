@@ -9,11 +9,10 @@ define(function(
 
 	var aboutView = Backbone.View.extend({
 
-		el: '.content',
-
 		template: tmpl,
-		initialize: function () {
-
+		initialize: function ( options ) {
+			this._session = options.session;
+			this.$el.hide();
 		},
 		render: function () {
 			var metrik = new metriks();
@@ -35,12 +34,14 @@ define(function(
 			return this;
 		},
 		show: function () {
-
+			this.render();
+			this.$el.show();
+			return this;
 		},
 		hide: function () {
-
+			this.$el.hide();
+			return this;
 		}
-
 	});
 
 	return aboutView;

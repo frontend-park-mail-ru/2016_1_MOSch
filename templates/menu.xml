@@ -1,28 +1,34 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:include context_name="" src="./blocks/menu-button.xml"/>
+	<div class="exit">Logout</div>
 	<div class="content__wrapper">
 		<fest:get name="menu-button">{
 			name: "single",
+			url: "game/single",
 			title: "singleplayer",
 			comment: "Play offline and kill them all!"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "multi",
+			url: "game/multi",
 			title: "multiplayer",
 			comment: "Play online and score points"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "upgrade",
+			url: "game/upgrade",
 			title: "skills",
 			comment: "Upgrade and improve your capabilities"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "scoreboard",
+			url: "scoreboard",
 			title: "scoreboard",
 			comment: "Ratings and achievements"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "about",
+			url: "about",
 			title: "about us",
 			comment: "About us, about this site and something else"
 		}</fest:get>

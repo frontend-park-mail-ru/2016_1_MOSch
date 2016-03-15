@@ -7,20 +7,28 @@ define(function(
 
 	var mainView = Backbone.View.extend({
 
-		el: '.content',
 		template: tmpl,
-		initialize: function () {
-
+		initialize: function ( options ) {
+			this._session = options.session;
+			this.$el.hide();
 		},
 		render: function () {
-			this.$el.html(this.template());
+			var templatee = this.template();
+			this.$el.html(templatee);
 			return this;
 		},
 		show: function () {
-
+			if (this._session.get('logged_in')) {
+				Backbone.history.navigate('menu', { trigger: true });
+				return;
+			}
+			this.render();
+			this.$el.show();
+			return this;
 		},
 		hide: function () {
-
+			this.$el.hide();
+			return this;
 		}
 
 	});

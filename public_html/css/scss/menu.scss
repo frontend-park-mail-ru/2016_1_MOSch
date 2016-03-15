@@ -191,3 +191,18 @@
 		animation: upgrade--part 0.75s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 	}
 }
+
+.exit {
+	display: block;
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	padding: 15px;
+	width: 100px;
+	height: 25px;
+	font-size: 25px;
+	font-family: $bravo-font;
+	text-transform: uppercase;
+	text-decoration: underline;
+	cursor: pointer;
+}

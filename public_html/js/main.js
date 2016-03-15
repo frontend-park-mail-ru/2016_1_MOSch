@@ -17,7 +17,4 @@ require.config({
 	}
 });
 
-require(['app'],
-function(App) {
-	var app = new App();
-});
+require(['app']);
