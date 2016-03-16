@@ -37,11 +37,6 @@ define(function(
 					Backbone.history.navigate('main', { trigger: true });
 				}
 			});
-			// var cookies = Cookie.get();
-			// if (_.has(cookies, 'auth_token') && _.has(cookies, 'session_guid')) {
-			// 	cookies.nowarnings = true;
-			// 	this.login(cookies);
-			// }
 		},
 
 		// эта функция сохраняет/обновляет в куках данные о текущей сессии
