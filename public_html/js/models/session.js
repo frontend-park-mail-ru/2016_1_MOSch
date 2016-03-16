@@ -29,14 +29,7 @@ define(function(
 
 		initialize: function( options ){
 			_.extend(this.options, options);
-			this.on('change:logged_in', function() {
-				console.log('logged = '+this.get('logged_in'));
-				if (this.get('logged_in')) {
-					Backbone.history.navigate('menu', { trigger: true }); // когда пользователь залогинился
-				} else {
-					Backbone.history.navigate('main', { trigger: true });
-				}
-			});
+			this.on('change:logged_in', this.onChange);
 		},
 
 		// эта функция сохраняет/обновляет в куках данные о текущей сессии
@@ -219,6 +212,15 @@ define(function(
 				login: null
 			});
 			this.update({ clear: true });
+		},
+		
+		onChange: function() {
+			console.log('logged = '+this.get('logged_in'));
+			if (this.get('logged_in')) {
+				Backbone.history.navigate('menu', { trigger: true }); // когда пользователь залогинился
+			} else {
+				Backbone.history.navigate('main', { trigger: true });
+			}
 		},
 
 		// Helpers
