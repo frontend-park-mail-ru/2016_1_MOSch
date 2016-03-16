@@ -1,14 +1,16 @@
-define([
-	'backbone'
-], function(
-	Backbone
-){
+define(function(
+	require
+) {
+
+	var Backbone = require('backbone');
+
 	var UserModel = Backbone.Model.extend({
 		defaults: {
-			id: '',
-			login: '',
-			password: '',
-			role: ''
+			token: null,
+			userID: -1,
+			email: null,
+			username: null,
+			role: null
 		}
 	});
 

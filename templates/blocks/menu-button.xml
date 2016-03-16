@@ -1,0 +1,14 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:set name="menu-button">
+		<fest:if test="params != undefined">
+			<a href="#{params.url}" class="menu-item">
+				<div class="menu-item__icon">
+					<div class="menu-item__icon__mask menu-item__{params.name}--part0"></div>
+					<div class="menu-item__icon__mask menu-item__{params.name}--part1"></div>
+				</div>
+				<div class="menu-item__title"><fest:value>params.title</fest:value></div>
+				<div class="menu-item__comment"><fest:value>params.comment</fest:value></div>
+			</a>
+		</fest:if>
+	</fest:set>
+</fest:template>

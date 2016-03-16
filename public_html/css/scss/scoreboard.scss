@@ -1,7 +1,7 @@
 @import 'config';
 
 .scoreboard {
-	
+
 	&__title {
 		display: block;
 		margin-bottom: 15px;
@@ -26,11 +26,11 @@
 	font-size: 28px;
 	font-style: normal;
 	background-color: rgba(255, 255, 255, 0.35);
-	@include prefix('transition', 'background-color 0.7s ease');
+	transition: background-color 0.7s ease;
 
 	&:hover {
 		background-color: rgba(255, 255, 255, 0.7);
-		@include prefix('transition', 'background-color 0.7s ease');
+		transition: background-color 0.7s ease;
 	}
 
 	&__rate {

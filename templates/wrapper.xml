@@ -5,5 +5,7 @@
 			<a href="#main" class="logo__image"></a>
 		</div>
 		<div class="content"></div>
+		<div class="notice">
+		</div>
 	</div>
 </fest:template>

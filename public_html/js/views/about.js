@@ -1,32 +1,47 @@
-define([
-	'backbone',
-	'tmpl/about'
-], function(
-	Backbone,
-	tmpl
+define(function(
+	require
 ) {
+
+	var Backbone = require('backbone'),
+		tmpl = require('tmpl/about'),
+		metriks = require('models/metricks');
+
 
 	var aboutView = Backbone.View.extend({
 
 		template: tmpl,
-		data: {},
-		initialize: function () {
-			// TODO
+		initialize: function ( options ) {
+			this._session = options.session;
+			this.$el.hide();
 		},
 		render: function () {
-			// TODO
-			this.data.reqrating = 72000;
-			this.data.onlinerating = 666;
-			this.$el.html(this.template(this.data));
+			var metrik = new metriks();
+			metrik.fetch({
+				success: function(coll) {},
+				error: function(coll, error) {
+					console.log("Error: " + error.status+" "+error.statusText);
+				}
+			});
+
+			var data = {
+				reqrating: metrik.get('attendance'),
+				onlinerating: metrik.get('max_online')
+			};
+			console.log(data);
+			data.reqrating = 72000;
+			data.onlinerating = 666;
+			this.$el.html(this.template(data));
 			return this;
 		},
 		show: function () {
-			// TODO
+			this.render();
+			this.$el.show();
+			return this;
 		},
 		hide: function () {
-			// TODO
+			this.$el.hide();
+			return this;
 		}
-
 	});
 
 	return aboutView;

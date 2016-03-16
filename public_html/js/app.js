@@ -1,40 +1,15 @@
-define([
-	'serverAPI',
-	'views/application',
-	'router',
-	'backbone',
-	'resizer',
-	'models/session'
-], function(
-	ApiManager,
-	appView,
-	Router,
-	Backbone,
-	resizer,
-	Session
+define(function(
+	require
 ) {
 
-	var App = function() {
-		$(document).ready(resizer);
-		$(window).resize(resizer);
-		this.session = new Session({
-			host: "/api"
-		});
-		this.connectAPI();
-		this.view = new appView(this.apiManager, this.session);
-		this.router = new Router(this.view);
-		
+	var Backbone = require('backbone'),
+		Router = require('router');
+
+	var App = function( options ) {
+		options = options || {};
+		new Router();
 		Backbone.history.start();
 	};
 
-	App.prototype = {
-		view: null,
-		router: null,
-		connectAPI: function() {
-			//alert("connectAPI()");
-			this.apiManager = new ApiManager();
-		}
-	};
-
-	return App;
+	return new App();
 });

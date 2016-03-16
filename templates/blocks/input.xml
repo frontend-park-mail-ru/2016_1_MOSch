@@ -1,0 +1,12 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:set name="input">
+		<fest:if test="params != undefined">
+			<label for="{params.input_name}" class="input">
+				<input type="{params.type}" name="{params.input_name}" id="{params.input_name}" placeholder="{params.placeholder}" class="input__text input__{params.input_name}-input" spellcheck="false">
+
+				</input>
+				<span class="input__label"><fest:value>params.label</fest:value></span>
+			</label>
+		</fest:if>
+	</fest:set>
+</fest:template>

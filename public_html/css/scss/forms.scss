@@ -28,7 +28,7 @@
 		transition: background-color 0.35s ease, border 0.35s ease;
 		transition-delay: 0.1s;
 		border-radius: 5px;
-		@include prefix('box-shadow', '5px 5px 50px -15px rgba(0,0,0,0.8)');
+		box-shadow: 5px 5px 50px -15px rgba(0,0,0,0.8);
 
 		&:focus {
 			border: none;
@@ -36,7 +36,7 @@
 			background-color: rgba(255, 255, 255, 0.4);
 			transition: background-color 0.35s ease, box-shadow 0.15s ease;
 			transition-delay: 0.1s;
-			@include prefix('box-shadow', 'none');
+			box-shadow: none;
 		}
 
 		&:valid:not(:focus) {
@@ -47,7 +47,7 @@
 			border-bottom: 3px solid #0EAD19;
 			transition: border-bottom 0.35s ease;
 			transition-delay: 1s;
-			@include prefix('box-shadow', 'none');
+			box-shadow: none;
 		}
 	}
 
@@ -59,29 +59,19 @@
 	}
 }
 
-.input__text::-webkit-input-placeholder {
+.input__text::placeholder {
 	font-family: $wire-font;
-	color: $gray-color; letter-spacing: 4px; opacity: 1;
+	color: $gray-color;
+	letter-spacing: 4px;
+	opacity: 1;
 	transition: opacity 0.3s ease;
 }
-.input__text::-moz-placeholder {
-	font-family: $wire-font;
-	color: $gray-color; letter-spacing: 4px; opacity: 1;
+.input__text:focus::placeholder {
+	color: $gray-color;
+	letter-spacing: 4px;
+	opacity: 0;
 	transition: opacity 0.3s ease;
 }
-.input__text:-moz-placeholder {
-	font-family: $wire-font;
-	color: $gray-color; letter-spacing: 4px; opacity: 1;
-	transition: opacity 0.3s ease;
-}
-.input__text:-ms-input-placeholder {
-	font-family: $wire-font;
-	color: $gray-color; letter-spacing: 4px; opacity: 1; transition: opacity 0.3s ease;
-}
-.input__text:focus::-webkit-input-placeholder {color: $gray-color; letter-spacing: 4px; opacity: 0; transition: opacity 0.3s ease;}
-.input__text:focus::-moz-placeholder          {color: $gray-color; letter-spacing: 4px; opacity: 0; transition: opacity 0.3s ease;}
-.input__text:focus:-moz-placeholder           {color: $gray-color; letter-spacing: 4px; opacity: 0; transition: opacity 0.3s ease;}
-.input__text:focus:-ms-input-placeholder      {color: $gray-color; letter-spacing: 4px; opacity: 0; transition: opacity 0.3s ease;}
 
 .submit-button {
 	display: inline-block;
@@ -102,9 +92,9 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-	@include prefix('transform', 'translateZ(0)');
+	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: grayscale;
 
 	&::before {
 		content: "";
@@ -115,8 +105,8 @@
 		bottom: 0;
 		background: $hover-color;
 		height: 4px;
-		@include prefix('transition', 'left right');
-		@include prefix('transition', ' 0.3s ease-out');
+		transition: left right;
+		transition: 0.3s ease-out;
 	}
 
 	&:hover::before, &:focus::before, &:active::before {
@@ -126,6 +116,6 @@
 
 	&:hover {
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-		@include prefix('transition', 'box-shadow 0.5s ease');
+		transition: box-shadow 0.5s ease;
 	}
 }

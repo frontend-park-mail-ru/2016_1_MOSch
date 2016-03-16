@@ -1,0 +1,37 @@
+@import 'config';
+
+.notice {
+	display: block;
+	position: fixed;
+	height: 100%;
+	width: 220px;
+	padding: 2px;
+	padding-top: 15px;
+	left: 0px;
+	top: 0px;
+	z-index: 15;
+	pointer-events: none;
+
+
+	&__toast {
+		padding: 8px;
+		font-family: $bravo-font;
+		border-radius: 6px;
+		margin: 11px;
+		vertical-align: middle;
+		text-align: center;
+		font-size: 22px;
+		color: #000;
+		box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.7);
+
+
+
+		&--alert {
+			background-color: rgba(255, 180, 180, 0.95);
+		}
+
+		&--info {
+			background-color: rgba(175, 255, 175, 0.75);
+		}
+	}
+}

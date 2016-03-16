@@ -28,6 +28,6 @@ module.exports = {
 	},
 	css: {
 		files: ['public_html/css/gen/*.css'],
-		tasks: ['concat:css', 'cssmin']
+		tasks: ['autoprefixer:dev', 'concat:css', 'cssmin:dev']
 	}
 };

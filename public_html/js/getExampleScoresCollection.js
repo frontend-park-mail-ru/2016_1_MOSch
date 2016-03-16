@@ -1,6 +1,7 @@
 define(function(
 	require
 ) {
+
 	var ScoresCollection = require('collections/scores');
 
 	var getExample = function() {
@@ -10,7 +11,7 @@ define(function(
 			{ username: 'Nick', 		rate: 5895, 	level: 0	},
 			{ username: 'Alexey', 		rate: 9485, 	level: 22	},
 			{ username: 'KOPTE3', 		rate: 5765, 	level: 0	},
-			{ username: 'Pupkin', 		rate: 42 , 		level: 0	},
+			{ username: 'Frosich', 		rate: 71999 , 	level: 100	},
 			{ username: 'Hero', 		rate: 9999, 	level: 1	},
 			{ username: 'Devil Player', rate: 666, 		level: 0	},
 			{ username: 'Pi', 			rate: 3, 		level: 14	},

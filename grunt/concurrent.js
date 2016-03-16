@@ -5,7 +5,7 @@ module.exports = {
 	},
 	// Запуск сервера
 	target: [
-		'watch',	
+		'watch',
 		'shell:dev'
 	]
 };

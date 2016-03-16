@@ -1,8 +1,9 @@
-define([
-	'backbone'
-], function(
-	Backbone
-){
+define(function(
+	require
+) {
+
+	var Backbone = require('backbone');
+
 	var ScoreModel = Backbone.Model.extend({
 		defaults: {
 			username: '',
