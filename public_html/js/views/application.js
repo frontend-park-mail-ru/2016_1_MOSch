@@ -21,15 +21,19 @@ define(function(
 	var applicationView = Backbone.View.extend({
 
 		el: 'body',
+		template: wrapper,
 		initialize: function ( options ) {
 			options = options || {};
-			this.$el.html(wrapper());
 			this._session = new Session();
 			this._views = {};
 			this._currentView = null;
 			Backbone.Events.on('showToast', this.showToasts, this);
 		},
 		render: function ( options ) {
+			options = options || {};
+			this.$el.html(this.template());
+		},
+		show: function ( options ) {
 			options = options || { 'view': 'main' };
 			options.mode = options.view.split('/')[1];
 			options.view = options.view.split('/')[0];
@@ -49,9 +53,6 @@ define(function(
 			this._currentView.show(options);
 			this._currentView.delegateEvents();
 			return this;
-		},
-		show: function () {
-
 		},
 		hide: function () {
 

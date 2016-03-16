@@ -213,14 +213,12 @@ define(function(
 			});
 			this.update({ clear: true });
 		},
-		
+
+		// обновляет экран при изменении статуса сессии
 		onChange: function() {
 			console.log('logged = '+this.get('logged_in'));
-			if (this.get('logged_in')) {
-				Backbone.history.navigate('menu', { trigger: true }); // когда пользователь залогинился
-			} else {
-				Backbone.history.navigate('main', { trigger: true });
-			}
+			var route = this.get('logged_in')?'menu':'main';
+			Backbone.history.navigate(route, { trigger: true });
 		},
 
 		// Helpers
