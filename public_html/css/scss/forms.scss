@@ -38,17 +38,6 @@
 			transition-delay: 0.1s;
 			box-shadow: none;
 		}
-
-		&:valid:not(:focus) {
-			border: none;
-			outline: none;
-			background-color: rgba(255, 255, 255, 0.4);
-			border-radius: 0px;
-			border-bottom: 3px solid #0EAD19;
-			transition: border-bottom 0.35s ease;
-			transition-delay: 1s;
-			box-shadow: none;
-		}
 	}
 
 	&__label {
