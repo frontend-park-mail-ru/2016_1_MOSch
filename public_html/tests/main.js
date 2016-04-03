@@ -22,7 +22,8 @@ var tests = [
 	'models/metricks.test',
 	'models/session.test',
 	'models/user.test',
-	'collections/scores.test'
+	'collections/scores.test',
+	'views/application.test'
 ];
 
 require(tests, function () {

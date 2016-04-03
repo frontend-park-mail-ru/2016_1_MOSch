@@ -30,6 +30,10 @@ define(function(
 		initialize: function( options ){
 			_.extend(this.options, options);
 			this.on('change:logged_in', this.onChange);
+			var cookies = Cookie.get();
+			if (cookies.auth_token && cookies.session_guid) {
+				this.login(cookies);
+			}
 		},
 
 		// эта функция сохраняет/обновляет в куках данные о текущей сессии
@@ -54,6 +58,7 @@ define(function(
 			}
 			JQuery.ajax({
 				method: 'DELETE',
+				headers: {'auth_token': this.get('auth_token')},
 				contentType: 'application/json;charset=utf-8',
 				url: this.urlSession(),
 				success: function( data, textStatus ) {
@@ -81,16 +86,14 @@ define(function(
 				JQuery.ajax({
 					method: 'PUT',
 					dataType: 'json',
+					headers: {'auth_token': options.auth_token},
 					contentType: 'application/json;charset=utf-8',
-					processData: false,
 					url: this.urlSession(),
-					data: JSON.stringify({
-						'auth_token': options.auth_token
-					}),
 					success: function( data, textStatus ) {
 						this.set('auth_token', data.auth_token);
+						this.set('userID', data.id);
 						console.log('login succ '+textStatus);
-						this.afterLogin();
+						this.set('logged_in', true);
 					}.bind(this),
 					error: function( XMLHttpRequest, textStatus, error ) {
 						console.log('login error '+textStatus);
@@ -111,8 +114,9 @@ define(function(
 					}),
 					success: function( data, textStatus ) {
 						this.set('auth_token', data.auth_token);
+						this.set('userID', data.id);
 						console.log('login succ '+textStatus);
-						this.afterLogin();
+						this.set('logged_in', true);
 					}.bind(this),
 					error: function( XMLHttpRequest, textStatus, error ) {
 						console.log('login error '+textStatus);
@@ -127,34 +131,6 @@ define(function(
 			}
 		},
 
-		afterLogin: function( options ) {
-			options = options || {};
-			this.set('session_guid', this.generateUid());
-			JQuery.ajax({
-				method: 'GET',
-				dataType: 'json',
-				contentType: 'application/json;charset=utf-8',
-				processData: false,
-				url: this.urlSession(),
-				data: JSON.stringify({
-					'auth_token': this.get('auth_token')
-				}),
-				success: function( data, textStatus ) {
-					console.log('afterLogin succ '+textStatus);
-					this.set('userID', data.id);
-					this.set('logged_in', true);
-				}.bind(this),
-				error: function( XMLHttpRequest, textStatus, error ) {
-					console.log('afterLogin error '+textStatus);
-					Backbone.Events.trigger('showToast', {
-						'type': 'alert',
-						'text': 'Failure with connection'
-					});
-					this.resetSession();
-				}.bind(this)
-			});
-		},
-
 		// регистрирует нового пользователя, используя логин
 		// и выбранный пользователем пароль
 		signup: function( options ) {
@@ -167,12 +143,16 @@ define(function(
 					method: 'PUT',
 					dataType: 'json',
 					contentType: 'application/json;charset=utf-8',
-					processData: false,
+					//processData: false,
 					url: this.urlUser(),
-					data: JSON.stringify({
+					data: {
 						'login': options.username,
 						'password': options.password_phrase
-					}),
+					},
+					// data: JSON.stringify({
+					// 	'login': options.username,
+					// 	'password': options.password_phrase
+					// }),
 					success: function( data, textStatus ) {
 						console.log('signup succ '+textStatus);
 						this.login({
