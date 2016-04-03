@@ -6,4 +6,5 @@ default:
   - 'cssmin:dev'
   - 'concurrent:target'
 test:
+  - 'fest'
   - 'qunit:all'
