@@ -9,8 +9,10 @@
 	font-family: $bravo-font;
 	font-size: 26px;
 	font-style: normal;
+	color: white;
 
 	a {
+		color: white;
 		text-decoration: underline;
 	}
 	a:hover {
@@ -33,7 +35,7 @@
 	font-weight: bold;
 	text-align: center;
 	text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
-	color: brown;
+	color: yellow;
 }
 
 .about {
@@ -44,7 +46,7 @@
 	padding-bottom: 25px;
 	margin-bottom: 22px;
 	float: left;
-	text-align: justify;	
+	text-align: justify;
 }
 
 .creators {
@@ -73,7 +75,7 @@
 			font-family: $wire-font;
 			font-size: 140%;
 			text-transform: uppercase;
-			font-weight: bold;		
+			font-weight: bold;
 		}
 	}
 
@@ -87,6 +89,7 @@
 	}
 
 	&__page {
+		color: white;
 		font-size: smaller;
 		display: inline;
 	}
@@ -117,6 +120,6 @@
 	display: block;
 	margin-top: 30px;
 	clear: both;
-	float: right;	
+	float: right;
 	font-size: 18px;
 }
