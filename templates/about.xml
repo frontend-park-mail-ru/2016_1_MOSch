@@ -3,8 +3,8 @@
 				<div class="about">
 					<div class="title">About this game</div>
 					<div class="about__description">
-						<h2>The game<fest:space/><strong>"Kill The Birds!"</strong></h2>
-						<p>This game was developed by students of the BMSTU during training under the program "System Architect" at the Technopark Mail.RU. The game is a casual shooter with elements of strategy and RPG. For more information check the page of the game on<fest:space/><a href="https://github.com/TP-MOSch/2016_1_MOSch">GitHub</a>.</p>
+						<h2>The game<fest:space/><strong>"Build The Tower!"</strong></h2>
+						<p>This game was developed by students of the BMSTU during training under the program "System Architect" at the Technopark Mail.RU. The game is a casual arcade with elements of strategy and RPG. For more information check the page of the game on<fest:space/><a href="https://github.com/TP-MOSch/2016_1_MOSch">GitHub</a>.</p>
 					</div>
 				</div>
 				<div class="creators">

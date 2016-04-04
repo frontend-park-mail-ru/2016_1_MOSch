@@ -41,6 +41,7 @@ define(function (require) {
         // эта функция сохраняет/обновляет в куках данные о текущей сессии
         // если options.clear === true, то все куки сессии удаляются
         update: function (options) {
+            options = options || {};
             Cookie.remove('session_guid');
             Cookie.remove('auth_token');
             if (options.clear !== true) {
@@ -95,7 +96,7 @@ define(function (require) {
                         this.set('auth_token', data.auth_token);
                         this.set('userID', data.id);
                         console.log('login succ ' + textStatus);
-                        this.set('logged_in', true);
+                        this.setAuthStatus(true);
                     }.bind(this),
                     error: function (xhr, textStatus, error) {
                         console.log('login error ' + textStatus);
@@ -118,7 +119,7 @@ define(function (require) {
                         this.set('auth_token', data.auth_token);
                         this.set('userID', data.id);
                         console.log('login succ ' + textStatus);
-                        this.set('logged_in', true);
+                        this.setAuthStatus(true);
                     }.bind(this),
                     error: function (xhr, textStatus, error) {
                         console.log('login error ' + textStatus);
@@ -199,6 +200,10 @@ define(function (require) {
 
         // обновляет экран при изменении статуса сессии
         onChange: function () {
+            this.set({session_guid: this.generateUid()});
+            if (this.get('logged_in')) {
+                this.update();
+            }
             console.log('logged = ' + this.get('logged_in'));
             var route = this.get('logged_in') ? 'menu' : 'main';
             Backbone.history.navigate(route, {trigger: true});

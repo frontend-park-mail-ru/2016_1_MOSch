@@ -5,7 +5,7 @@ var express = require('express'),
 	bodyParser = require('body-parser');
 
 var HOSTNAME = 'localhost',
-	PORT = 8080,
+	PORT = 31077,
 	PUBLIC_DIR = __dirname + '/public_html',
 	request_count = 0;
 
@@ -35,7 +35,7 @@ app.use(
 	proxy(
 		'http://localhost',
 		{
-			port: 31072,
+			port: 8080,
 			forwardPath: function(req, res) {
 				console.log("proxy: [%s %s %s]", req.method, req.originalUrl, JSON.stringify(req.body));
 				return '/api'+require('url').parse(req.url).path;

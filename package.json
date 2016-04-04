@@ -1,7 +1,7 @@
 {
-  "name": "killthebirds",
-  "version": "0.2.9",
-  "description": "action and shooter game",
+  "name": "buildthetower",
+  "version": "0.4.0",
+  "description": "casual game",
   "main": "index.js",
   "author": "a.mezin@corp.mail.ru",
   "license": "MIT",
