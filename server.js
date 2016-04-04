@@ -5,7 +5,7 @@ var express = require('express'),
 	bodyParser = require('body-parser');
 
 var HOSTNAME = 'localhost',
-	PORT = 80,
+	PORT = 31077,
 	PUBLIC_DIR = __dirname + '/public_html',
 	request_count = 0;
 
