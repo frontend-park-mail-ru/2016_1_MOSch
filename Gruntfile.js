@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
-	require('time-grunt')(grunt); /* статистика по времени сборки */
+module.exports = function (grunt) {
+	require('time-grunt')(grunt);
 	require('load-grunt-config')(grunt);
 };

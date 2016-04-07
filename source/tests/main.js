@@ -1,7 +1,7 @@
 require.config({
 	baseUrl: "../js",
 	paths: {
-		jquery: "lib/jquery.min",
+		jquery: "lib/jquery",
 		underscore: "lib/underscore",
 		backbone: "lib/backbone",
 		jscookie: "lib/js.cookie"

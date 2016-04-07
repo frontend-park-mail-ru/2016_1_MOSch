@@ -1,10 +1,8 @@
 module.exports = {
-	// Настройки задач
 	options: {
 		logConcurrentOutput: true
 	},
-	// Запуск сервера
-	target: [
+	dev: [
 		'watch',
 		'shell:dev'
 	]

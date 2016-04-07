@@ -1,6 +1,10 @@
 module.exports = {
-	css: {
-		src: ['public_html/css/gen/pref/*.css'],
-		dest: 'public_html/css/main.css'
+	css_dev: {
+		src: ['static_dev/tmp/css/from_autoprefixer/*.css'],
+		dest: 'static_dev/tmp/css/main.css'
+	},
+	css_prod: {
+		src: ['static_prod/tmp/css/from_autoprefixer/*.css'],
+		dest: 'static_prod/tmp/css/main.css'
 	}
 };
