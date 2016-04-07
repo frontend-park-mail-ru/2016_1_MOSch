@@ -1,33 +1,37 @@
 module.exports = {
-	// запуск watcher'a, который следит за изенениями файлов  templates/*.xml
-	// и если они изменяются, то запускает таск сборки шаблонов (grunt fest)
 	fest: {
-		files: [
-			'templates/*.xml'
-		],
-		tasks: [
-			'fest'
-		],
+		files: ['source/templates/*.xml'],
+		tasks: ['fest:dev'],
 		options: {
-			interrupt: true,
-			atBegin: true
+			interrupt: true
 		}
 	},
 	server: {
 		files: [
-			'public_html/js/**/*.js',
-			'public_html/css/*.css'
+			'static_dev/**'
 		],
 		options: {
 			livereload: true
 		}
 	},
 	sass: {
-		files: ['public_html/css/scss/*.scss'],
-		tasks: ['sass:dev']
+		files: ['source/css/scss/*.scss'],
+		tasks: ['sass:dev', 'autoprefixer:dev', 'concat:css_dev', 'cssmin:dev']
 	},
-	css: {
-		files: ['public_html/css/gen/*.css'],
-		tasks: ['autoprefixer:dev', 'concat:css', 'cssmin:dev']
+	img: {
+		files: ['source/img/**'],
+		tasks: ['copy:img_dev']
+	},
+	res: {
+		files: ['source/res/**'],
+		tasks: ['copy:res_dev']
+	},
+	js: {
+		files: ['source/js/**'],
+		tasks: ['copy:js_dev']
+	},
+	tests: {
+		files: ['source/tests/**'],
+		tasks: ['copy:tests_dev']
 	}
 };

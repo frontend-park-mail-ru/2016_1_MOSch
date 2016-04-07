@@ -1,15 +1,12 @@
 var express = require('express'),
 	errorHandler = require('errorhandler'),
 	app = express(),
-	proxy = require('express-http-proxy'),
-	bodyParser = require('body-parser');
+	proxy = require('express-http-proxy');
 
 var HOSTNAME = 'localhost',
 	PORT = 31077,
-	PUBLIC_DIR = __dirname + '/public_html',
+	PUBLIC_DIR = __dirname + '/static_dev',
 	request_count = 0;
-
-
 
 app.use(function (req, res, done) {
 	var current_date = new Date();
@@ -36,9 +33,9 @@ app.use(
 		'http://localhost',
 		{
 			port: 8080,
-			forwardPath: function(req, res) {
-				console.log("proxy: [%s %s %s]", req.method, req.originalUrl, JSON.stringify(req.body));
-				return '/api'+require('url').parse(req.url).path;
+			forwardPath: function (req, res) {
+				console.log("proxy: [%s %s %s]", req.method, req.originalUrl);
+				return '/api' + require('url').parse(req.url).path;
 			}
 		}
 	)
