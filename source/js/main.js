@@ -7,12 +7,13 @@ require.config({
 		jscookie: "lib/js.cookie"
 	},
 	shim: {
+		'underscore': {
+			deps: ['jquery'],
+			exports: '_'
+		},
 		'backbone': {
 			deps: ['underscore', 'jquery'],
 			exports: 'Backbone'
-		},
-		'underscore': {
-			exports: '_'
 		}
 	}
 });

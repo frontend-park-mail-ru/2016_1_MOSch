@@ -1,7 +1,6 @@
 define(function(
 	require
 ) {
-
 	var Backbone = require('backbone'),
 		Router = require('router');
 
