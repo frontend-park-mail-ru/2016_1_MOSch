@@ -3,7 +3,7 @@ define(function (require) {
 		JQuery = require('jquery');
 
 	var isInteger = Number.isInteger || function (x) {
-			return typeof value === "number" && isFinite(x) && Math.floor(x) === x;
+			return typeof x === "number" && isFinite(x) && Math.floor(x) === x;
 		};
 
 	var UserModel = Backbone.Model.extend({
@@ -51,10 +51,10 @@ define(function (require) {
 					url: this.urlUser + '/' + this.get('userID'),
 					success: function (data, textStatus) {
 						this.set('login', data.login);
-						if (data.level && isInteger(data.level)) {
+						if (isInteger(data.level)) {
 							this.set('level', parseInt(data.level, 10));
 						}
-						if (data.rate && isInteger(data.rate)) {
+						if (isInteger(data.rate)) {
 							this.set('rate', parseInt(data.rate, 10));
 						}
 						this.set('info', data.info);
@@ -77,10 +77,10 @@ define(function (require) {
 
 		updateScores: function (options, call) {
 			options = options || {};
-			if (!(options.level && isInteger(options.level))) {
+			if (!(isInteger(options.level))) {
 				options.level = -1;
 			}
-			if (!(options.rate && isInteger(options.rate))) {
+			if (!(isInteger(options.rate))) {
 				options.rate = -1;
 			}
 			if (this.get('auth_token') && this.get('userID')) {

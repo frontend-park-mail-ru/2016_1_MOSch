@@ -13,7 +13,7 @@ define(function (require) {
 		},
 		render: function () {
 			users = new Users();
-			Backbone.sync("read", users, {success: this.updateScores});
+			Backbone.sync("read", users, {success: this.updateScores.bind(this)});
 			var data = {
 				items: users.toJSON()
 			};
@@ -23,7 +23,7 @@ define(function (require) {
 
 		updateScores: function(users, data, opts) {
 			var data = {
-				items: JSON.stringify(data)
+				items: users
 			};
 			this.$el.html(this.template(data));
 		},

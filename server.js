@@ -5,7 +5,7 @@ var express = require('express'),
 
 var HOSTNAME = 'localhost',
 	PORT = 31077,
-	PUBLIC_DIR = __dirname + '/static_prod',
+	PUBLIC_DIR = __dirname + '/static_dev',
 	request_count = 0;
 
 app.use(function (req, res, done) {
