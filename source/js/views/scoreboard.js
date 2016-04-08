@@ -3,7 +3,6 @@ define(function(
 ) {
 
 	var Backbone = require('backbone'),
-		getExample = require('getExampleScoresCollection'),
 		tmpl = require('tmpl/scoreboard');
 
 	var scoreboardView = Backbone.View.extend({
@@ -15,7 +14,7 @@ define(function(
 		},
 		render: function () {
 			var data = {
-				items: getExample().toJSON()
+				items: []
 			};
 			this.$el.html(this.template(data));
 			return this;
