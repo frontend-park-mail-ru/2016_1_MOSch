@@ -936,7 +936,7 @@
 	return {
 		aaa: function (session) {
 			const updateSize = function ({canvas2d, canvas3d, ctx, gl}) {
-				let realToCSSPixels = window.devicePixelRatio || 1;
+				let realToCSSPixels = 1;
 				let displayWidth = Math.floor(window.innerWidth * realToCSSPixels);
 				let displayHeight = Math.floor(window.innerHeight * realToCSSPixels);
 				if (canvas2d.width != displayWidth ||
