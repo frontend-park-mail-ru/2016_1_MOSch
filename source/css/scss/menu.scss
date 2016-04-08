@@ -6,14 +6,14 @@
 	height: 300px;
 	margin: 3px;
 	float: left;
-	color: #000;
+	color: #000000;
 	text-decoration: none;
-	background-color: #fff;
-	box-shadow: 3px 3px 19px -5px rgba(0,0,0,1);
+	background-color: white;
+	box-shadow: 3px 3px 19px -5px rgba(255, 255, 255, 1);
 	transition: all 0.5s;
 
 	&:hover {
-		background-color: #D8D8D8;
+		background-color: #E8E8E8;
 		color: $hover-color;
 	}
 
