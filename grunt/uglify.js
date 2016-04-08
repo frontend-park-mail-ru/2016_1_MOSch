@@ -14,7 +14,7 @@ module.exports = function (grunt, options) {
 			files: [{
 				expand: true,
 				cwd: 'static_prod/tmp/js',
-				src: ['**/*.js'],
+				src: ['**/*.js', '!models/gamescript.js'],
 				dest: 'static_prod/js'
 			}]
 		}

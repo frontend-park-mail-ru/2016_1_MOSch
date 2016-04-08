@@ -36,3 +36,4 @@ copy_prod:
   - 'copy:res_prod'
   - 'copy:html_prod'
   - 'copy:img_prod'
+  - 'copy:js_game_prod'

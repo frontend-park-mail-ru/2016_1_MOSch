@@ -1,5 +1,4 @@
-﻿"use strict";
-define(function (require) {
+﻿define(function (require) {
 	"use strict";
 	let UserModel = require('models/user');
 

@@ -5,6 +5,7 @@ define(function (require) {
 
 
 	var UsersCollection = Backbone.Collection.extend({
+		url: 'api/user',
 		model: userModel,
 		comparator: function (score) {
 			return -(score.get('rate'));

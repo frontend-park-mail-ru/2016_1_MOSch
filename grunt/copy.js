@@ -19,6 +19,16 @@ module.exports = {
 			}
 		]
 	},
+	js_game_prod: {
+		files: [
+			{
+				expand: true,
+				cwd: 'source',
+				src: ['js/**/gamescript.js'],
+				dest: 'static_prod'
+			}
+		]
+	},
 	res_dev: {
 		files: [
 			{
