@@ -1,3 +1,16 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-	<h1>Здесь находится страница с игрой ;)</h1>
+	<div id="gameWrap">
+		<script src="js/lib/gl-matrix-min.js" type="text/javascript"></script>
+		<script src="js/lib/color.js" type="text/javascript"></script>
+		<script id="x-shader-fragment" type="x-shader/x-fragment">
+			<fest:insert src="./shaders/fragment.txt"/>
+		</script>
+
+		<script id="x-shader-vertex" type="x-shader/x-vertex">
+			<fest:insert src="./shaders/vertex.txt"/>
+		</script>
+		<canvas id="canvas2d"></canvas>
+		<canvas id="canvas3d"></canvas>
+		<div id="capture">Надпись</div>
+	</div>
 </fest:template>
