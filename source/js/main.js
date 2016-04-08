@@ -1,10 +1,10 @@
 require.config({
 	baseUrl: "js",
 	paths: {
-		jquery: "lib/jquery",
-		underscore: "lib/underscore",
-		backbone: "lib/backbone",
-		jscookie: "lib/js.cookie"
+		jquery: 'lib/jquery',
+		underscore: 'lib/underscore',
+		backbone: 'lib/backbone',
+		jscookie: 'lib/js.cookie'
 	},
 	shim: {
 		'underscore': {

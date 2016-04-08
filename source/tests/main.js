@@ -18,11 +18,9 @@ require.config({
 });
 
 var tests = [
-	'models/score.test',
-	'models/metricks.test',
 	'models/session.test',
 	'models/user.test',
-	'collections/scores.test',
+	'collections/users.test',
 	'views/application.test'
 ];
 

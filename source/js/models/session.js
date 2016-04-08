@@ -68,7 +68,7 @@ define(function (require) {
 					this.resetSession();
 				}.bind(this),
 				error: function (xhr, textStatus, error) {
-					console.log('logout error ' + textStatus);
+					console.log('logout error ' + error);
 					Backbone.Events.trigger('showToast', {
 						'type': 'info',
 						'text': 'Unable to logout'
@@ -97,7 +97,7 @@ define(function (require) {
 						this.setAuthStatus(true);
 					}.bind(this),
 					error: function (xhr, textStatus, error) {
-						console.log('login error ' + textStatus);
+						console.log('login error ' + error);
 						this.resetSession();
 					}.bind(this)
 				});
@@ -120,7 +120,7 @@ define(function (require) {
 						this.setAuthStatus(true);
 					}.bind(this),
 					error: function (xhr, textStatus, error) {
-						console.log('login error ' + textStatus);
+						console.log('login error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'alert',
 							'text': 'Unable to login'
@@ -158,7 +158,7 @@ define(function (require) {
 						});
 					}.bind(this),
 					error: function (xhr, textStatus, error) {
-						console.log('signup error ' + textStatus);
+						console.log('signup error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'alert',
 							'text': 'Unable to signup'

@@ -1,6 +1,4 @@
-define(function(
-	require
-) {
+define(function (require) {
 
 	var Backbone = require('backbone'),
 		$ = require('jquery');
@@ -10,7 +8,7 @@ define(function(
 		initialize: function () {
 
 		},
-		render: function ( options ) {
+		render: function (options) {
 			this.$el.addClass('notice__toast');
 			if (options.type === 'alert') {
 				this.$el.addClass('notice__toast--alert');
@@ -18,7 +16,9 @@ define(function(
 				this.$el.addClass('notice__toast--info');
 			}
 			this.$el.html(options.text);
-			this.$el.fadeIn(500).delay(3000).fadeOut(500, function() { this.remove(); });
+			this.$el.fadeIn(500).delay(3000).fadeOut(500, function () {
+				this.remove();
+			});
 			return this;
 		},
 		show: function () {
