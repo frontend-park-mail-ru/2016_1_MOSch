@@ -17,14 +17,6 @@ define(function(
 			return this;
 		},
 		show: function () {
-			// if (!this._session.get('logged_in')) {
-			// 	Backbone.Events.trigger('showToast', {
-			// 		'type': 'info',
-			// 		'text': 'You are not registered'
-			// 	});
-			// 	Backbone.history.navigate('main', { trigger: true });
-			// 	return;
-			// }
 			this.render();
 			this.$el.show();
 			return this;

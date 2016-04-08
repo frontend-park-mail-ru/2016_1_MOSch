@@ -19,7 +19,7 @@
 			name: "single",
 			url: "game/single",
 			title: "singleplayer",
-			comment: "Try it right now, you like it!"
+			comment: "Try it right now, you'll like it!"
 			}
 		</fest:get>
 		<fest:get name="menu-button">{
@@ -33,7 +33,7 @@
 			name: "about",
 			url: "about",
 			title: "about us",
-			comment: "About us, about this site and something else"
+			comment: "About us, the site and more"
 			}
 		</fest:get>
 	</div>
