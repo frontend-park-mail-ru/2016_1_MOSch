@@ -6,24 +6,35 @@
 			url: "login",
 			title: "login",
 			comment: "Sign in and play"
-		}</fest:get>
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "register",
 			url: "register",
 			title: "sign up",
 			comment: "Sign up and join the game"
-		}</fest:get>
+			}
+		</fest:get>
+		<fest:get name="menu-button">{
+			name: "single",
+			url: "game/single",
+			title: "singleplayer",
+			comment: "Try it right now, you like it!"
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "scoreboard",
 			url: "scoreboard",
 			title: "scoreboard",
 			comment: "Ratings and achievements"
-		}</fest:get>
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "about",
 			url: "about",
 			title: "about us",
 			comment: "About us, about this site and something else"
-		}</fest:get>
+			}
+		</fest:get>
 	</div>
 </fest:template>

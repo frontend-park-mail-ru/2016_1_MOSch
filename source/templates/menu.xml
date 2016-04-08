@@ -7,7 +7,7 @@
 			name: "single",
 			url: "game/single",
 			title: "singleplayer",
-			comment: "Play offline and kill them all!"
+			comment: "Play offline"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "multi",
