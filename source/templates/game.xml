@@ -1,7 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<div id="gameWrap">
-		<script src="js/lib/gl-matrix-min.js" type="text/javascript"></script>
-		<script src="js/lib/color.js" type="text/javascript"></script>
 		<script id="x-shader-fragment" type="x-shader/x-fragment">
 			<fest:insert src="./shaders/fragment.txt"/>
 		</script>

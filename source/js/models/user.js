@@ -41,7 +41,7 @@ define(function (require) {
 			}
 		},
 
-		fetchFromServer: function (options) {
+		fetchFromServer: function (options, call) {
 			options = options || {};
 			if (this.get('auth_token') && this.get('userID')) {
 				JQuery.ajax({
@@ -60,6 +60,9 @@ define(function (require) {
 						this.set('info', data.info);
 						console.log('fetch succ');
 						Backbone.Events.trigger('loadUserInfo');
+						if (call) {
+							call();
+						}
 					}.bind(this),
 					error: function (xhr, textStatus, error) {
 						console.log('fetch error ' + error);
@@ -72,7 +75,7 @@ define(function (require) {
 			}
 		},
 
-		updateScores: function (options) {
+		updateScores: function (options, call) {
 			options = options || {};
 			if (!(options.level && isInteger(options.level))) {
 				options.level = -1;
@@ -94,7 +97,7 @@ define(function (require) {
 					}),
 					success: function (data, textStatus) {
 						console.log('updateScores succ');
-						this.fetchFromServer();
+						this.fetchFromServer(null, call);
 					}.bind(this),
 					error: function (xhr, textStatus, error) {
 						console.log('updateScores error ' + error);

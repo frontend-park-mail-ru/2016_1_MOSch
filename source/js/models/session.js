@@ -101,8 +101,8 @@ define(function (require) {
 						this.resetSession();
 					}.bind(this)
 				});
-			} else if (options.username && options.password_phrase) {
-				this.set('login', options.username);
+			} else if (options.login && options.password_phrase) {
+				this.set('login', options.login);
 				JQuery.ajax({
 					method: 'PUT',
 					dataType: 'json',
@@ -110,7 +110,7 @@ define(function (require) {
 					processData: false,
 					url: this.urlSession(),
 					data: JSON.stringify({
-						'login': options.username,
+						'login': options.login,
 						'password': options.password_phrase
 					}),
 					success: function (data, textStatus) {
@@ -139,7 +139,7 @@ define(function (require) {
 			if (this.get('logged_in')) {
 				return;
 			}
-			if (options.username && options.password_phrase) {
+			if (options.login && options.password_phrase) {
 				JQuery.ajax({
 					method: 'PUT',
 					dataType: 'json',
@@ -147,13 +147,13 @@ define(function (require) {
 					processData: false,
 					url: this.urlUser(),
 					data: JSON.stringify({
-						'login': options.username,
+						'login': options.login,
 						'password': options.password_phrase
 					}),
 					success: function (data, textStatus) {
 						console.log('signup succ ' + textStatus);
 						this.login({
-							'username': options.username,
+							'login': options.login,
 							'password_phrase': options.password_phrase
 						});
 					}.bind(this),

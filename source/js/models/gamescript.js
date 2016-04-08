@@ -1,5 +1,8 @@
 ﻿"use strict";
-(new function () {
+define(function (require) {
+	"use strict";
+	let UserModel = require('models/user');
+
 	const Color = net.brehaut.Color;
 
 	class IIinterfacable {
@@ -566,7 +569,7 @@
 				let x_min = Math.max(head.x_pos, this._active._properties.x_pos);
 				let x_max = Math.min(head.x_pos + head.x_size, this._active._properties.x_pos + this._active._properties.x_size);
 				if (x_min < x_max) {
-					if (head.x_size - (x_max - x_min) > 25) {
+					if (head.x_size - (x_max - x_min) > 40) {
 						fix.x_shift = x_min;
 						fix.x_size = x_max - x_min;
 					} else {
@@ -593,7 +596,7 @@
 				let z_min = Math.max(head.z_pos, this._active._properties.z_pos);
 				let z_max = Math.min(head.z_pos + head.z_size, this._active._properties.z_pos + this._active._properties.z_size);
 				if (z_min < z_max) {
-					if (head.z_size - (z_max - z_min) > 25) {
+					if (head.z_size - (z_max - z_min) > 40) {
 						fix.z_shift = z_min;
 						fix.z_size = z_max - z_min;
 					} else {
@@ -657,11 +660,12 @@
 	}
 
 	class Game extends IPlayable {
-		constructor(ctx, gl, config) {
+		constructor(ctx, gl, config, session) {
 			super();
 			this._cfg = config;
 			this._ctx = ctx;
 			this._gl = gl;
+			this._session = session;
 
 			this._isStarted = false;
 			this._isPaused = false;
@@ -718,7 +722,25 @@
 			if (this._isClosed || !this._isStarted) {
 				return;
 			}
-			this._capture._setCapture(`Игра закончена. Ваш результат - ${this._score}`);
+			if (this._session.get('logged_in')) {
+				this.user = new UserModel();
+				this.user.set('userID', this._session.get('userID'));
+				this.user.set('auth_token', this._session.get('auth_token'));
+				let call2 = function (capture, user, score) {
+					capture._setCapture(`Игра закончена, ${user.get('login').toUpperCase()}. Ваш результат - ${score}`);
+				};
+				let call1 = function () {
+					let obj = {
+						level: 0,
+						rate: this._score
+					};
+					this.user.updateScores(obj, call2.bind(this, this._capture, this.user, this._score));
+				};
+				this.user.fetchFromServer(null, call1.bind(this));
+
+			} else {
+				this._capture._setCapture(`Игра закончена. Ваш результат - ${this._score}`);
+			}
 			this._isClosed = true;
 			console.log('reseted');
 		}
@@ -912,80 +934,84 @@
 	};
 
 
-	return function () {
-		const updateSize = function ({canvas2d, canvas3d, ctx, gl}) {
-			let realToCSSPixels = window.devicePixelRatio || 1;
-			let displayWidth = Math.floor(window.innerWidth * realToCSSPixels);
-			let displayHeight = Math.floor(window.innerHeight * realToCSSPixels);
-			if (canvas2d.width != displayWidth ||
-				canvas2d.height != displayHeight ||
-				canvas3d.width != displayWidth ||
-				canvas3d.height != displayHeight) {
+	return {
+		aaa: function (session) {
+			const updateSize = function ({canvas2d, canvas3d, ctx, gl}) {
+				let realToCSSPixels = window.devicePixelRatio || 1;
+				let displayWidth = Math.floor(window.innerWidth * realToCSSPixels);
+				let displayHeight = Math.floor(window.innerHeight * realToCSSPixels);
+				if (canvas2d.width != displayWidth ||
+					canvas2d.height != displayHeight ||
+					canvas3d.width != displayWidth ||
+					canvas3d.height != displayHeight) {
 
-				canvas2d.width = displayWidth;
-				canvas2d.height = displayHeight;
-				canvas3d.width = displayWidth;
-				canvas3d.height = displayHeight;
-				gl.viewport(0, 0, displayWidth, displayHeight);
-				gl.viewportWidth = displayWidth;
-				gl.viewportHeight = displayHeight;
+					canvas2d.width = displayWidth;
+					canvas2d.height = displayHeight;
+					canvas3d.width = displayWidth;
+					canvas3d.height = displayHeight;
+					gl.viewport(0, 0, displayWidth, displayHeight);
+					gl.viewportWidth = displayWidth;
+					gl.viewportHeight = displayHeight;
 
-			}
-			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		};
-		const initWebGL = function (canvas) {
-			let obj = null;
-			try {
-				obj = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-			}
-			catch (e) {
-			}
-
-			if (!obj) {
-				alert('Ваш браузер не поддерживает WebGL. Скачайте себе что-нибудь по современнее.');
-				obj = null;
-			}
-			obj.clearColor(0, 0, 0, 0);
-			obj.enable(obj.DEPTH_TEST);
-			obj.depthFunc(obj.LEQUAL);
-			return obj;
-		};
-		const keyGrabber = function (game, event) {
-			const KEYS = {
-				'ESC': 27,
-				'SPACE': 32,
-				'PAUSE': 80,
-				'ENTER': 13
+				}
+				gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			};
-			event.preventDefault();
-			switch (event.keyCode) {
-				case KEYS.ESC:
-					game.reset();
-					break;
-				case KEYS.ENTER:
-					game.start();
-					break;
-				case KEYS.SPACE:
-					game.action();
-					break;
-				case KEYS.PAUSE:
-					game.pause();
-					break;
-			}
-		};
-		const canvas2d = document.getElementById('canvas2d');
-		const canvas3d = document.getElementById('canvas3d');
-		let ctx = canvas2d.getContext('2d');
-		let gl = initWebGL(canvas3d);
-		if (!gl) {
-			return undefined;
-		}
-		Block.types();
-		Block.crosses();
+			const initWebGL = function (canvas) {
+				let obj = null;
+				try {
+					obj = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+				}
+				catch (e) {
+				}
 
-		window.addEventListener('resize', updateSize.bind(null, {canvas2d, canvas3d, ctx, gl}));
-		updateSize({canvas2d, canvas3d, ctx, gl});
-		const game = new Game(ctx, gl, GAME_CONFIG);
-		window.addEventListener('keydown', keyGrabber.bind(null, game));
-	};
-})();
+				if (!obj) {
+					alert('Ваш браузер не поддерживает WebGL. Скачайте себе что-нибудь по современнее.');
+					obj = null;
+				}
+				obj.clearColor(0, 0, 0, 0);
+				obj.enable(obj.DEPTH_TEST);
+				obj.depthFunc(obj.LEQUAL);
+				return obj;
+			};
+			const keyGrabber = function (game, event) {
+				const KEYS = {
+					'ESC': 27,
+					'SPACE': 32,
+					'PAUSE': 80,
+					'ENTER': 13
+				};
+				switch (event.keyCode) {
+					case KEYS.ESC:
+						game.reset();
+						break;
+					case KEYS.ENTER:
+						game.start();
+						break;
+					case KEYS.SPACE:
+						game.action();
+						break;
+					case KEYS.PAUSE:
+						game.pause();
+						break;
+				}
+			};
+			const canvas2d = document.getElementById('canvas2d');
+			const canvas3d = document.getElementById('canvas3d');
+			let ctx = canvas2d.getContext('2d');
+			let gl = initWebGL(canvas3d);
+			if (!gl) {
+				return undefined;
+			}
+			Block.types();
+			Block.crosses();
+
+			window.addEventListener('resize', updateSize.bind(null, {canvas2d, canvas3d, ctx, gl}));
+			updateSize({canvas2d, canvas3d, ctx, gl});
+			const game = new Game(ctx, gl, GAME_CONFIG, session);
+			this.stop = function () {
+				game._destroy();
+			};
+			window.addEventListener('keydown', keyGrabber.bind(null, game));
+		}
+	}
+});
