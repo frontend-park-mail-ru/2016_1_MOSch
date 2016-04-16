@@ -19,16 +19,6 @@ module.exports = {
 			}
 		]
 	},
-	js_game_prod: {
-		files: [
-			{
-				expand: true,
-				cwd: 'source',
-				src: ['js/**/gamescript.js'],
-				dest: 'static_prod'
-			}
-		]
-	},
 	res_dev: {
 		files: [
 			{
@@ -84,8 +74,11 @@ module.exports = {
 			{
 				expand: true,
 				cwd: 'source',
-				src: ['*.html'],
-				dest: 'static_dev'
+				src: ['indexDev.html'],
+				dest: 'static_dev/',
+				rename: function (dest, path) {
+					return (dest + path).replace('Dev', '');
+				}
 			}
 		]
 	},
@@ -94,8 +87,11 @@ module.exports = {
 			{
 				expand: true,
 				cwd: 'source',
-				src: ['*.html'],
-				dest: 'static_prod'
+				src: ['index.html'],
+				dest: 'static_prod/',
+				rename: function (dest, path) {
+					return (dest + path).replace('Dev', '');
+				}
 			}
 		]
 	}

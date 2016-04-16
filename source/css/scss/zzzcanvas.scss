@@ -6,33 +6,9 @@
 	height: 100%;
 }
 
-canvas {
+#gamecanvas {
 	position: absolute;
 	top: 0;
 	left: 0;
-}
-
-#canvas2d {
 	z-index: 5;
-}
-
-#canvas3d {
-	z-index: 7;
-}
-
-@keyframes pulsate {
-	100% {
-		font-size: 180%;
-	}
-}
-
-#capture {
-	position: relative;
-	z-index: 9;
-	font: 400 32px oblique;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	text-align: center;
-	color: azure;
-	margin: 10% auto auto;
-	animation: pulsate 1s ease-in-out alternate infinite;
 }

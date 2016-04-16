@@ -1,8 +1,7 @@
 define(function (require) {
 
 	var Backbone = require('backbone'),
-		tmpl = require('tmpl/game'),
-		game = require('models/gamescript');
+		tmpl = require('tmpl/game');
 
 	var gameView = Backbone.View.extend({
 
@@ -13,7 +12,6 @@ define(function (require) {
 		},
 		render: function () {
 			this.$el.html(this.template());
-			game.aaa(this._session);
 			return this;
 		},
 		show: function () {
@@ -22,7 +20,6 @@ define(function (require) {
 			return this;
 		},
 		hide: function () {
-			game.stop();
 			this.$el.hide();
 			return this;
 		}

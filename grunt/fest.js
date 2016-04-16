@@ -22,7 +22,7 @@ module.exports = function (grunt, options) {
 				expand: true,
 				cwd: 'source/templates',
 				src: '*.xml',
-				dest: 'static_prod/js/tmpl'
+				dest: 'static_prod/tmp/js/tmpl'
 			}]
 		}
 	}

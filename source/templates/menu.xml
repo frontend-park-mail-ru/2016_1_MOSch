@@ -4,16 +4,10 @@
 	<div class="exit">Logout</div>
 	<div class="content__wrapper">
 		<fest:get name="menu-button">{
-			name: "single",
-			url: "game/single",
-			title: "singleplayer",
-			comment: "Play offline"
-		}</fest:get>
-		<fest:get name="menu-button">{
-			name: "multi",
-			url: "game/multi",
-			title: "multiplayer",
-			comment: "Play online and score points"
+			name: "game",
+			url: "game/play",
+			title: "Play",
+			comment: "Play offline or online"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "upgrade",
