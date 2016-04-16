@@ -19,7 +19,7 @@
 		color: $link-color;
 	}
 	strong {
-		color: $strong-color;
+		color: $header-color;
 		font-weight: bold;
 	}
 	h2 {
@@ -67,7 +67,7 @@
 		margin-top: -3px;
 		margin-bottom: -10px;
 		font-size: 120%;
-		color: $name-color;
+		color: $header-color;
 		text-transform: capitalize;
 		letter-spacing: 0.1px;
 
@@ -76,7 +76,6 @@
 			font-size: 140%;
 			text-transform: uppercase;
 			font-weight: bold;
-			color: $first-letter-color;
 		}
 	}
 

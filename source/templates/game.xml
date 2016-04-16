@@ -1,14 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<div id="gameWrap">
-		<script id="x-shader-fragment" type="x-shader/x-fragment">
-			<fest:insert src="./shaders/fragment.txt"/>
-		</script>
-
-		<script id="x-shader-vertex" type="x-shader/x-vertex">
-			<fest:insert src="./shaders/vertex.txt"/>
-		</script>
-		<canvas id="canvas2d"></canvas>
-		<canvas id="canvas3d"></canvas>
-		<div id="capture">Надпись</div>
+		<canvas id="gamecanvas"></canvas>
 	</div>
 </fest:template>
