@@ -76,7 +76,7 @@ define(function(
 			if (check) {
 				console.log("submit login: " + username + " " + password);
 				this._session.login({
-					'username': username,
+					'login': username,
 					'password_phrase': password
 				});
 			}

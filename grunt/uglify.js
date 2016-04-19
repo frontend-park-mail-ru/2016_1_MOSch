@@ -5,13 +5,16 @@ module.exports = function (grunt, options) {
 			'  <%= grunt.template.today("yyyy-mm-dd") %> */\n\n',
 			ASCIIOnly: true,
 			preserveComments: false,
-			screwIE8: true
+			screwIE8: true,
+			mangle: {
+				except: ['require']
+			}
 		},
 		prod: {
 			files: [{
 				expand: true,
 				cwd: 'static_prod/tmp/js',
-				src: '**/*.js',
+				src: ['**/*.js', '!models/gamescript.js'],
 				dest: 'static_prod/js'
 			}]
 		}

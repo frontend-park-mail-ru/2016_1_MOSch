@@ -1,6 +1,4 @@
-define(function(
-	require
-) {
+define(function (require) {
 
 	var Backbone = require('backbone'),
 		$ = require('jquery'),
@@ -15,34 +13,34 @@ define(function(
 		'login': require('views/login'),
 		'scoreboard': require('views/scoreboard'),
 		'about': require('views/about'),
-		'game': require('views/game'),
+		'game': require('views/game')
 	};
 
 	var applicationView = Backbone.View.extend({
 
 		el: 'body',
 		template: wrapper,
-		initialize: function ( options ) {
+		initialize: function (options) {
 			options = options || {};
 			this._session = new Session();
 			this._views = {};
 			this._currentView = null;
 			Backbone.Events.on('showToast', this.showToasts, this);
 		},
-		render: function ( options ) {
+		render: function (options) {
 			options = options || {};
 			this.$el.html(this.template());
 		},
-		show: function ( options ) {
-			options = options || { 'view': 'main' };
+		show: function (options) {
+			options = options || {'view': 'main'};
 			options.mode = options.view.split('/')[1];
 			options.view = options.view.split('/')[0];
 			if (!this._views[options.view]) {
 				if (Views[options.view]) {
-					this._views[options.view] = new Views[options.view]({ 'session': this._session });
+					this._views[options.view] = new Views[options.view]({'session': this._session});
 					this.$('.content').append(this._views[options.view].$el);
 				} else {
-					return this.render({ 'view': 'main' });
+					return this.render({'view': 'main'});
 				}
 			}
 			if (this._currentView) {
@@ -58,9 +56,8 @@ define(function(
 
 		},
 
-		showToasts: function( options ) {
+		showToasts: function (options) {
 			options = options || {};
-			console.log('toast');
 			if (options) {
 				var ell = (new toast()).render(options).$el;
 				this.$('.notice').append(ell);

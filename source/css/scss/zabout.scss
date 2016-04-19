@@ -16,9 +16,10 @@
 		text-decoration: underline;
 	}
 	a:hover {
-		color: $hover-color;
+		color: $link-color;
 	}
 	strong {
+		color: $header-color;
 		font-weight: bold;
 	}
 	h2 {
@@ -35,16 +36,15 @@
 	font-weight: bold;
 	text-align: center;
 	text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
-	color: yellow;
+	color: $header-color;
 }
 
 .about {
 	display: inline-block;
 	width: 640px;
 	height: 175px;
-	margin: 0;
 	padding-bottom: 25px;
-	margin-bottom: 22px;
+	margin: 0 0 22px;
 	float: left;
 	text-align: justify;
 }
@@ -53,8 +53,7 @@
 	display: inline-block;
 	width: 430px;
 	height: 200px;
-	margin: 0;
-	margin-bottom: 22px;
+	margin: 0 0 22px;
 	float: right;
 }
 
@@ -68,6 +67,7 @@
 		margin-top: -3px;
 		margin-bottom: -10px;
 		font-size: 120%;
+		color: $header-color;
 		text-transform: capitalize;
 		letter-spacing: 0.1px;
 

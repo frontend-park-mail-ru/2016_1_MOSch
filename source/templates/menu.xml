@@ -1,19 +1,13 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:include context_name="" src="./blocks/menu-button.xml"/>
-	<span class="username">You are logged as KOPTE3 (id 4)</span>
+	<div class="username">waiting...</div>
 	<div class="exit">Logout</div>
 	<div class="content__wrapper">
 		<fest:get name="menu-button">{
-			name: "single",
-			url: "game/single",
-			title: "singleplayer",
-			comment: "Play offline and kill them all!"
-		}</fest:get>
-		<fest:get name="menu-button">{
-			name: "multi",
-			url: "game/multi",
-			title: "multiplayer",
-			comment: "Play online and score points"
+			name: "game",
+			url: "game/play",
+			title: "Play",
+			comment: "Play offline or online"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "upgrade",

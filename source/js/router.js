@@ -1,6 +1,4 @@
-define(function(
-	require
-) {
+define(function (require) {
 
 	var Backbone = require('backbone'),
 		Session = require('models/session'),
@@ -13,29 +11,28 @@ define(function(
 			'login': 'show',
 			'register': 'show',
 			'game/upgrade': 'show',
-			'game/multi': 'show',
-			'game/single': 'show',
+			'game/play': 'show',
 			'main': 'show',
-			'menu':'show', // когда пользователь залогинился
+			'menu': 'show', // когда пользователь залогинился
 			'*default': 'showMain'
 		},
-		initialize: function ( options ) {
+		initialize: function (options) {
 			options = options || {};
 			this._view = new appView();
 			this._view.render();
 		},
 
-		show: function( options ) {
+		show: function (options) {
 			options = options || {};
 			var route = Backbone.history.getFragment();
 			console.log('The \"%s\" route', route);
-			this._view.show({ 'view': route });
+			this._view.show({'view': route});
 		},
 
-		showMain: function( options ) {
+		showMain: function (options) {
 			options = options || {};
 			console.log('The \"main\" route');
-			this._view.show({ 'view': 'main' });
+			this._view.show({'view': 'main'});
 		}
 	});
 

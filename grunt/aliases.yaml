@@ -20,7 +20,7 @@ prod:
   - 'copy_prod'
   - 'fest:prod'
   - 'imagemin:prod'
-  - 'uglify:prod'
+  - 'requirejs:prod'
   - 'clean:prod_after'
 test:
   - 'dev'
@@ -36,3 +36,4 @@ copy_prod:
   - 'copy:res_prod'
   - 'copy:html_prod'
   - 'copy:img_prod'
+
