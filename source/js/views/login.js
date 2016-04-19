@@ -52,7 +52,7 @@ define(function(
 					'text': 'Enter username'
 				});
 				check = false;
-			} else if (! /[A-Za-z0-9]{1,32}/.test(username)) {
+			} else if (! /^[A-Za-z0-9]{1,32}$/.test(username)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid username'
@@ -66,7 +66,7 @@ define(function(
 					'text': 'Enter password'
 				});
 				check = false;
-			} else if (! /[A-Za-z0-9]{6,32}/.test(password)) {
+			} else if (! /^[A-Za-z0-9]{6,32}$/.test(password)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid password'
