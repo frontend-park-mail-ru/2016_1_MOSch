@@ -44,12 +44,15 @@ define(function (require) {
 		fetchFromServer: function (options, call) {
 			options = options || {};
 			if (this.get('auth_token') && this.get('userID')) {
-				JQuery.ajax({
-					method: 'GET',
-					dataType: 'json',
-					headers: {'auth_token': this.get('auth_token')},
-					url: this.urlUser + '/' + this.get('userID'),
-					success: function (data, textStatus) {
+				JQuery
+					.ajax({
+						method: 'GET',
+						dataType: 'json',
+						headers: {'auth_token': this.get('auth_token')},
+						url: this.urlUser + '/' + this.get('userID'),
+						context: this
+					})
+					.done(function (data, textStatus) {
 						this.set('login', data.login);
 						if (isInteger(data.level)) {
 							this.set('level', parseInt(data.level, 10));
@@ -63,15 +66,14 @@ define(function (require) {
 						if (call) {
 							call();
 						}
-					}.bind(this),
-					error: function (xhr, textStatus, error) {
+					})
+					.fail(function (xhr, textStatus, error) {
 						console.log('fetch error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'info',
 							'text': 'Something wrong'
 						});
-					}.bind(this)
-				});
+					});
 			}
 		},
 
@@ -84,29 +86,31 @@ define(function (require) {
 				options.rate = -1;
 			}
 			if (this.get('auth_token') && this.get('userID')) {
-				JQuery.ajax({
-					method: 'POST',
-					dataType: 'json',
-					headers: {'auth_token': this.get('auth_token')},
-					url: this.urlUser + '/' + this.get('userID'),
-					contentType: 'application/json;charset=utf-8',
-					processData: false,
-					data: JSON.stringify({
-						'level': options.level,
-						'rate': options.rate
-					}),
-					success: function (data, textStatus) {
+				JQuery
+					.ajax({
+						method: 'POST',
+						dataType: 'json',
+						headers: {'auth_token': this.get('auth_token')},
+						url: this.urlUser + '/' + this.get('userID'),
+						contentType: 'application/json;charset=utf-8',
+						processData: false,
+						data: JSON.stringify({
+							'level': options.level,
+							'rate': options.rate
+						}),
+						context: this
+					})
+					.done(function (data, textStatus) {
 						console.log('updateScores succ');
 						this.fetchFromServer(null, call);
-					}.bind(this),
-					error: function (xhr, textStatus, error) {
+					})
+					.fail(function (xhr, textStatus, error) {
 						console.log('updateScores error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'alert',
 							'text': 'Something wrong'
 						});
-					}.bind(this)
-				});
+					});
 			}
 		}
 	});

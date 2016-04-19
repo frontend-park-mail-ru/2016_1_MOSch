@@ -59,22 +59,24 @@ define(function (require) {
 			if (!this.get('logged_in')) {
 				return;
 			}
-			JQuery.ajax({
-				method: 'DELETE',
-				headers: {'auth_token': this.get('auth_token')},
-				url: this.urlSession(),
-				success: function (data, textStatus) {
+			JQuery
+				.ajax({
+					method: 'DELETE',
+					headers: {'auth_token': this.get('auth_token')},
+					url: this.urlSession(),
+					context: this
+				})
+				.done(function (data, textStatus) {
 					console.log('logout succ ' + textStatus);
 					this.resetSession();
-				}.bind(this),
-				error: function (xhr, textStatus, error) {
+				})
+				.fail(function (xhr, textStatus, error) {
 					console.log('logout error ' + error);
 					Backbone.Events.trigger('showToast', {
 						'type': 'info',
 						'text': 'Unable to logout'
 					});
-				}.bind(this)
-			});
+				});
 		},
 
 		// производится попытка создать сессию, используя auth_token, или залогиниться,
@@ -85,48 +87,52 @@ define(function (require) {
 				return;
 			}
 			if (options.auth_token) {
-				JQuery.ajax({
-					method: 'PUT',
-					dataType: 'json',
-					headers: {'auth_token': options.auth_token},
-					url: this.urlSession(),
-					success: function (data, textStatus) {
+				JQuery
+					.ajax({
+						method: 'PUT',
+						dataType: 'json',
+						headers: {'auth_token': options.auth_token},
+						url: this.urlSession(),
+						context: this
+					})
+					.done(function (data, textStatus) {
 						this.set('auth_token', data.auth_token);
 						this.set('userID', data.id);
 						console.log('login succ ' + textStatus);
 						this.setAuthStatus(true);
-					}.bind(this),
-					error: function (xhr, textStatus, error) {
+					})
+					.fail(function (xhr, textStatus, error) {
 						console.log('login error ' + error);
 						this.resetSession();
-					}.bind(this)
-				});
+					});
 			} else if (options.login && options.password_phrase) {
 				this.set('login', options.login);
-				JQuery.ajax({
-					method: 'PUT',
-					dataType: 'json',
-					contentType: 'application/json;charset=utf-8',
-					processData: false,
-					url: this.urlSession(),
-					data: JSON.stringify({
-						'login': options.login,
-						'password': options.password_phrase
-					}),
-					success: function (data, textStatus) {
+				JQuery
+					.ajax({
+						method: 'PUT',
+						dataType: 'json',
+						contentType: 'application/json;charset=utf-8',
+						processData: false,
+						url: this.urlSession(),
+						data: JSON.stringify({
+							'login': options.login,
+							'password': options.password_phrase
+						}),
+						context: this
+					})
+					.done(function (data, textStatus) {
 						this.set('auth_token', data.auth_token);
 						this.set('userID', data.id);
 						console.log('login succ ' + textStatus);
 						this.setAuthStatus(true);
-					}.bind(this),
-					error: function (xhr, textStatus, error) {
+					})
+					.fail(function (xhr, textStatus, error) {
 						console.log('login error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'alert',
 							'text': 'Unable to login'
 						});
-					}.bind(this)
-				});
+					});
 			} else {
 				this.resetSession();
 			}
@@ -140,31 +146,33 @@ define(function (require) {
 				return;
 			}
 			if (options.login && options.password_phrase) {
-				JQuery.ajax({
-					method: 'PUT',
-					dataType: 'json',
-					contentType: 'application/json;charset=utf-8',
-					processData: false,
-					url: this.urlUser(),
-					data: JSON.stringify({
-						'login': options.login,
-						'password': options.password_phrase
-					}),
-					success: function (data, textStatus) {
+				JQuery
+					.ajax({
+						method: 'PUT',
+						dataType: 'json',
+						contentType: 'application/json;charset=utf-8',
+						processData: false,
+						url: this.urlUser(),
+						data: JSON.stringify({
+							'login': options.login,
+							'password': options.password_phrase
+						}),
+						context: this
+					})
+					.done(function (data, textStatus) {
 						console.log('signup succ ' + textStatus);
 						this.login({
 							'login': options.login,
 							'password_phrase': options.password_phrase
 						});
-					}.bind(this),
-					error: function (xhr, textStatus, error) {
+					})
+					.fail(function (xhr, textStatus, error) {
 						console.log('signup error ' + error);
 						Backbone.Events.trigger('showToast', {
 							'type': 'alert',
 							'text': 'Unable to signup'
 						});
-					}.bind(this)
-				});
+					});
 			}
 		},
 

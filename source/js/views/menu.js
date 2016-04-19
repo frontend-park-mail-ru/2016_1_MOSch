@@ -1,7 +1,6 @@
 define(function (require) {
 
 	var Backbone = require('backbone'),
-		$ = require('jquery'),
 		tmpl = require('tmpl/menu');
 
 	var menuView = Backbone.View.extend({
@@ -46,7 +45,7 @@ define(function (require) {
 		},
 
 		loadUserInfo: function (e) {
-			this.$('.username').html('You are logged as ' + this._user.get('login').toUpperCase() + ' (id ' + this._user.get('userID') + ', ' + this._user.get('level') + ':' + this._user.get('rate') + ')');
+			console.log('You are logged as ' + this._user.get('login').toUpperCase() + ' (id ' + this._user.get('userID') + ', ' + this._user.get('level') + ':' + this._user.get('rate') + ')');
 		}
 	});
 

@@ -11,8 +11,7 @@ define(function (require) {
 			'login': 'show',
 			'register': 'show',
 			'game/upgrade': 'show',
-			'game/multi': 'show',
-			'game/single': 'show',
+			'game/play': 'show',
 			'main': 'show',
 			'menu': 'show', // когда пользователь залогинился
 			'*default': 'showMain'

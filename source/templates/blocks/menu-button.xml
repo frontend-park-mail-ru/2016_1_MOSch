@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:set name="menu-button">
-		<fest:if test="params != undefined">
+		<fest:if test="params">
 			<a href="#{params.url}" class="menu-item">
 				<div class="menu-item__icon menu-item__icon--{params.name}"></div>
 				<div class="menu-item__title"><fest:value>params.title</fest:value></div>
