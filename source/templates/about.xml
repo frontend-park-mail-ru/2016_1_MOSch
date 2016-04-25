@@ -1,43 +1,78 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-			<div class="content__wrapper content__wrapper--about">
-				<div class="about">
-					<div class="title">About this game</div>
-					<div class="about__description">
-						<h2>The game<fest:space/><strong>"Build The Tower!"</strong></h2>
-						<p>This game was developed by students of the BMSTU during training under the program "System Architect" at the Technopark Mail.RU. The game is a casual arcade with elements of strategy and RPG. For more information check the page of the game on<fest:space/><a href="https://github.com/TP-MOSch/2016_1_MOSch">GitHub</a>.</p>
-					</div>
-				</div>
-				<div class="creators">
-				<div class="title">Creators</div>
-					<div class="person">
-						<div class="person__name">Mokeev Alexey</div>
-						<div class="person__city">Moscow</div>
-						<a href="https://vk.com/a_mokeev" class="person__page">Web Page</a>
-					</div>
-					<div class="person">
-						<div class="person__name">Ostapenko Anatoliy</div>
-						<div class="person__city">Moscow</div>
-						<a href="https://vk.com/koptez" class="person__page">Web Page</a>
-					</div>
-					<div class="person">
-						<div class="person__name">Shcheglov Nikolay</div>
-						<div class="person__city">Moscow</div>
-						<a href="https://vk.com/nickshch" class="person__page">Web Page</a>
-					</div>
-				</div>
-				<div class="mentor">
-					<div class="title">Our Mentor</div>
-					<div class="person">
-						<div class="person__name">Dorofeev Dmitriy</div>
-						<div class="person__city">Moscow</div>
-						<a href="https://vk.com/dorofeevdmitry" class="person__page">Web Page</a>
-					</div>
-				</div>
-				<div class="attendance">
-					<div class="title">Attendance</div>
-					<div class="attendance-data">Attendance record &amp;mdash;<fest:space/><div class="attendance-data__number"><fest:value>data.reqrating</fest:value></div><fest:space/>requests per minute</div>
-					<div class="attendance-data">The maximum online &amp;mdash;<fest:space/><div class="attendance-data__number"><fest:value>data.onlinerating</fest:value></div><fest:space/>visitors played the game at the same time</div>
-				</div>
-				<div class="copyright">Copyright &amp;copy; 2016<fest:space/><strong>The MOSch-Team</strong><fest:space/>&amp;mdash; all rights reserved </div>
+	<fest:include context_name="" src="./blocks/person.xml"/>
+	<div class="content__wrapper content__wrapper--about">
+		<div class="about">
+			<div class="title">About this game</div>
+			<div class="about__description">
+				<h2>The game
+					<fest:space/>
+					<strong>"Build The Tower!"</strong>
+				</h2>
+				<p>This game was developed by students of the BMSTU during training under the program "System Architect"
+					at the Technopark Mail.RU. The game is a casual arcade with elements of strategy and RPG. For more
+					information check the page of the game on
+					<fest:space/>
+					<a href="https://github.com/frontend-park-mail-ru/2016_1_MOSch">GitHub</a>.
+				</p>
 			</div>
+		</div>
+		<div class="creators">
+			<div class="title">Creators</div>
+			<fest:get name="person">{
+				name: "Mokeev Alexey",
+				city: "Moscow",
+				href: "https://vk.com/a_mokeev"
+				}
+			</fest:get>
+			<fest:get name="person">{
+				name: "Ostapenko Anatoliy",
+				city: "Norilsk",
+				href: "https://vk.com/koptez"
+				}
+			</fest:get>
+			<fest:get name="person">{
+				name: "Shcheglov Nikolay",
+				city: "Moscow",
+				href: "https://vk.com/nickshch"
+				}
+			</fest:get>
+		</div>
+		<div class="mentor">
+			<div class="title">Our Mentor</div>
+			<fest:get name="person">{
+				name: "Dorofeev Dmitriy",
+				city: "Moscow",
+				href: "https://vk.com/dorofeevdmitry"
+				}
+			</fest:get>
+		</div>
+		<div class="tutors">
+			<div class="title">Our Tutors</div>
+			<fest:get name="person">{
+				name: "Burlak Iliya",
+				city: "Moscow",
+				href: "https://www.facebook.com/profile.php?id=100000754504684"
+				}
+			</fest:get>
+			<div class="spec">
+				<fest:get name="person">{
+					name: "Mezin Artemiy",
+					city: "Moscow",
+					href: "https://www.facebook.com/iketari"
+					}
+				</fest:get>
+			</div>
+			<fest:get name="person">{
+				name: "Shubin Egor",
+				city: "Moscow",
+				href: "https://vk.com/esin88"
+				}
+			</fest:get>
+		</div>
+		<div class="copyright">Copyright &amp;copy; 2016
+			<fest:space/>
+			<strong>The MOSch-Team</strong>
+			<fest:space/>&amp;mdash; all rights reserved
+		</div>
+	</div>
 </fest:template>

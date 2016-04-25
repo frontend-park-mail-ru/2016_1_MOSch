@@ -57,6 +57,23 @@
 	float: right;
 }
 
+.mentor {
+	width: 300px;
+	float: left;
+}
+
+.spec {
+	display: inline-block;
+}
+
+.copyright {
+	display: block;
+	margin-top: 30px;
+	clear: both;
+	float: right;
+	font-size: 18px;
+}
+
 .person {
 	display: inline-block;
 	margin-left: 29px;
@@ -65,7 +82,7 @@
 
 	&__name {
 		margin-top: -3px;
-		margin-bottom: -10px;
+		margin-bottom: -8px;
 		font-size: 120%;
 		color: $header-color;
 		text-transform: capitalize;
@@ -73,7 +90,7 @@
 
 		&:first-letter {
 			font-family: $wire-font;
-			font-size: 140%;
+			font-size: 120%;
 			text-transform: uppercase;
 			font-weight: bold;
 		}
@@ -83,7 +100,7 @@
 		display: inline;
 		font-size: smaller;
 
-		&::after {
+		&::before {
 			content: ' / ';
 		}
 	}
@@ -93,33 +110,4 @@
 		font-size: smaller;
 		display: inline;
 	}
-}
-
-.mentor {
-	width: 300px;
-	float: left;
-}
-
-.attendance {
-	text-align: left;
-	float: right;
-	width: 600px;
-}
-
-.attendance-data {
-	margin-bottom: 7px;
-
-	&__number {
-		display: inline;
-		font-size: 110%;
-		font-weight: bold;
-	}
-}
-
-.copyright {
-	display: block;
-	margin-top: 30px;
-	clear: both;
-	float: right;
-	font-size: 18px;
 }

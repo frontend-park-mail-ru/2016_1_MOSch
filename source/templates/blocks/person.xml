@@ -1,0 +1,15 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:set name="person">
+		<fest:if test="params">
+			<div class="person">
+				<div class="person__name">
+					<fest:value>params.name</fest:value>
+				</div>
+				<a href="{params.href}" class="person__page">Web Page</a>
+				<div class="person__city">
+					<fest:value>params.city</fest:value>
+				</div>
+			</div>
+		</fest:if>
+	</fest:set>
+</fest:template>

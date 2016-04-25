@@ -26,6 +26,7 @@ define(function (require) {
 			this._views = {};
 			this._currentView = null;
 			Backbone.Events.on('showToast', this.showToasts, this);
+			Backbone.Events.on('setBlur', this.setBlur, this);
 		},
 		render: function (options) {
 			options = options || {};
@@ -61,6 +62,17 @@ define(function (require) {
 			if (options) {
 				var ell = (new toast()).render(options).$el;
 				this.$('.notice').append(ell);
+			}
+		},
+		setBlur: function (options) {
+			options = options || {};
+			if (options) {
+				var value = 'blur(8px) brightness(0.85)';
+				if (options.status === 'dark') {
+					value = 'blur(16px) brightness(0.5)';
+				}
+				this.$('.background').css('filter', value);
+				this.$('.background').css('webkit-filter', value);
 			}
 		}
 	});

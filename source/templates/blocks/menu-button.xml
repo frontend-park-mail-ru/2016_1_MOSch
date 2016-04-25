@@ -3,8 +3,12 @@
 		<fest:if test="params">
 			<a href="#{params.url}" class="menu-item">
 				<div class="menu-item__icon menu-item__icon--{params.name}"></div>
-				<div class="menu-item__title"><fest:value>params.title</fest:value></div>
-				<div class="menu-item__comment"><fest:value>params.comment</fest:value></div>
+				<div class="menu-item__title">
+					<fest:value>params.title</fest:value>
+				</div>
+				<div class="menu-item__comment">
+					<fest:value>params.comment</fest:value>
+				</div>
 			</a>
 		</fest:if>
 	</fest:set>

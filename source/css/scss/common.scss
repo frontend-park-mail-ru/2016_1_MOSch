@@ -47,7 +47,8 @@
 	top: 0;
 	background: url('/img/background.jpg') no-repeat center;
 	background-size: cover;
-	filter: blur(15px) brightness(0.55);
+	transition: all 2s;
+	filter: blur(8px) brightness(0.85);
 	z-index: -1;
 }
 
