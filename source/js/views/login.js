@@ -1,6 +1,4 @@
-define(function(
-	require
-) {
+define(function (require) {
 
 	var Backbone = require('backbone'),
 		_ = require('underscore'),
@@ -13,22 +11,21 @@ define(function(
 			'submit .form': 'submitForm'
 		},
 		template: tmpl,
-		initialize: function ( options ) {
-			this._session = options.session;
+		initialize: function (options) {
+			this._user = options.user;
 			this.$el.hide();
 		},
 		render: function () {
-			var templatee = this.template();
-			this.$el.html(templatee);
+			this.$el.html(this.template());
 			return this;
 		},
 		show: function () {
-			if (this._session.get('logged_in')) {
+			if (this._user.get('logged_in')) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
 					'text': 'You are already registered'
 				});
-				Backbone.history.navigate('menu', { trigger: true });
+				Backbone.history.navigate('menu', {trigger: true});
 				return;
 			}
 			this.render();
@@ -40,19 +37,19 @@ define(function(
 			return this;
 		},
 
-		submitForm: function(e) {
+		submitForm: function (e) {
 			e.preventDefault();
 			var username = String(this.$('#username').val());
 			var password = String(this.$('#password').val());
 			var check = true;
 
-			if (username === "") {
+			if (username === '') {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter username'
 				});
 				check = false;
-			} else if (! /^[A-Za-z0-9]{1,32}$/.test(username)) {
+			} else if (!/^[A-Za-z0-9]{1,32}$/.test(username)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid username'
@@ -60,13 +57,13 @@ define(function(
 				check = false;
 			}
 
-			if (password === "") {
+			if (password === '') {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter password'
 				});
 				check = false;
-			} else if (! /^[A-Za-z0-9]{6,32}$/.test(password)) {
+			} else if (!/^[A-Za-z0-9]{6,32}$/.test(password)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid password'
@@ -74,11 +71,8 @@ define(function(
 				check = false;
 			}
 			if (check) {
-				console.log("submit login: " + username + " " + password);
-				this._session.login({
-					'login': username,
-					'password_phrase': password
-				});
+				console.log('submit login: ' + username + ':' + password);
+				this._user.login(username, password);
 			}
 			return check;
 		}

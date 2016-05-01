@@ -1,7 +1,6 @@
 define(function (require) {
 
 	var Backbone = require('backbone'),
-		Session = require('models/session'),
 		appView = require('views/application');
 
 	var Router = Backbone.Router.extend({

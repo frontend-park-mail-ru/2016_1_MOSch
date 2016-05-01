@@ -2,7 +2,7 @@ define(function (require) {
 
 	var Backbone = require('backbone'),
 		$ = require('jquery'),
-		Session = require('models/session'),
+		User = require('models/user'),
 		wrapper = require('tmpl/wrapper'),
 		toast = require('views/toast');
 
@@ -22,7 +22,7 @@ define(function (require) {
 		template: wrapper,
 		initialize: function (options) {
 			options = options || {};
-			this._session = new Session();
+			this._user = new User();
 			this._views = {};
 			this._currentView = null;
 			Backbone.Events.on('showToast', this.showToasts, this);
@@ -38,7 +38,7 @@ define(function (require) {
 			options.view = options.view.split('/')[0];
 			if (!this._views[options.view]) {
 				if (Views[options.view]) {
-					this._views[options.view] = new Views[options.view]({'session': this._session});
+					this._views[options.view] = new Views[options.view]({'user': this._user});
 					this.$('.content').append(this._views[options.view].$el);
 				} else {
 					return this.render({'view': 'main'});

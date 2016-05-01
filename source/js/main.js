@@ -4,7 +4,8 @@ require.config({
 		jquery: 'lib/jquery',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
-		jscookie: 'lib/js.cookie'
+		jscookie: 'lib/js.cookie',
+		babylon: 'lib/babylon.max'
 	},
 	shim: {
 		'underscore': {
@@ -14,6 +15,10 @@ require.config({
 		'backbone': {
 			deps: ['underscore', 'jquery'],
 			exports: 'Backbone'
+		},
+		'babylon': {
+			deps: [],
+			exports: 'BABYLON'
 		}
 	}
 });

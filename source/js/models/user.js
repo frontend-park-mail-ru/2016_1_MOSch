@@ -12,105 +12,151 @@ define(function (require) {
 		urlUser: 'api/user',
 
 		defaults: {
-			auth_token: null,
-			userID: -1,
+			idUser: '',
+			logged_in: false,
 			login: null,
 			level: -1,
 			rate: -1,
 			info: {}
 		},
-
+		idAttribute: 'idUser',
 		initialize: function (options) {
 			options = options || {};
-			if (options.auth_token) {
-				if (options.userID) {
-					this.set('userID', options.userID);
+			this.checkAuth();
+		},
+
+		checkAuth: function () {
+			var options = {};
+			options.context = this;
+			options.dataType = 'json';
+			options.success = function (body, httpStatus, options) {
+				if (body.id) {
+					this.set('idUser', response.id);
+					this.set('logged_in', true);
+					this.fetch();
 				}
-				this.set('auth_token', options.auth_token);
-				this.fetchFromServer();
-			} else {
-				if (options.login) {
-					this.set('login', options.login);
-				}
-				if (options.level && isInteger(options.level)) {
-					this.set('level', parseInt(options.level, 10));
-				}
-				if (options.rate && isInteger(options.rate)) {
-					this.set('rate', parseInt(options.rate, 10));
-				}
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('check', this, options);
+		},
+		logout: function () {
+			var options = {};
+			options.context = this;
+			options.success = function (body, httpStatus, options) {
+				this.set('idUser', '');
+				this.set('logged_in', false);
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('logout', this, options);
+		},
+		login: function (username, password) {
+			this.credentials = {
+				username: username,
+				password: password
+			};
+			var options = {};
+			options.dataType = 'json';
+			options.context = this;
+			options.success = function (body, httpStatus, options) {
+
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('login', this, options);
+		},
+		fetch: function () {
+			var options = {};
+			options.context = this;
+			options.dataType = 'json';
+			options.success = function (body, httpStatus, options) {
+				this.set(body);
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('fetch', this, options);
+		},
+		signup: function (username, password) {
+			var options = {};
+			options.context = this;
+			options.contentType = 'application/json;charset=utf-8';
+			options.data = JSON.stringify({
+				'login': options.login,
+				'password': options.password_phrase
+			});
+			options.success = function (body, httpStatus, options) {
+
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('signup', this, options);
+		},
+		update: function () {
+			var options = {};
+			options.context = this;
+			options.contentType = 'application/json;charset=utf-8';
+			options.data = JSON.stringify({});
+			options.success = function (body, httpStatus, options) {
+
+			};
+			options.error = function (xhr, error, httpStatus) {
+				debugger;
+				console.log(error + ': ' + httpStatus);
+			};
+			this.sync('update', this, options);
+		},
+
+		sync: function (method, model, options) {
+			options || (options = {});
+			options.url = this.getCustomUrl(method.toLowerCase());
+			arguments[0] = this.replaceMethod(method);
+			return Backbone.sync.apply(this, arguments);
+		},
+
+		getCustomUrl: function (method) {
+			switch (method) {
+				case 'check':
+					return this.urlSession;
+				case 'logout':
+					return this.urlSession;
+				case 'login':
+					return this.urlSession;
+				case 'fetch':
+					return this.urlUser + '/' + this.id;
+				case 'signup':
+					return this.urlUser;
+				case 'update':
+					return this.urlUser + '/' + this.id;
+				default:
+					return 'api';
 			}
 		},
 
-		fetchFromServer: function (options, call) {
-			options = options || {};
-			if (this.get('auth_token') && this.get('userID')) {
-				JQuery
-					.ajax({
-						method: 'GET',
-						dataType: 'json',
-						headers: {'auth_token': this.get('auth_token')},
-						url: this.urlUser + '/' + this.get('userID'),
-						context: this
-					})
-					.done(function (data, textStatus) {
-						this.set('login', data.login);
-						if (isInteger(data.level)) {
-							this.set('level', parseInt(data.level, 10));
-						}
-						if (isInteger(data.rate)) {
-							this.set('rate', parseInt(data.rate, 10));
-						}
-						this.set('info', data.info);
-						console.log('fetch succ');
-						Backbone.Events.trigger('loadUserInfo');
-						if (call) {
-							call();
-						}
-					})
-					.fail(function (xhr, textStatus, error) {
-						console.log('fetch error ' + error);
-						Backbone.Events.trigger('showToast', {
-							'type': 'info',
-							'text': 'Something wrong'
-						});
-					});
-			}
-		},
-
-		updateScores: function (options, call) {
-			options = options || {};
-			if (!(isInteger(options.level))) {
-				options.level = -1;
-			}
-			if (!(isInteger(options.rate))) {
-				options.rate = -1;
-			}
-			if (this.get('auth_token') && this.get('userID')) {
-				JQuery
-					.ajax({
-						method: 'POST',
-						dataType: 'json',
-						headers: {'auth_token': this.get('auth_token')},
-						url: this.urlUser + '/' + this.get('userID'),
-						contentType: 'application/json;charset=utf-8',
-						processData: false,
-						data: JSON.stringify({
-							'level': options.level,
-							'rate': options.rate
-						}),
-						context: this
-					})
-					.done(function (data, textStatus) {
-						console.log('updateScores succ');
-						this.fetchFromServer(null, call);
-					})
-					.fail(function (xhr, textStatus, error) {
-						console.log('updateScores error ' + error);
-						Backbone.Events.trigger('showToast', {
-							'type': 'alert',
-							'text': 'Something wrong'
-						});
-					});
+		replaceMethod: function (method) {
+			switch (method) {
+				case 'check':
+				case 'fetch':
+					return 'read';
+				case 'logout':
+					return 'delete';
+				case 'login':
+				case 'update':
+					return 'update';
+				case 'signup':
+					return 'create';
+				default:
+					return 'read';
 			}
 		}
 	});

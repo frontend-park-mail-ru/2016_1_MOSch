@@ -103,6 +103,34 @@
 	}
 }
 
+.menu-item__help {
+	display: none;
+
+	&--login {
+		background-image: url("/img/loginh.svg");
+	}
+
+	&--register {
+		background-image: url("/img/registerh.svg");
+	}
+
+	&--game {
+		background-image: url("/img/gameh.svg");
+	}
+
+	&--scoreboard {
+		background-image: url("/img/scoreboardh.svg");
+	}
+
+	&--about {
+		background-image: url("/img/abouth.svg");
+	}
+
+	&--upgrade {
+		background-image: url("/img/upgradeh.svg");
+	}
+}
+
 .exit {
 	display: block;
 	position: fixed;

@@ -1,5 +1,7 @@
 define(function (require) {
 
+	require('basicAuth');
+	
 	var Backbone = require('backbone'),
 		Router = require('router');
 

@@ -18,7 +18,6 @@ require.config({
 });
 
 var tests = [
-	'models/session.test',
 	'models/user.test',
 	'collections/users.test',
 	'views/application.test'

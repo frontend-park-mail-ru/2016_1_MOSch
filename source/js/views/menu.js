@@ -10,22 +10,17 @@ define(function (require) {
 			'click .exit': 'logout'
 		},
 		initialize: function (options) {
-			this._session = options.session;
-			this._user = null;
+			this._user = options.user;
 			this.$el.hide();
 			Backbone.Events.on('loadUserInfo', this.loadUserInfo, this);
 		},
 		render: function () {
 			this.$el.html(this.template());
-			if (!this._user) {
-				this._user = this._session.getUser();
-			} else {
-				this.loadUserInfo();
-			}
+			this._user.fetch();
 			return this;
 		},
 		show: function () {
-			if (!this._session.get('logged_in')) {
+			if (!this._user.get('logged_in')) {
 				Backbone.history.navigate('main', {trigger: true});
 				return;
 			}
@@ -33,6 +28,7 @@ define(function (require) {
 			this.$el.show();
 			return this;
 		},
+		
 		hide: function () {
 			this.$el.hide();
 			return this;
@@ -40,12 +36,7 @@ define(function (require) {
 
 		logout: function (e) {
 			console.log('logout');
-			this._user = null;
-			this._session.logout();
-		},
-
-		loadUserInfo: function (e) {
-			console.log('You are logged as ' + this._user.get('login').toUpperCase() + ' (id ' + this._user.get('userID') + ', ' + this._user.get('level') + ':' + this._user.get('rate') + ')');
+			this._user.logout();
 		}
 	});
 
