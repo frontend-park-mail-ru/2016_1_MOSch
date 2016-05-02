@@ -17,7 +17,7 @@ define(function(
 			return this;
 		},
 		show: function () {
-			if (this._user.get('logged_in')) {
+			if (this._user.loggedIn()) {
 				Backbone.history.navigate('menu', { trigger: true });
 				return;
 			}

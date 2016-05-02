@@ -17,30 +17,37 @@
 		background-color: rgba(235, 235, 235, 0.95);
 		color: $hover-color;
 		.menu-item__icon {
+			background-size: auto 140px;
 			transition: all 0.7s;
 			&--login {
+				transition: none;
 				background-image: url("/img/loginh.svg");
 			}
 
 			&--register {
+				transition: none;
 				background-image: url("/img/registerh.svg");
 			}
 
 			&--game {
+				transition: none;
 				background-image: url("/img/gameh.svg");
 				background-position-y: 45px;
 				background-size: auto 110px;
 			}
 
 			&--scoreboard {
+				transition: none;
 				background-image: url("/img/scoreboardh.svg");
 			}
 
 			&--about {
+				transition: none;
 				background-image: url("/img/abouth.svg");
 			}
 
 			&--upgrade {
+				transition: none;
 				background-image: url("/img/upgradeh.svg");
 			}
 		}
@@ -77,28 +84,34 @@
 	background-size: auto 140px;
 	transition: all 0.7s;
 	&--login {
+		transition: none;
 		background-image: url("/img/login.svg");
 	}
 
 	&--register {
+		transition: none;
 		background-image: url("/img/register.svg");
 	}
 
 	&--game {
+		transition: none;
 		background-image: url("/img/game.svg");
 		background-position-y: 45px;
 		background-size: auto 110px;
 	}
 
 	&--scoreboard {
+		transition: none;
 		background-image: url("/img/scoreboard.svg");
 	}
 
 	&--about {
+		transition: none;
 		background-image: url("/img/about.svg");
 	}
 
 	&--upgrade {
+		transition: none;
 		background-image: url("/img/upgrade.svg");
 	}
 }
@@ -146,7 +159,7 @@
 	color: lightgrey
 }
 
-.username {
+.userbar {
 	display: block;
 	position: fixed;
 	top: 20px;

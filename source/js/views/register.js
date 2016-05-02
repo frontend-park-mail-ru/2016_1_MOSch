@@ -20,7 +20,7 @@ define(function (require) {
 			return this;
 		},
 		show: function () {
-			if (this._user.get('logged_in')) {
+			if (this._user.loggedIn()) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
 					'text': 'You are already logged in'
@@ -72,7 +72,7 @@ define(function (require) {
 			}
 			if (check) {
 				console.log('submit register: ' + username + ':' + password);
-				this._user.signup(username, password);
+				this._user.signup(username, password); // регистрация
 			}
 			return check;
 		}

@@ -24,12 +24,13 @@ define(function (require) {
 
 		if (model.credentials) {
 			credentials = _.result(model, 'credentials');
+			model.credentials = null;
 		}
 
 		if (!credentials) {
-			remoteURL = options.url || _.result(model, 'url');
+			remoteUrl = options.url || _.result(model, 'url');
 
-			remoteUrlParts = remoteURL.match(/\/\/(.*):(.*)@/);
+			remoteUrlParts = remoteUrl.match(/\/\/(.*):(.*)@/);
 			if (remoteUrlParts && remoteUrlParts.length === 3) {
 				credentials = {
 					username: remoteUrlParts[1],
@@ -38,7 +39,7 @@ define(function (require) {
 			}
 		}
 
-		if (credentials) {
+		if (credentials && credentials.username && credentials.password) {
 			options.headers = options.headers || {};
 			_.extend(options.headers, Backbone.BasicAuth.getHeader(credentials));
 		}

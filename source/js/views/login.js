@@ -20,7 +20,7 @@ define(function (require) {
 			return this;
 		},
 		show: function () {
-			if (this._user.get('logged_in')) {
+			if (this._user.loggedIn()) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
 					'text': 'You are already registered'

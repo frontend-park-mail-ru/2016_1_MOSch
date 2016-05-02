@@ -12,7 +12,7 @@ define(function (require) {
 			this.$el.hide();
 		},
 		render: function () {
-			users = new Users();
+			var users = new Users();
 			Backbone.sync("read", users, {success: this.updateScores.bind(this)});
 			var data = {
 				items: users.toJSON()
@@ -21,11 +21,11 @@ define(function (require) {
 			return this;
 		},
 
-		updateScores: function(users, data, opts) {
-			var data = {
+		updateScores: function (users, data, opts) {
+			var datas = {
 				items: users
 			};
-			this.$el.html(this.template(data));
+			this.$el.html(this.template(datas));
 		},
 
 		show: function () {

@@ -12,9 +12,9 @@ define(function (require) {
 		urlUser: 'api/user',
 
 		defaults: {
-			idUser: '',
+			idUser: null,
 			logged_in: false,
-			login: null,
+			username: null,
 			level: -1,
 			rate: -1,
 			info: {}
@@ -22,6 +22,7 @@ define(function (require) {
 		idAttribute: 'idUser',
 		initialize: function (options) {
 			options = options || {};
+			this.on('change:logged_in', this.changeAuthState);
 			this.checkAuth();
 		},
 
@@ -30,15 +31,17 @@ define(function (require) {
 			options.context = this;
 			options.dataType = 'json';
 			options.success = function (body, httpStatus, options) {
+				debugger;
 				if (body.id) {
-					this.set('idUser', response.id);
+					this.set('idUser', body.id);
 					this.set('logged_in', true);
 					this.fetch();
 				}
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
 			};
 			this.sync('check', this, options);
 		},
@@ -46,12 +49,16 @@ define(function (require) {
 			var options = {};
 			options.context = this;
 			options.success = function (body, httpStatus, options) {
-				this.set('idUser', '');
+				debugger;
+				this.set('idUser', null);
 				this.set('logged_in', false);
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
+				this.set('idUser', null);
+				this.set('logged_in', false);
 			};
 			this.sync('logout', this, options);
 		},
@@ -64,11 +71,22 @@ define(function (require) {
 			options.dataType = 'json';
 			options.context = this;
 			options.success = function (body, httpStatus, options) {
-
+				debugger;
+				this.set('idUser', +body.id);
+				this.set('logged_in', true);
+				Backbone.Events.trigger('showToast', {
+					'type': 'info',
+					'text': 'Hello, ' + username
+				});
+				Backbone.Events.trigger('showToast', {
+					'type': 'info',
+					'text': body.id
+				});
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
 			};
 			this.sync('login', this, options);
 		},
@@ -77,28 +95,32 @@ define(function (require) {
 			options.context = this;
 			options.dataType = 'json';
 			options.success = function (body, httpStatus, options) {
+				debugger;
 				this.set(body);
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
 			};
 			this.sync('fetch', this, options);
 		},
-		signup: function (username, password) {
+		signup: function (username, password) { // регистрация
 			var options = {};
 			options.context = this;
 			options.contentType = 'application/json;charset=utf-8';
 			options.data = JSON.stringify({
-				'login': options.login,
-				'password': options.password_phrase
+				'username': username,
+				'password': password
 			});
 			options.success = function (body, httpStatus, options) {
-
+				debugger;
+				this.login(username, password);
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
 			};
 			this.sync('signup', this, options);
 		},
@@ -108,11 +130,13 @@ define(function (require) {
 			options.contentType = 'application/json;charset=utf-8';
 			options.data = JSON.stringify({});
 			options.success = function (body, httpStatus, options) {
-
+				debugger;
+				this.fetch();
 			};
 			options.error = function (xhr, error, httpStatus) {
 				debugger;
-				console.log(error + ': ' + httpStatus);
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
 			};
 			this.sync('update', this, options);
 		},
@@ -134,7 +158,7 @@ define(function (require) {
 					return this.urlSession;
 				case 'fetch':
 					return this.urlUser + '/' + this.id;
-				case 'signup':
+				case 'signup': // регистрация
 					return this.urlUser;
 				case 'update':
 					return this.urlUser + '/' + this.id;
@@ -153,11 +177,33 @@ define(function (require) {
 				case 'login':
 				case 'update':
 					return 'update';
-				case 'signup':
+				case 'signup': // регистрация
 					return 'create';
 				default:
 					return 'read';
 			}
+		},
+
+		changeAuthState: function () {
+			if (this.get('logged_in')) {
+				this.fetch();
+			}
+			console.log('logged = ' + this.get('logged_in'));
+			var route = this.get('logged_in') ? 'menu' : 'main';
+			Backbone.history.navigate(route, {trigger: true});
+		},
+
+		getInfo: function () {
+			return {
+				'username': this.get('username'),
+				'level': this.get('level'),
+				'rate': this.get('rate'),
+				'idUser': this.get('idUser')
+			}
+		},
+
+		loggedIn: function () {
+			return this.get('logged_in');
 		}
 	});
 
