@@ -12,12 +12,12 @@ define(function (require) {
 		},
 		initialize: function (options) {
 			this._user = options.user;
-			this._user.on('change', this.updateUserBar.bind(this))
+			this._user.on('change', this.updateUserBar.bind(this));
 			this.$el.hide();
 		},
 		render: function () {
 			this.$el.html(this.template());
-			this._user.fetch();
+			this.updateUserBar();
 			return this;
 		},
 		show: function () {
@@ -27,7 +27,6 @@ define(function (require) {
 			}
 			this.render();
 			this.$el.show();
-			this.updateUserBar();
 			return this;
 		},
 

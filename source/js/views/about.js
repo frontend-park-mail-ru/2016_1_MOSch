@@ -17,9 +17,6 @@ define(function (require) {
 		},
 		render: function () {
 			this.$el.html(this.template());
-			this.$('.rectangle__question').text('Do you like JavaScript?');
-			this.$('.rectangle__answers--yes').text('Yes');
-			this.$('.rectangle__answers--no').text('No');
 			return this;
 		},
 		show: function () {
@@ -40,36 +37,36 @@ define(function (require) {
 
 		special: function (e) {
 			this._special++;
-			if (this._special === 13) {
-				this.$('.rectangle').show();
-				this.$('.rectangle__answers--yes').click(function () {
-					this.$('.rectangle').remove();
-				}.bind(this));
-				this.$('.rectangle__answers--no').click(function () {
-					this.$('.rectangle__question').remove();
-					this.$('.rectangle__answers').remove();
-					this.$('.rectangle__img').show();
-					var width = 1000;
-					var height = 837;
-					var windowWidth = window.innerWidth;
-					var windowHeight = window.innerHeight;
-					var Left = (width - windowWidth) / -2;
-					var Top = (height - windowHeight) / -2;
-
-					this.$('.rectangle__img').animate({
-						width: '1000px',
-						top: Top + 'px',
-						left: Left + 'px'
-					}, 1500);
-					this.$('.rectangle__img').animate({
-						width: '0',
-						top: '50%',
-						left: '50%'
-					}, 1500, null, function () {
-						this.$('.rectangle').remove();
-					}.bind(this));
-				}.bind(this));
+			if (this._special !== 13) {
+				return;
 			}
+
+			this.$('.rectangle').show();
+			this.$('.rectangle__answers--yes').click(function () {
+				this.$('.rectangle').remove();
+			}.bind(this));
+			this.$('.rectangle__answers--no').click(this.joke.bind(this));
+		},
+
+		joke: function () {
+			this.$('.rectangle__question').remove();
+			this.$('.rectangle__answers').remove();
+			this.$('.rectangle__img').show();
+			var Left = (1000 - window.innerWidth) / -2;
+			var Top = (837 - window.innerHeight) / -2;
+
+			this.$('.rectangle__img').animate({
+				width: '1000px',
+				top: Top + 'px',
+				left: Left + 'px'
+			}, 1500);
+			this.$('.rectangle__img').animate({
+				width: '0',
+				top: '50%',
+				left: '50%'
+			}, 1500, null, function () {
+				this.$('.rectangle').remove();
+			}.bind(this));
 		}
 	});
 

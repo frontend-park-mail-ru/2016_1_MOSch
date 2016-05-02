@@ -88,10 +88,7 @@ module.exports = {
 				expand: true,
 				cwd: 'source',
 				src: ['index.html'],
-				dest: 'static_prod/',
-				rename: function (dest, path) {
-					return (dest + path).replace('Dev', '');
-				}
+				dest: 'static_prod/'
 			}
 		]
 	}

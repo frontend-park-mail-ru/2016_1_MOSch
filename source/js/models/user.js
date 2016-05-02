@@ -12,55 +12,48 @@ define(function (require) {
 		urlUser: 'api/user',
 
 		defaults: {
-			idUser: null,
-			logged_in: false,
 			username: null,
 			level: -1,
 			rate: -1,
 			info: {}
 		},
-		idAttribute: 'idUser',
+
+		//idAttribute: 'id',
+		_logged_in: false,
 		initialize: function (options) {
 			options = options || {};
-			this.on('change:logged_in', this.changeAuthState);
 			this.checkAuth();
 		},
 
 		checkAuth: function () {
 			var options = {};
-			options.context = this;
+			options.mymethod = 'check';
 			options.dataType = 'json';
-			options.success = function (body, httpStatus, options) {
+			options.success = function (model, response, options) {
 				debugger;
-				if (body.id) {
-					this.set('idUser', body.id);
-					this.set('logged_in', true);
-					this.fetch();
-				}
+				model.changeAuthState(true);
 			};
-			options.error = function (xhr, error, httpStatus) {
+			options.error = function (model, xhr, options) {
 				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};
-			this.sync('check', this, options);
+			this.fetch(options);
 		},
 		logout: function () {
 			var options = {};
-			options.context = this;
-			options.success = function (body, httpStatus, options) {
+			options.wait = true;
+			options.mymethod = 'logout';
+			options.success = function (model, response, options) {
 				debugger;
-				this.set('idUser', null);
-				this.set('logged_in', false);
+				model.changeAuthState(false);
 			};
-			options.error = function (xhr, error, httpStatus) {
+			options.error = function (model, xhr, options) {
 				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
-				this.set('idUser', null);
-				this.set('logged_in', false);
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};
-			this.sync('logout', this, options);
+			this.destroy(options);
 		},
 		login: function (username, password) {
 			this.credentials = {
@@ -68,83 +61,100 @@ define(function (require) {
 				password: password
 			};
 			var options = {};
+			options.mymethod = 'login';
 			options.dataType = 'json';
-			options.context = this;
-			options.success = function (body, httpStatus, options) {
+			options.mydata = JSON.stringify({});
+			options.success = function (model, response, options) {
 				debugger;
-				this.set('idUser', +body.id);
-				this.set('logged_in', true);
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
 					'text': 'Hello, ' + username
 				});
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
-					'text': body.id
+					'text': 'ID: ' + model.id
+				});
+				model.changeAuthState(true);
+			};
+			options.error = function (model, xhr, options) {
+				debugger;
+				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Unable to login: ' + xhr.responseJSON.message.toLowerCase()
 				});
 			};
-			options.error = function (xhr, error, httpStatus) {
-				debugger;
-				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
-			};
-			this.sync('login', this, options);
+			this.save({}, options);
 		},
-		fetch: function () {
+		fetchData: function () {
 			var options = {};
-			options.context = this;
+			options.mymethod = 'fetch';
 			options.dataType = 'json';
-			options.success = function (body, httpStatus, options) {
+			options.success = function (model, response, options) {
 				debugger;
-				this.set(body);
 			};
-			options.error = function (xhr, error, httpStatus) {
+			options.error = function (model, xhr, options) {
 				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
+				Backbone.Events.trigger('showToast', {
+					'type': 'info',
+					'text': 'Something wrong. Reload the page later'
+				});
 			};
-			this.sync('fetch', this, options);
+			this.fetch(options);
 		},
 		signup: function (username, password) { // регистрация
 			var options = {};
-			options.context = this;
+			options.mymethod = 'signup';
 			options.contentType = 'application/json;charset=utf-8';
-			options.data = JSON.stringify({
+			options.mydata = JSON.stringify({
 				'username': username,
 				'password': password
 			});
-			options.success = function (body, httpStatus, options) {
+			options.success = function (model, response, options) {
 				debugger;
-				this.login(username, password);
+				model.login(username, password);
 			};
-			options.error = function (xhr, error, httpStatus) {
+			options.error = function (model, xhr, options) {
 				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Unable to signup: ' + xhr.responseJSON.message.toLowerCase()
+				});
 			};
-			this.sync('signup', this, options);
+			this.save({}, options);
 		},
-		update: function () {
+		updateData: function (data) {
 			var options = {};
-			options.context = this;
+			options.mymethod = 'update';
 			options.contentType = 'application/json;charset=utf-8';
-			options.data = JSON.stringify({});
-			options.success = function (body, httpStatus, options) {
+			options.mydata = JSON.stringify(data || this.attributes);
+			options.success = function (model, response, options) {
 				debugger;
-				this.fetch();
+				model.fetchData();
 			};
-			options.error = function (xhr, error, httpStatus) {
+			options.error = function (model, xhr, options) {
 				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
-				console.log(error + ': ' + httpStatus + '. Message: ' + xhr.responseJSON.message);
+				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};
-			this.sync('update', this, options);
+			this.save({}, options);
 		},
 
 		sync: function (method, model, options) {
 			options || (options = {});
-			options.url = this.getCustomUrl(method.toLowerCase());
-			arguments[0] = this.replaceMethod(method);
+			if (options.mydata) {
+				options.data = options.mydata;
+			}
+			if (!options.mymethod) {
+				alert('error!!!!');
+			}
+			options.url = this.getCustomUrl(options.mymethod.toLowerCase());
+			arguments[0] = this.replaceMethod(options.mymethod.toLowerCase());
 			return Backbone.sync.apply(this, arguments);
 		},
 
@@ -184,12 +194,16 @@ define(function (require) {
 			}
 		},
 
-		changeAuthState: function () {
-			if (this.get('logged_in')) {
-				this.fetch();
+		changeAuthState: function (state) {
+			this._logged_in = state;
+			if (this._logged_in) {
+				this.fetchData();
+			} else {
+				this.id = null;
+				this.username = null;
 			}
-			console.log('logged = ' + this.get('logged_in'));
-			var route = this.get('logged_in') ? 'menu' : 'main';
+			console.log('logged = ' + this._logged_in);
+			var route = this._logged_in ? 'menu' : 'main';
 			Backbone.history.navigate(route, {trigger: true});
 		},
 
@@ -198,13 +212,14 @@ define(function (require) {
 				'username': this.get('username'),
 				'level': this.get('level'),
 				'rate': this.get('rate'),
-				'idUser': this.get('idUser')
+				'id': this.id
 			}
 		},
 
 		loggedIn: function () {
-			return this.get('logged_in');
+			return this._logged_in;
 		}
+
 	});
 
 	return UserModel;

@@ -75,10 +75,10 @@
 			<fest:space/>&amp;mdash; all rights reserved
 		</div>
 		<div class="rectangle">
-			<div class="rectangle__question"></div>
+			<div class="rectangle__question">Do you likeJavaScript?</div>
 			<div class="rectangle__answers">
-				<div class="rectangle__answers--no"></div>
-				<div class="rectangle__answers--yes"></div>
+				<div class="rectangle__answers--no">no</div>
+				<div class="rectangle__answers--yes">yes</div>
 			</div>
 			<img class="rectangle__img" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAA7wAAAMgCAMAAAA3OZ49AAADAFBMVEUwLSoCAAA5DREYGRUBAQEE
@@ -5911,7 +5911,7 @@ cs6br81fvzxp/tF82XNhNj+YjuN+PzyKZ7KISXXnGPVuywu3R9+WaVun7VjXZf1ehe6LXcu5T84H
 Whn6NC/fdj1pbneqGr8fmrjruvXeNgKmPuehOhmBSDD3SJ5EknMdTQKdqNKsVNE2zgbjiIFOmFo0
 MPgMOtTs6SglqZCVyBkNVFV0rIvoM0gKpPwzG0cy7VIMFGKgdQAyLxQqLfSQGczX1UW4bHFaRwYC
 diEn5FJp6NEd4yj22RaWrd5rYd0oBhmtJi0ksyl1ERO1eP/vQ2d//nDwbn8vVFrdr9cz6AAAAABJ
-RU5ErkJggg==" />
+RU5ErkJggg=="/>
 		</div>
 	</div>
 </fest:template>
