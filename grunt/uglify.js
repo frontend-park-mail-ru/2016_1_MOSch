@@ -10,7 +10,7 @@ module.exports = function (grunt, options) {
 				expand: true,
 				cwd: 'source/js',
 				src: ['service-worker.js'],
-				dest: 'static_prod/js'
+				dest: 'static_prod'
 			}]
 		}
 	}
