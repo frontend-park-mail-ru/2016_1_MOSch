@@ -28,7 +28,24 @@ self.addEventListener('fetch', function (event) {
 	event.respondWith((function () {
 		var url = event.request.url;
 		if (/^.*\/api\/.*$/.test(url)) {
-			return fetch(event.request);
+			var fetchRequest = event.request.clone();
+			return fetch(fetchRequest)
+				.then(function (response) {
+					if (response) {
+						console.log(response.status);
+					}
+					if (!response || response.status === 404) {
+						var body = '{"message":"You are offline"}';
+						var init = {"status": 408, "statusText": "Request Timeout"};
+						return new Response(body, init);
+					}
+					return response;
+				})
+				.catch(function () {
+					var body = '{"message":"You are offline"}';
+					var init = {"status": 408, "statusText": "Request Timeout"};
+					return new Response(body, init);
+				});
 		}
 		return caches.match(event.request)
 			.then(function (cachedResponse) {
