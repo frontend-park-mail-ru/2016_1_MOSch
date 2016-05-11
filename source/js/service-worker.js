@@ -68,10 +68,11 @@ self.addEventListener('fetch', function (event) {
 							if (!response || response.status !== 200) {
 								return cachedResponse;
 							}
+							var clonedResponse = response.clone();
 							caches.open(CACHE_NAME).then(function (cache) {
 								cache.put(event.request, response.clone());
 							});
-							return response;
+							return clonedResponse;
 						})
 						.catch(function () {
 							return cachedResponse;
