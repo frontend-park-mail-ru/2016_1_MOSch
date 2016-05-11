@@ -1,0 +1,46 @@
+@import 'config';
+
+.submit-button {
+	display: inline-block;
+	position: relative;
+	width: 280px;
+	height: 80px;
+	padding: 5px 15px;
+	margin: 0 auto 15px;
+	border-radius: 5px;
+	vertical-align: middle;
+	background: $header-color;
+	font-family: $wire-font;
+	font-weight: bold;
+	font-size: 56px;
+	color: #000;
+	text-align: center;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		left: 50%;
+		right: 50%;
+		bottom: 0;
+		background: $hover-color;
+		height: 4px;
+		transition: left right;
+		transition: 0.3s ease-out;
+	}
+
+	&:hover::before, &:focus::before, &:active::before {
+		left: 0;
+		right: 0;
+	}
+
+	&:hover {
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+		transition: box-shadow 0.5s ease;
+	}
+}

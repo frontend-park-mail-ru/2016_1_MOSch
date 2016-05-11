@@ -1,0 +1,13 @@
+@import 'config';
+
+.userbar {
+	display: block;
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	height: 25px;
+	font-size: 27px;
+	font-family: $bravo-font;
+	text-align: right;
+	color: $header-color;
+}

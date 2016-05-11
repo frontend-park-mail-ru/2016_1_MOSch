@@ -1,0 +1,20 @@
+@import 'config';
+
+.logo {
+	display: block;
+	position: relative;
+	height: 35%;
+	margin-bottom: 15px;
+
+	&__image {
+		position: absolute;
+		width: 700px;
+		height: 220px;
+		margin-left: 50%;
+		left: -350px;
+		bottom: 25px;
+		text-align: center;
+		background: url('/img/logo.png') no-repeat center;
+		background-size: 100%;
+	}
+}

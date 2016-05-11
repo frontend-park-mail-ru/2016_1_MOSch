@@ -1,0 +1,41 @@
+@import 'config';
+
+.content {
+	width: 100%;
+	margin-top: 26px;
+	text-align: center;
+
+	&__wrapper {
+		display: inline-block;
+
+		&--about {
+			position: relative;
+			width: 1090px;
+			height: 500px;
+			margin-top: -30px;
+			vertical-align: top;
+			font-family: $bravo-font;
+			font-size: 26px;
+			font-style: normal;
+			color: white;
+
+			a {
+				color: white;
+				text-decoration: underline;
+
+				&:hover {
+					color: $link-color;
+				}
+			}
+			strong {
+				color: $header-color;
+				font-weight: bold;
+			}
+			h2 {
+				margin-top: 6px;
+				margin-bottom: 7px;
+				font-size: 130%;
+			}
+		}
+	}
+}
