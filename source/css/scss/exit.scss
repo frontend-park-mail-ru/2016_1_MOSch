@@ -1,0 +1,16 @@
+@import 'config';
+
+.exit {
+	display: block;
+	position: fixed;
+	top: 50px;
+	right: 20px;
+	height: 25px;
+	font-size: 25px;
+	font-family: $bravo-font;
+	text-transform: uppercase;
+	text-decoration: underline;
+	cursor: pointer;
+	text-align: right;
+	color: lightgrey
+}

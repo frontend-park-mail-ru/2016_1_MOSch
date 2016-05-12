@@ -7,7 +7,7 @@ define(function (require) {
 
 		template: tmpl,
 		initialize: function (options) {
-			this._session = options.session;
+			this._user = options.user;
 			this.$el.hide();
 		},
 		render: function () {

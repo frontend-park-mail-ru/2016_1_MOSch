@@ -6,8 +6,8 @@
 	height: 100%;
 	width: 220px;
 	padding: 15px 2px 2px;
-	left: 0px;
-	top: 0px;
+	left: 0;
+	top: 0;
 	z-index: 15;
 	pointer-events: none;
 
@@ -20,7 +20,7 @@
 		text-align: center;
 		font-size: 22px;
 		color: #000000;
-		box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.7);
+		box-shadow: 0 0 11px 0 rgba(50, 50, 50, 0.7);
 
 		&--alert {
 			background-color: rgba(255, 180, 180, 0.95);

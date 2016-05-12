@@ -1,0 +1,49 @@
+@import 'config';
+
+.rectangle {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	color: #ffffff;
+	font-family: $bravo-font;
+	font-size: 72px;
+
+	display: none;
+
+	&__question {
+		text-align: center;
+		width:800px;
+		margin: 150px auto;
+	}
+
+	&__answers {
+		text-transform: uppercase;
+		width:800px;
+		margin: 150px auto;
+
+		&--yes {
+			text-align: center;
+			float: left;
+			width: 200px;
+			margin: 0 100px;
+		}
+
+		&--no {
+			text-align: center;
+			float: left;
+			width: 200px;
+			margin: 0 100px;
+		}
+	}
+
+	&__img {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		display: none;
+	}
+}

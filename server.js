@@ -4,6 +4,7 @@ var express = require('express'),
 	app = express(),
 	HOSTNAME = 'localhost',
 	PORT = 31077,
+	PROXY = 31079,
 	PUBLIC_DIR = __dirname + '/static_dev';
 
 app
@@ -15,9 +16,8 @@ app.listen(PORT, function () {
 });
 
 app.use('/api', proxy('http://localhost', {
-		port: 8080,
+		port: PROXY,
 		forwardPath: function (req, res) {
-			console.log("proxy: [%s %s %s]", req.method, req.originalUrl);
 			return '/api' + require('url').parse(req.url).path;
 		}
 	})

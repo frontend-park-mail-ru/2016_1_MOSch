@@ -1,0 +1,34 @@
+@import 'config';
+
+.record {
+	position: relative;
+	height: 30px;
+	margin-bottom: 5px;
+	padding-top: 2px;
+	vertical-align: middle;
+	font-family: $bravo-font;
+	font-size: 28px;
+	font-style: normal;
+	background-color: rgba(255, 255, 255, 0.55);
+	transition: background-color 0.7s ease;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.9);
+		transition: background-color 0.7s ease;
+	}
+
+	&__rate {
+		display: inline-block;
+		width: 90px;
+		float: left;
+		text-align: right;
+	}
+
+	&__username {
+		display: inline-block;
+		width: 160px;
+		float: left;
+		text-align: left;
+		padding-left: 100px;
+	}
+}

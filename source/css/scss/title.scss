@@ -1,0 +1,11 @@
+@import 'config';
+
+.title {
+	margin-bottom: 14px;
+	font-family: $wire-font;
+	font-size: 42px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 2px 2px 4px rgba(150, 150, 150, 1);
+	color: $header-color;
+}

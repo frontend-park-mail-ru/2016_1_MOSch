@@ -1,0 +1,56 @@
+@import 'config';
+
+.input {
+	display: block;
+	width: 700px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	text-align: left;
+
+	&__text {
+		display: block;
+		width: 100%;
+		font-family: $wire-font;
+		font-size: 56px;
+		vertical-align: text-bottom;
+		padding: 20px 15px 2px;
+		background-color: #FFFFFF;
+		border: none;
+		transition: background-color 0.35s ease, border 0.35s ease;
+		transition-delay: 0.1s;
+		border-radius: 5px;
+		box-shadow: 5px 5px 50px -15px rgba(0, 0, 0, 0.8);
+
+		&:focus {
+			border: none;
+			outline: none;
+			background-color: rgba(255, 255, 255, 0.7);
+			transition: background-color 0.35s ease, box-shadow 0.15s ease;
+			transition-delay: 0.1s;
+			box-shadow: none;
+
+			&::placeholder {
+				color: $gray-color;
+				letter-spacing: 4px;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+		}
+
+		&::placeholder {
+			font-family: $wire-font;
+			color: $gray-color;
+			letter-spacing: 4px;
+			opacity: 1;
+			transition: opacity 0.3s ease;
+		}
+	}
+
+	&__label {
+		font-family: Tahoma, Geneva, sans-serif;
+		font-size: 20px;
+		color: #DDDDDD;
+		font-weight: 200;
+		text-shadow: 2px 2px 5px rgba(200, 200, 200, 0.70);
+	}
+}

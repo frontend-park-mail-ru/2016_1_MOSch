@@ -1,0 +1,39 @@
+@import 'config';
+
+.person {
+	display: inline-block;
+	margin-left: 29px;
+	margin-right: 29px;
+	margin-bottom: 15px;
+
+	&__name {
+		margin-top: -3px;
+		margin-bottom: -8px;
+		font-size: 120%;
+		color: $header-color;
+		text-transform: capitalize;
+		letter-spacing: 0.1px;
+
+		&:first-letter {
+			font-family: $wire-font;
+			font-size: 120%;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+	}
+
+	&__city {
+		display: inline;
+		font-size: smaller;
+
+		&::before {
+			content: ' / ';
+		}
+	}
+
+	&__page {
+		color: white;
+		font-size: smaller;
+		display: inline;
+	}
+}

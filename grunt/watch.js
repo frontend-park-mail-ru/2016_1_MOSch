@@ -1,6 +1,6 @@
 module.exports = {
 	fest: {
-		files: ['source/templates/*.xml'],
+		files: ['source/templates/**/*.xml'],
 		tasks: ['fest:dev'],
 		options: {
 			interrupt: true

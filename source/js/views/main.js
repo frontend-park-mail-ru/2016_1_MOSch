@@ -9,16 +9,15 @@ define(function(
 
 		template: tmpl,
 		initialize: function ( options ) {
-			this._session = options.session;
+			this._user = options.user;
 			this.$el.hide();
 		},
 		render: function () {
-			var templatee = this.template();
-			this.$el.html(templatee);
+			this.$el.html(this.template());
 			return this;
 		},
 		show: function () {
-			if (this._session.get('logged_in')) {
+			if (this._user.loggedIn()) {
 				Backbone.history.navigate('menu', { trigger: true });
 				return;
 			}

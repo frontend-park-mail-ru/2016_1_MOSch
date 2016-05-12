@@ -1,6 +1,6 @@
 {
   "name": "buildthetower",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "casual game",
   "main": "index.js",
   "author": "Anatoliy Ostapenko <ostapencko.anatoliy@yandex.ru>",
