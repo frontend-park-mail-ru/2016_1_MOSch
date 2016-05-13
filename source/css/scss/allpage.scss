@@ -2,10 +2,25 @@
 
 .allpage {
 	position: absolute;
-	overflow: hidden;
-	min-width: 1024px;
-	min-height: 820px;
 	top: 0;
+	left: 0;
 	width: 100%;
-	height: 100%;
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.allpage {
+		overflow: hidden;
+		min-width: 1024px;
+		min-height: 768px;
+		height: 100%;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.allpage {
+		min-width: 375px;
+		min-height: 100%;
+	}
 }

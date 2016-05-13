@@ -18,7 +18,6 @@ define(function (require) {
 			info: {}
 		},
 
-		//idAttribute: 'id',
 		_logged_in: false,
 		initialize: function (options) {
 			options = options || {};

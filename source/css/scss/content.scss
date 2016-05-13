@@ -1,12 +1,8 @@
 @import 'config';
 
 .content {
-	width: 100%;
-	margin-top: 26px;
-	text-align: center;
 
 	&__wrapper {
-		display: inline-block;
 
 		&--about {
 			position: relative;
@@ -36,6 +32,35 @@
 				margin-bottom: 7px;
 				font-size: 130%;
 			}
+		}
+	}
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.content {
+		width: 100%;
+		margin-top: 26px;
+		text-align: center;
+
+		&__wrapper {
+			display: inline-block;
+		}
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.content {
+		width: 100%;
+		margin-top: 26px;
+		text-align: center;
+
+		&__wrapper {
+			width: 90%;
+			max-width: 700px;
+			display: block;
+			margin: 0 auto;
 		}
 	}
 }

@@ -2,5 +2,18 @@
 
 .form {
 	display: block;
-	width: 700px;
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.form {
+		width: 700px;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.form {
+		width: 100%;
+	}
 }

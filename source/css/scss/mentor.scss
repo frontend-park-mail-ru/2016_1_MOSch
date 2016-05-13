@@ -1,6 +1,22 @@
 @import 'config';
 
 .mentor {
-	width: 300px;
-	float: left;
+
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.mentor {
+		width: 300px;
+		float: left;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.mentor {
+		display: block;
+		width: 100%;
+		margin-bottom: 25px;
+	}
 }

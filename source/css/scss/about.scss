@@ -1,11 +1,26 @@
 @import 'config';
 
 .about {
-	display: inline-block;
-	width: 640px;
-	height: 175px;
 	padding-bottom: 25px;
-	margin: 0 0 22px;
-	float: left;
 	text-align: justify;
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.about {
+		display: inline-block;
+		width: 640px;
+		height: 175px;
+		margin: 0 0 22px;
+		float: left;
+
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.about {
+		display: block;
+		width: 100%;
+	}
 }
