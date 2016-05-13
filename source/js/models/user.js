@@ -96,7 +96,7 @@ define(function (require) {
 				if (data) {
 					localStorage.removeItem('playerdata');
 					var obj = JSON.parse(data);
-					if (obj.username === this.get('username')) {
+					if (obj.username === model.get('username')) {
 						this.updateData(obj);
 					}
 				}
