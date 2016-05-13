@@ -25,7 +25,7 @@
 		<fest:get name="menu-button">{
 			name: "scoreboard",
 			url: "scoreboard",
-			title: "scoreboard",
+			title: "scores",
 			comment: "Ratings and achievements"
 			}
 		</fest:get>
