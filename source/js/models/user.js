@@ -30,6 +30,14 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				var data = localStorage.getItem('playerdata');
+				if (data) {
+					localStorage.removeItem('playerdata');
+					var obj = JSON.parse(data);
+					if (obj.username === this.get('username')) {
+						this.updateData(obj);
+					}
+				}
 				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
@@ -131,13 +139,15 @@ define(function (require) {
 			var options = {};
 			options.mymethod = 'update';
 			options.contentType = 'application/json;charset=utf-8';
-			options.mydata = JSON.stringify(data || this.attributes);
+			options.mydata = JSON.stringify(data || this.toJSON());
 			options.success = function (model, response, options) {
 				debugger;
 				model.fetchData();
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
+				var data = JSON.stringify(options.mydata);
+				localStorage.setItem('playerdata', data);
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};

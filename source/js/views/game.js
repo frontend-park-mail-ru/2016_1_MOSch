@@ -21,8 +21,7 @@ define(function (require) {
 				var newScore = prompt('Представьте, что вы играли в игру. Введите сколько очков вы заработали:', '20');
 				if (newScore && newScore !== '') {
 					newScore = newScore | 0;
-					this._user.set('rate', newScore);
-					this._user.fetchData();
+					this._user.updateData({'rate': newScore});
 				}
 			} else {
 				alert('Game was here!')
