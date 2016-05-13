@@ -30,6 +30,7 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				model.changeAuthState(true);
 				var data = localStorage.getItem('playerdata');
 				if (data) {
 					localStorage.removeItem('playerdata');
@@ -38,7 +39,6 @@ define(function (require) {
 						this.updateData(obj);
 					}
 				}
-				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
