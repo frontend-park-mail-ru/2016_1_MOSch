@@ -97,7 +97,7 @@ define(function (require) {
 					localStorage.removeItem('playerdata');
 					var obj = JSON.parse(data);
 					if (obj.username === model.get('username')) {
-						this.updateData(obj);
+						model.updateData(obj);
 					}
 				}
 			};
