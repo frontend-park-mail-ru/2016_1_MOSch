@@ -1,0 +1,16 @@
+{
+	"name": "Build The Tower!",
+	"short_name": "Build The Tower",
+	"icons": [
+		{
+			"src": "/res/favicon.ico",
+			"type": "image/x-icon",
+			"sizes": "72x72 96x96 128x128 256x256"
+		}
+	],
+	"start_url": "/",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"background_color": "#2C17E7",
+	"theme_color": "#2C17E7"
+}

@@ -87,7 +87,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: 'source',
-				src: ['index.html'],
+				src: ['index.html', 'manifest.json'],
 				dest: 'static_prod/'
 			}
 		]
