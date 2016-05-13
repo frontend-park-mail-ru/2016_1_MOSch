@@ -146,6 +146,8 @@ define(function (require) {
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
+				options.mydata = JSON.parse(options.mydata);
+				options.mydata.username = this.get('username');
 				var data = JSON.stringify(options.mydata);
 				localStorage.setItem('playerdata', data);
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
