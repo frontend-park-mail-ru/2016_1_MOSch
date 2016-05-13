@@ -1,9 +1,25 @@
 @import 'config';
 
 .creators {
-	display: inline-block;
-	width: 430px;
-	height: 200px;
-	margin: 0 0 22px;
-	float: right;
+
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.creators {
+		display: inline-block;
+		width: 430px;
+		height: 200px;
+		margin: 0 0 22px;
+		float: right;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.creators {
+		display: block;
+		width: 100%;
+		margin-bottom: 25px;
+	}
 }
