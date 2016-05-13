@@ -30,15 +30,7 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
-				model.changeAuthState(true);
-				var data = localStorage.getItem('playerdata');
-				if (data) {
-					localStorage.removeItem('playerdata');
-					var obj = JSON.parse(data);
-					if (obj.username === this.get('username')) {
-						this.updateData(obj);
-					}
-				}
+				model.changeAuthState(true);				
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
@@ -100,6 +92,14 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				var data = localStorage.getItem('playerdata');
+				if (data) {
+					localStorage.removeItem('playerdata');
+					var obj = JSON.parse(data);
+					if (obj.username === this.get('username')) {
+						this.updateData(obj);
+					}
+				}
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
