@@ -30,7 +30,7 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
-				model.changeAuthState(true);				
+				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
