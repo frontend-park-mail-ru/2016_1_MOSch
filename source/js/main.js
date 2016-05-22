@@ -4,8 +4,10 @@ require.config({
 		jquery: 'lib/jquery',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
-		jscookie: 'lib/js.cookie',
-		babylon: 'lib/babylon.max'
+		babylon: 'lib/babylon.max',
+		cannon: 'lib/cannon', // cannon.js - an optional physics 'engine'
+		hand: 'lib/hand', // hand.js - a small framework that assists the Babylon.js cameras
+		oimo: 'lib/oimo' // oimo.js - a different physics 'engine' that performs a similar function to cannon.js, but is generally faster
 	},
 	shim: {
 		'underscore': {
@@ -20,7 +22,10 @@ require.config({
 			deps: [],
 			exports: 'BABYLON'
 		}
+		//TODO add Babylon.js libs to shim
 	}
 });
+
+
 
 require(['app']);

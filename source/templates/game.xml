@@ -1,5 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<div class="gameWrap">
-		<canvas class="gamecanvas"></canvas>
+		<canvas id="3dcanvas"></canvas>
 	</div>
 </fest:template>

@@ -1,11 +1,7 @@
 @import 'config';
 
 .gameWrap {
-	position: absolute;
-	overflow: hidden;
-	min-width: 1000px;
-	min-height: 820px;
-	top: 0;
-	width: 100%;
+	// all styles in allpage.scss
+	background-color: rgba(20, 20, 255, 0.8);
 	height: 100%;
 }
