@@ -32,7 +32,7 @@ self.addEventListener('fetch', function (event) {
 			return fetch(fetchRequest)
 				.then(function (response) {
 					if (response) {
-						console.log(response.status);
+						console.log('SW response = ', response.status);
 					}
 					if (!response || response.status === 404) {
 						var body = '{"message":"You are offline"}';
