@@ -33,18 +33,20 @@ define(function (require) {
 			var x2 = 120 + ((width + 290 - 120) / 2) | 0;
 			buttonRectSingle = Rectangle2D.Create(canvas2D, 'button1', x1 * DPR, y * DPR, 290 * DPR, 85 * DPR, Canvas2D.GetSolidColorBrushFromHex('#BA2F19FF'));
 			buttonRectMulti = Rectangle2D.Create(canvas2D, 'button2', x2 * DPR, y * DPR, 290 * DPR, 85 * DPR, Canvas2D.GetSolidColorBrushFromHex('#BA2F19FF'));
+			var text3 = Text2D.Create(canvas2D, 'question', ((width / 2) | 0) * DPR, (height - 250) * DPR, ((28 * DPR) | 0) + 'pt Arial', 'Select game mode:', Color4.FromHexString('#FFFFFFFF'));
 		} else {
+			var sh = ((height - 350) / 2) | 0;
 			var x = (width / 2) | 0;
-			var y1 = height - 250;
-			var y2 = y1 - 60 - 85;
+			var y1 = height - 120 - sh;
+			var y2 = y1 - 40 - 85;
 			buttonRectSingle = Rectangle2D.Create(canvas2D, 'button1', x * DPR, y1 * DPR, 290 * DPR, 85 * DPR, Canvas2D.GetSolidColorBrushFromHex('#BA2F19FF'));
 			buttonRectMulti = Rectangle2D.Create(canvas2D, 'button2', x * DPR, y2 * DPR, 290 * DPR, 85 * DPR, Canvas2D.GetSolidColorBrushFromHex('#BA2F19FF'));
+			var text3 = Text2D.Create(canvas2D, 'question', ((width / 2) | 0) * DPR, (height - 40 - sh) * DPR, ((28 * DPR) | 0) + 'pt Arial', 'Select game mode:', Color4.FromHexString('#FFFFFFFF'));
 		}
 		buttonRectSingle.roundRadius = 10 * DPR;
 		buttonRectMulti.roundRadius = 10 * DPR;
 		var text1 = Text2D.Create(buttonRectSingle, 'buttonText1', 0, 0, 'bold ' + ((22 * DPR) | 0) + 'pt Arial', 'SINGLEPLAYER', Color4.FromHexString('#FFFFFFFF'));
 		var text2 = Text2D.Create(buttonRectMulti, 'buttonText2', 0, 0, 'bold ' + ((22 * DPR) | 0) + 'pt Arial', 'MULTIPLAYER', Color4.FromHexString('#FFFFFFFF'));
-		var text3 = Text2D.Create(canvas2D, 'question', ((width / 2) | 0) * DPR, (height - 150) * DPR, ((28 * DPR) | 0) + 'pt Arial', 'Select game mode:', Color4.FromHexString('#FFFFFFFF'));
 
 
 		buttonRectSingle.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnPickTrigger, function (modes, bb, evt) {
