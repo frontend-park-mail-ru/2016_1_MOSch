@@ -23,7 +23,7 @@ define(function (require) {
 		}
 		var width = engine.getRenderWidth(false) / DPR;
 		var height = engine.getRenderHeight(false) / DPR;
-		var canvas2D = Canvas2D.CreateScreenSpace(scene, 'ScreenCanvas', new Vector2(0, 0), new Size(width * DPR, height * DPR), Canvas2D.CACHESTRATEGY_DONTCACHE);
+		var canvas2D = Canvas2D.CreateScreenSpace(scene, 'ScreenCanvas', new Vector2(0, 0), new Size(engine.getRenderWidth(false), engine.getRenderHeight(false)), Canvas2D.CACHESTRATEGY_DONTCACHE);
 		canvas2D.backgroundFill = Canvas2D.GetSolidColorBrushFromHex('#031423FF');
 		canvas2D.backgroundRoundRadius = 0;
 		var buttonRectSingle, buttonRectMulti;
