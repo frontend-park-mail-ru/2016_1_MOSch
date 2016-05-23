@@ -1,0 +1,8 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<div class="rules">
+		Пауза - клавиша P или ESC.<br></br>
+		Построй как можно более высокую башню.<br></br>
+		Удачи!
+	</div>
+	<button class="submit-button" id="start">START</button>
+</fest:template>

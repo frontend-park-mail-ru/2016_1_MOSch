@@ -1,0 +1,12 @@
+@import 'config';
+
+.rules {
+	margin: calc((100vh - 270px) / 2) auto 30px;
+	text-align: justify;
+	width: 50%;
+	min-width: 355px;
+	color: white;
+	font-family: $bravo-font;
+	font-size: 52px;
+	font-style: normal;
+}

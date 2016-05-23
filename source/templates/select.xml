@@ -1,0 +1,5 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<div class="capture">Select the game mode</div>
+	<button class="submit-button submit-button__select" id="single">SINGLEPLAYER</button>
+	<button class="submit-button submit-button__select" id="multi">MULTIPLAYER</button>
+</fest:template>

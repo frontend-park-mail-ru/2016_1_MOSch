@@ -4,8 +4,8 @@ define(function (require) {
 		tmpl = require('tmpl/game'),
 		BABYLON = require('babylon'),
 		Game = require('models/game'),
-		CreateSelectScene = require('models/scenes/select'),
-		CreateRulesScene = require('models/scenes/rules'),
+		SelectTmpl = require('tmpl/select'),
+		RulesTmpl = require('tmpl/rules'),
 		modes = require('models/modes');
 
 	var gameView = Backbone.View.extend({
@@ -16,9 +16,7 @@ define(function (require) {
 			this._canvas = null;
 			this._engine = null;
 			this._game = null;
-			this._scene = null;
 			this._mode = null;
-			this._action = null;
 			this.$el.hide();
 		},
 		render: function () {
@@ -28,23 +26,23 @@ define(function (require) {
 		show: function () {
 			this.render();
 			this.$el.show();
-			this._canvas = document.getElementById('3dcanvas');
-			this._engine = new BABYLON.Engine(this._canvas, true);
 			this._mode = modes.unlogged;
 			Backbone.Events.once('startGame', this.startGame, this);
-			if (1 || this._user.loggedIn()) {
-				this._action = CreateSelectScene;
-				this._scene = CreateSelectScene(this._engine, this._canvas);
-				this._engine.runRenderLoop(this.renderFunction.bind(this));
+			if (this._user.loggedIn()) {
+				this.$('.gameWrap').html(SelectTmpl());
+				this.$('#single').click(function (bb, modes) {
+					bb.Events.trigger('startGame', modes.singleplayer);
+				}.bind(null, Backbone, modes));
+				this.$('#multi').click(function (bb, modes) {
+					bb.Events.trigger('startGame', modes.multiplayer);
+				}.bind(null, Backbone, modes));
 			} else {
 				Backbone.Events.trigger('startGame', modes.unlogged);
 			}
-			window.addEventListener('resize', this.resizeView.bind(this));
 			return this;
 		},
 		hide: function () {
 			this.$el.hide();
-			window.removeEventListener('resize', this.resizeView.bind(this));
 			if (this._game) {
 				this._game.destroy();
 			}
@@ -63,34 +61,18 @@ define(function (require) {
 			this._action = null;
 			return this;
 		},
-		resizeView: function () {
-			if (this._engine) {
-				this._engine.resize();
-				if (this._scene) {
-					this._engine.stopRenderLoop(this.renderFunction.bind(this));
-					this._engine.clear(new BABYLON.Color3(0, 0, 0), true, true);
-					this._scene.dispose();
-					this._scene = this._action(this._engine, this._canvas);
-					this._engine.runRenderLoop(this.renderFunction.bind(this));
-				}
-			}
-		},
 		startGame: function (mode) {
 			this._mode = mode || modes.unlogged;
-			alert(this._mode);
-			this._engine.stopRenderLoop(this.renderFunction.bind(this));
-			if (this._scene) {
-				this._scene.dispose();
-			}
-			if (this._engine) {
-				this._engine.clear(new BABYLON.Color3(0, 0, 0), true, true);
-			}
-			this._scene = null;
+			Backbone.Events.once('start', this.start, this);
+			this.$('.gameWrap').html(RulesTmpl());
+			this.$('#start').click(function (bb) {
+				bb.Events.trigger('start');
+			}.bind(null, Backbone));
 		},
-		renderFunction: function () {
-			this._scene.render();
+		start: function () {
+			alert('Play ' + this._mode + ' mode!');
+			this.$('.gameWrap').html('');
 		}
-
 	});
 
 	return gameView;

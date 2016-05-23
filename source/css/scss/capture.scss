@@ -1,0 +1,12 @@
+@import 'config';
+
+.capture {
+	margin: calc((100vh - 270px) / 2) auto 30px;
+	text-align: center;
+	width: 80%;
+	min-width: 355px;
+	color: white;
+	font-family: $bravo-font;
+	font-size: 66px;
+	font-style: normal;
+}
