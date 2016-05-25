@@ -48,7 +48,6 @@ define(function (require) {
 		gr.addColorStop(0, '#6666BB');
 		gr.addColorStop(first, '#1C1C29');
 		gr.addColorStop(second, '#0A0A1A');
-		alert(first + ' ' + second + '. ' + viewportWidth + 'x' + viewportHeight);
 		gr.addColorStop(0.8, '#020209');
 		this._ctx.fillStyle = gr;
 
