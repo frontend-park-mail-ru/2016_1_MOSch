@@ -23,15 +23,40 @@ define(function (require) {
 	var start = function () {
 		this._objs = {};
 		window.addEventListener('resize', this.updateSize.bind(null, this._canvas2d, this._engine));
+
 		this._scene = new BABYLON.Scene(this._engine);
 		this._scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
-		this._camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), this._scene);
+
+		this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(10, 6, -10), this._scene);
 		this._camera.setTarget(BABYLON.Vector3.Zero());
-		this._light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0),  this._scene);
+		this._camera.attachControl(this._canvas3d, true);
+
+		this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(6, 10, 2), this._scene);
 		this._light.intensity = 0.4;
-		this._sphere = BABYLON.Mesh.CreateSphere("sphere1", 32, 2, this._scene);
-		this._sphere.position.y = 1;
-		this._ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, this._scene);
+
+		this._skyboxMaterial = new BABYLON.StandardMaterial('skyBox', this._scene);
+		this._skyboxMaterial.backFaceCulling = false;
+		this._skyboxMaterial.disableLighting = true;
+		this._skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+		this._skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+		this._skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture('/img/textures/skybox', this._scene);
+		this._skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+		this._skybox = BABYLON.Mesh.CreateBox('skyBox', 200.0, this._scene);
+		this._skybox.material = this._skyboxMaterial;
+		this._skybox.infiniteDistance = true;
+		this._skybox.renderingGroupId = 0;
+
+
+		this._blocks = [];
+		for (var i = -20; i < 0; i++) {
+			var block = BABYLON.Mesh.CreateBox('box', 1.0, this._scene, true);
+			block.scaling = new BABYLON.Vector3(4, 1, 4);
+			block.position.y = i * 0.5;
+			this._blocks.push(block);
+		}
+		this._scene.registerBeforeRender(function (skybox) {
+			skybox.rotation.y += 0.0002;
+		}.bind(null, this._skybox));
 		this._engine.runRenderLoop(function () {
 			this._scene.render();
 		}.bind(this));
