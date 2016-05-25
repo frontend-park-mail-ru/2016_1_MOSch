@@ -75,7 +75,7 @@
 			<fest:space/>&amp;mdash; all rights reserved
 		</div>
 		<div class="rectangle">
-			<div class="rectangle__question">Do you likeJavaScript?</div>
+			<div class="rectangle__question">Do you like JavaScript?</div>
 			<div class="rectangle__answers">
 				<div class="rectangle__answers--no">no</div>
 				<div class="rectangle__answers--yes">yes</div>

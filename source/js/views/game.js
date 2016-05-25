@@ -13,8 +13,6 @@ define(function (require) {
 		template: tmpl,
 		initialize: function (options) {
 			this._user = options.user;
-			this._canvas = null;
-			this._engine = null;
 			this._game = null;
 			this._mode = null;
 			this.$el.hide();
@@ -46,19 +44,9 @@ define(function (require) {
 			if (this._game) {
 				this._game.destroy();
 			}
-			if (this._scene) {
-				this._scene.dispose()
-			}
-			if (this._engine) {
-				this._engine.clear(new BABYLON.Color3(0, 0, 0), true, true);
-				this._engine.dispose()
-			}
-			this._canvas = null;
-			this._engine = null;
+			this.$('.gameWrap').html('');
 			this._game = null;
-			this._scene = null;
 			this._mode = null;
-			this._action = null;
 			return this;
 		},
 		startGame: function (mode) {
@@ -70,8 +58,10 @@ define(function (require) {
 			}.bind(null, Backbone));
 		},
 		start: function () {
-			alert('Play ' + this._mode + ' mode!');
-			this.$('.gameWrap').html('');
+			console.log('Play ' + this._mode + ' mode!');
+			this.$('.gameWrap').html('<canvas class="gamecanvas gamecanvas--ddd" id="3dcanvas"></canvas><canvas class="gamecanvas gamecanvas--dd" id="2dcanvas"></canvas>');
+			this._game = new Game(this._mode, this._user);
+			this._game.start();
 		}
 	});
 

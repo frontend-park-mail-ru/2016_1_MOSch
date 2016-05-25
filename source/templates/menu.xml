@@ -5,13 +5,13 @@
 	<div class="content__wrapper">
 		<fest:get name="menu-button">{
 			name: "game",
-			url: "game/play",
+			url: "game",
 			title: "play",
 			comment: "Play offline or online"
 		}</fest:get>
 		<fest:get name="menu-button">{
 			name: "upgrade",
-			url: "game/upgrade",
+			url: "upgrade",
 			title: "skills",
 			comment: "Upgrade and improve your capabilities"
 		}</fest:get>

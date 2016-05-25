@@ -3,10 +3,26 @@
 .rules {
 	margin: calc((100vh - 270px) / 2) auto 30px;
 	text-align: justify;
-	width: 50%;
-	min-width: 355px;
 	color: white;
 	font-family: $bravo-font;
-	font-size: 52px;
+
 	font-style: normal;
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.rules {
+		width: 50%;
+		min-width: 355px;
+		font-size: 52px;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.rules {
+		width: 90%;
+		min-width: 355px;
+		font-size: 42px;
+	}
 }
