@@ -45,9 +45,10 @@ define(function (require) {
 		var first = 280 / outerRadius;
 		var second = 420 / outerRadius;
 		var gr = this._ctx.createRadialGradient(offsetX, offsetY, innerRadius, offsetX, offsetY, outerRadius);
-		gr.addColorStop(0, '#66B');
+		gr.addColorStop(0, '#6666BB');
 		gr.addColorStop(first, '#1C1C29');
 		gr.addColorStop(second, '#0A0A1A');
+		alert(first + ' ' + second + '. ' + viewportWidth + 'x' + viewportHeight);
 		gr.addColorStop(0.8, '#020209');
 		this._ctx.fillStyle = gr;
 
