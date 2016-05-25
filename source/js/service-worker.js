@@ -1,7 +1,7 @@
 'use strict';
 
 var CACHE_NAME = 'v1',
-	MAX_AGE = 1000,
+	MAX_AGE = 3600000,
 	cacheUrls = [
 		'/',
 		'/index.html',
