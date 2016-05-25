@@ -22,18 +22,20 @@ define(function (require) {
 
 	var start = function () {
 		this._objs = {};
-		this._objs.bgc = {};
-		this._objs.bgc._ctx = this._ctx;
-		this._objs.bgc.draw = drawBgc;
 		window.addEventListener('resize', this.updateSize.bind(null, this._canvas2d, this._engine));
 		this._scene = new BABYLON.Scene(this._engine);
 		this._scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+		this._camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), this._scene);
+		this._camera.setTarget(BABYLON.Vector3.Zero());
+		this._light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0),  this._scene);
+		this._light.intensity = 0.4;
+		this._sphere = BABYLON.Mesh.CreateSphere("sphere1", 32, 2, this._scene);
+		this._sphere.position.y = 1;
+		this._ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, this._scene);
 		this._engine.runRenderLoop(function () {
-			this._objs.bgc.draw();
-			//this._scene.render();
+			this._scene.render();
 		}.bind(this));
 	};
-
 
 	var destroy = function () {
 		this._engine.dispose();
