@@ -1,6 +1,7 @@
 @import 'config';
 
-.allpage {
+.allpage,
+.gameWrap {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -9,7 +10,8 @@
 
 // this query for desktop-browsers and landscape iPads
 @media screen and (min-width: 1024px) {
-	.allpage {
+	.allpage,
+	.gameWrap {
 		overflow: hidden;
 		min-width: 1024px;
 		min-height: 768px;
@@ -19,7 +21,8 @@
 
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 1023px) {
-	.allpage {
+	.allpage,
+	.gameWrap {
 		min-width: 355px;
 		min-height: 100%;
 	}

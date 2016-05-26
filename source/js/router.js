@@ -9,8 +9,8 @@ define(function (require) {
 			'scoreboard': 'show',
 			'login': 'show',
 			'register': 'show',
-			'game/upgrade': 'show',
-			'game/play': 'show',
+			'upgrade': 'show',
+			'game': 'show',
 			'main': 'show',
 			'menu': 'show', // когда пользователь залогинился
 			'*default': 'showMain'

@@ -22,6 +22,7 @@ prod:
   - 'imagemin:prod'
   - 'requirejs:prod'
   - 'uglify:prod'
+  - 'htmlmin:prod'
   - 'clean:prod_after'
 test:
   - 'dev'
@@ -35,7 +36,6 @@ copy_dev:
 copy_prod:
   - 'copy:js_prod'
   - 'copy:res_prod'
-  - 'copy:html_prod'
   - 'copy:img_prod'
 
 

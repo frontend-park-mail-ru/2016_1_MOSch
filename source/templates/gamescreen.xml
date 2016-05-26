@@ -1,0 +1,6 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<canvas class="gamecanvas gamecanvas--ddd" id="3dcanvas"></canvas>
+	<canvas class="gamecanvas gamecanvas--dd" id="2dcanvas"></canvas>
+	<div class="scores" id="scores"></div>
+	<div class="pause" id="pause"></div>
+</fest:template>

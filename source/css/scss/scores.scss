@@ -1,0 +1,14 @@
+@import 'config';
+
+.scores {
+	position: absolute;
+	z-index: 7;
+	top: 20%;
+	color: white;
+	font-family: $bravo-font;
+	font-size: 108px;
+	font-style: normal;
+	width: 100%;
+	text-align: center;
+	text-transform: capitalize;
+}

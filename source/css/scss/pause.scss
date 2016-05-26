@@ -1,0 +1,17 @@
+@import 'config';
+
+.pause {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150px;
+	text-align: left;
+	padding: 10px 15px;
+	z-index: 7;
+	color: white;
+	font-family: $bravo-font;
+	font-size: 48px;
+	font-style: normal;
+	background-color: black;
+	text-transform: capitalize;
+}

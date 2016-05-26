@@ -10,6 +10,7 @@ define(function (require) {
 			});
 	}
 
+	require('devicePixelRatio');
 	require('basicAuth');
 
 	var Backbone = require('backbone'),

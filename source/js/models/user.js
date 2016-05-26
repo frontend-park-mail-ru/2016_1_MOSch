@@ -1,4 +1,5 @@
 define(function (require) {
+	
 	var Backbone = require('backbone'),
 		JQuery = require('jquery');
 
@@ -30,14 +31,6 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
-				var data = localStorage.getItem('playerdata');
-				if (data) {
-					localStorage.removeItem('playerdata');
-					var obj = JSON.parse(data);
-					if (obj.username === this.get('username')) {
-						this.updateData(obj);
-					}
-				}
 				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
@@ -100,6 +93,14 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				var data = localStorage.getItem('playerdata');
+				if (data) {
+					localStorage.removeItem('playerdata');
+					var obj = JSON.parse(data);
+					if (obj.username === model.get('username')) {
+						model.updateData(obj);
+					}
+				}
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
@@ -146,6 +147,8 @@ define(function (require) {
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
+				options.mydata = JSON.parse(options.mydata);
+				options.mydata.username = model.get('username');
 				var data = JSON.stringify(options.mydata);
 				localStorage.setItem('playerdata', data);
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};

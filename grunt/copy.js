@@ -81,15 +81,5 @@ module.exports = {
 				}
 			}
 		]
-	},
-	html_prod: {
-		files: [
-			{
-				expand: true,
-				cwd: 'source',
-				src: ['index.html', 'manifest.json'],
-				dest: 'static_prod/'
-			}
-		]
 	}
 };

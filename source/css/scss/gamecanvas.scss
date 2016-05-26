@@ -4,5 +4,14 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 5;
+
+
+	&--ddd {
+		z-index: 6;
+	}
+
+	&--dd {
+		background-color: grey;
+		z-index: 5;
+	}
 }

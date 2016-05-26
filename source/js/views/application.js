@@ -13,7 +13,8 @@ define(function (require) {
 		'login': require('views/login'),
 		'scoreboard': require('views/scoreboard'),
 		'about': require('views/about'),
-		'game': require('views/game')
+		'game': require('views/game'),
+		'upgrade': require('views/upgrade')
 	};
 
 	var applicationView = Backbone.View.extend({
@@ -34,7 +35,6 @@ define(function (require) {
 		},
 		show: function (options) {
 			options = options || {'view': 'main'};
-			options.mode = options.view.split('/')[1];
 			options.view = options.view.split('/')[0];
 			if (!this._views[options.view]) {
 				if (Views[options.view]) {

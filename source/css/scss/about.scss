@@ -1,7 +1,7 @@
 @import 'config';
 
 .about {
-	padding-bottom: 25px;
+	margin-bottom: 22px;
 	text-align: justify;
 }
 
@@ -9,11 +9,10 @@
 @media screen and (min-width: 1024px) {
 	.about {
 		display: inline-block;
-		width: 640px;
-		height: 175px;
-		margin: 0 0 22px;
+		width: 564px;
+		height: 200px;
+		margin-left: 25px;
 		float: left;
-
 	}
 }
 

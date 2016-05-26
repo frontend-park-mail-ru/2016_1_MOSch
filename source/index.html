@@ -7,10 +7,127 @@
 	<title>Build The Tower!</title>
 	<link rel=manifest href=manifest.json>
 	<link rel="shortcut icon" type="image/x-icon" href="/res/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<script type="text/javascript" src="js/main.js"></script>
+	<style type="text/css">
+		.loading-img {
+			z-index: 0;
+		}
+
+		.loading {
+			position: absolute;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			background-color: #0F0848;
+			top: 0;
+			left: 0;
+		}
+
+		.loading__text {
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			top: 15vh;
+			font-family: sans-serif;
+			font-size: 40px;
+			color: white;
+		}
+
+		.loading__loader {
+			display: block;
+			position: relative;
+			left: 50%;
+			top: 55vh;
+			width: 150px;
+			height: 150px;
+			margin: -75px 0 0 -75px;
+			border-radius: 50%;
+			border: 5px solid transparent;
+			border-top-color: #0CDB1B;
+
+			-webkit-animation: spin 3s linear infinite;
+			animation: spin 3s linear infinite;
+			z-index: 1001;
+		}
+
+		.loading__loader:before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			border-radius: 50%;
+			border: 5px solid transparent;
+			border-top-color: #E74C3C;
+
+			-webkit-animation: spin 4s linear infinite;
+			animation: spin 4s linear infinite;
+		}
+
+		.loading__loader:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			border-radius: 50%;
+			border: 5px solid transparent;
+			border-top-color: #F9C922;
+
+			-webkit-animation: spin 5s linear infinite;
+			animation: spin 5s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(0deg); /* IE 9 */
+				transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+			}
+			100% {
+				-webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(360deg); /* IE 9 */
+				transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(0deg); /* IE 9 */
+				transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+			}
+			100% {
+				-webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+				-ms-transform: rotate(360deg); /* IE 9 */
+				transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
+			}
+		}
+	</style>
+
 </head>
 <body>
-
+<img src="/img/background.jpg" width="10" height="10" class="loading-img">
+<img src="/img/logo.png" width="10" height="10" class="loading-img">
+<div class="loading">
+	<div class="loading__text">LOADING</div>
+	<div class="loading__loader"></div>
+</div>
+<script type="text/javascript">
+	;(function () {
+		var headElem = document.getElementsByTagName("head")[0];
+		var cssNode = document.createElement('link');
+		cssNode.type = 'text/css';
+		cssNode.rel = 'stylesheet';
+		cssNode.href = '/css/main.css';
+		cssNode.property = 'stylesheet';
+		var jsNode = document.createElement('script');
+		jsNode.type = 'text/javascript';
+		jsNode.src = '/js/main.js';
+		headElem.appendChild(cssNode);
+		headElem.appendChild(jsNode);
+	})();
+</script>
 </body>
 </html>

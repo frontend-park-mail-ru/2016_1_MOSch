@@ -17,7 +17,7 @@
 		</fest:get>
 		<fest:get name="menu-button">{
 			name: "game",
-			url: "game/play",
+			url: "game",
 			title: "play",
 			comment: "Try it right now, you'll like it!"
 			}
