@@ -1,7 +1,8 @@
 define(function (require) {
 
 	var BABYLON = require('babylon');
-	var dpr = window.getDevicePixelRatio();
+	//var dpr = window.getDevicePixelRatio();
+	var dpr = 1;
 	return {
 		colorS: 70 / 100,
 		colorL: 65 / 100,
