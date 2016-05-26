@@ -8,11 +8,11 @@
 	<link rel=manifest href=manifest.json>
 	<link rel="shortcut icon" type="image/x-icon" href="/res/favicon.ico">
 	<style type="text/css">
-		img.loading {
+		.loading-img {
 			z-index: 0;
 		}
 
-		#loading {
+		.loading {
 			position: absolute;
 			z-index: 1;
 			width: 100%;
@@ -22,7 +22,7 @@
 			left: 0;
 		}
 
-		#loading-text {
+		.loading__text {
 			position: absolute;
 			width: 100%;
 			text-align: center;
@@ -32,7 +32,7 @@
 			color: white;
 		}
 
-		#loader {
+		.loading__loader {
 			display: block;
 			position: relative;
 			left: 50%;
@@ -49,7 +49,7 @@
 			z-index: 1001;
 		}
 
-		#loader:before {
+		.loading__loader:before {
 			content: "";
 			position: absolute;
 			top: 5px;
@@ -64,7 +64,7 @@
 			animation: spin 4s linear infinite;
 		}
 
-		#loader:after {
+		.loading__loader:after {
 			content: "";
 			position: absolute;
 			top: 15px;
@@ -108,11 +108,11 @@
 
 </head>
 <body>
-<img src="/img/background.jpg" width="10" height="10" class="loading">
-<img src="/img/logo.png" width="10" height="10" class="loading">
-<div id="loading">
-	<div id="loading-text">LOADING</div>
-	<div id="loader"></div>
+<img src="/img/background.jpg" width="10" height="10" class="loading-img">
+<img src="/img/logo.png" width="10" height="10" class="loading-img">
+<div class="loading">
+	<div class="loading__text">LOADING</div>
+	<div class="loading__loader"></div>
 </div>
 <script type="text/javascript">
 	;(function () {
