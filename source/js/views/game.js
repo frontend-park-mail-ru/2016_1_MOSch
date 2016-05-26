@@ -6,6 +6,7 @@ define(function (require) {
 		Game = require('models/game'),
 		SelectTmpl = require('tmpl/select'),
 		RulesTmpl = require('tmpl/rules'),
+		GameScreenTmpl = require('tmpl/gamescreen'),
 		modes = require('models/modes');
 
 	var gameView = Backbone.View.extend({
@@ -59,7 +60,7 @@ define(function (require) {
 		},
 		start: function () {
 			console.log('Play ' + this._mode + ' mode!');
-			this.$('.gameWrap').html('<canvas class="gamecanvas gamecanvas--ddd" id="3dcanvas"></canvas><canvas class="gamecanvas gamecanvas--dd" id="2dcanvas"></canvas>');
+			this.$('.gameWrap').html(GameScreenTmpl());
 			this._game = new Game(this._mode, this._user);
 			this._game.start();
 		}

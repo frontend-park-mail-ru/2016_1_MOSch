@@ -1,6 +1,7 @@
 define(function (require) {
 
 	var BABYLON = require('babylon');
+	var dpr = window.getDevicePixelRatio();
 	return {
 		colorS: 70 / 100,
 		colorL: 65 / 100,
@@ -9,7 +10,7 @@ define(function (require) {
 		cntStartBlocks: 25,
 		stepCnt: 5,
 		cntColoredStartBlocks: 15,
-		defaultBoxScaling: new BABYLON.Vector3(4, 0.5, 4),
+		defaultBoxScaling: new BABYLON.Vector3(4 * dpr, 0.5 * dpr, 4 * dpr),
 		colorJumpProbability: 0.2
 	};
 });

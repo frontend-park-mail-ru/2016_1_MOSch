@@ -3,6 +3,7 @@ define(function (require) {
 	var Backbone = require('backbone'),
 		BABYLON = require('babylon'),
 		modes = require('models/modes'),
+		states = require('models/states'),
 		ColorJS = require('color'),
 		cfg = require('models/gameconfig'),
 		_ = require('underscore');
@@ -14,6 +15,8 @@ define(function (require) {
 		this.updateSize = updateSize;
 		this._canvas2d = document.getElementById('2dcanvas');
 		this._canvas3d = document.getElementById('3dcanvas');
+		this._scoresElem = document.getElementById('scores');
+		this._pauseButton = document.getElementById('pause');
 		this._ctx = this._canvas2d.getContext('2d');
 		this._engine = new BABYLON.Engine(this._canvas3d, true);
 		this._scene = null;
@@ -21,6 +24,8 @@ define(function (require) {
 		this._mode = mode;
 		this._user = user;
 		this._objs = null;
+		this._score = 0;
+		this._state = null;
 	};
 
 	var start = function () {
@@ -70,12 +75,24 @@ define(function (require) {
 		this._colorJumpStep = 0;
 
 		this.addBlock = addBlock;
+		this._state = states.play;
 
 		this._scene.registerBeforeRender(function (skybox) {
 			//skybox.rotation.y += 0.0002;
 		}.bind(null, this._skybox));
 
 		this._engine.runRenderLoop(function () {
+			if (this._state === states.play) {
+				this._scoresElem.innerHTML = this._score;
+				this._pauseButton.innerHTML = 'pause';
+			}
+			if (this._state === states.pause) {
+				this._scoresElem.innerHTML = 'paused';
+			}
+			if (this._state === states.finish) {
+				this._scoresElem.innerHTML = 'your score: ' + this._score;
+			}
+
 			this._scene.render();
 		}.bind(this));
 
@@ -105,6 +122,7 @@ define(function (require) {
 	};
 
 	var addBlock = function () {
+		this._score++;
 		if (this._colorJumpStep == 0 && _.random(100000) / 100000 <= cfg.colorJumpProbability) {
 			var rnd = _.random(-500, 500) / 1000;
 			var sign = 1;
