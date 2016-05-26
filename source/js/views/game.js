@@ -29,12 +29,12 @@ define(function (require) {
 			Backbone.Events.once('startGame', this.startGame, this);
 			if (this._user.loggedIn()) {
 				this.$('.gameWrap').html(SelectTmpl());
-				this.$('#single').click(function (bb, modes) {
-					bb.Events.trigger('startGame', modes.singleplayer);
-				}.bind(null, Backbone, modes));
-				this.$('#multi').click(function (bb, modes) {
-					bb.Events.trigger('startGame', modes.multiplayer);
-				}.bind(null, Backbone, modes));
+				this.$('#single').click(function () {
+					Backbone.Events.trigger('startGame', modes.singleplayer);
+				});
+				this.$('#multi').click(function () {
+					Backbone.Events.trigger('startGame', modes.multiplayer);
+				});
 			} else {
 				Backbone.Events.trigger('startGame', modes.unlogged);
 			}
@@ -54,9 +54,9 @@ define(function (require) {
 			this._mode = mode || modes.unlogged;
 			Backbone.Events.once('start', this.start, this);
 			this.$('.gameWrap').html(RulesTmpl());
-			this.$('#start').click(function (bb) {
-				bb.Events.trigger('start');
-			}.bind(null, Backbone));
+			this.$('#start').click(function () {
+				Backbone.Events.trigger('start');
+			});
 		},
 		start: function () {
 			console.log('Play ' + this._mode + ' mode!');
