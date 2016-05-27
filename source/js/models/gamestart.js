@@ -45,9 +45,15 @@ define(function (require) {
 
 		window.addEventListener('resize', this.updateSize.bind(null, this._canvas2d, this._engine));
 		window.addEventListener('keydown', this.keyGrabber.bind(null, this));
-		this._pauseButton.addEventListener('click', this.pause.bind(this));
+		if ('ontouchstart' in window) {
+			// mobile device (work only in modern browsers)
+			this._pauseButton.addEventListener('touchstart', this.pause.bind(this));
+			this._canvas3d.addEventListener('touchstart', this.action.bind(this));
+		} else {
+			this._pauseButton.addEventListener('click', this.pause.bind(this));
+			this._canvas3d.addEventListener('click', this.action.bind(this));
+		}
 
-		this._canvas3d.addEventListener('click', this.action.bind(this));
 	};
 
 	return startFunc;
