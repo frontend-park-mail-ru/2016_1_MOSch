@@ -35,10 +35,11 @@ define(function (require) {
 			this._blocks.push(block);
 		}
 		this._color = startColor;
-		this._colorJumpStep = 0;
+		this._colorJumpStep = cfg.stepCnt;
 		this._env.currentColor = startColor;
 		this._env.colorStep = 0;
 		this._env.colorStepH = 0;
+		this._env.hp=0;
 		this._state = states.play;
 		this._engine.runRenderLoop(require('models/gamerender').bind(this));
 

@@ -14,8 +14,13 @@ define(function (require) {
 
 		var gr = this._ctx.createLinearGradient(0, 0, 0, viewportHeight);
 		if (this._env.colorStep !== 0) {
-			this._env.currentColor = this._env.currentColor.setHue((this._env.currentColor.getHue() + this._env.colorStepH) % 360);
-			this._env.colorStep--;
+			if (this._env.hp === 0) {
+				this._env.currentColor = this._env.currentColor.setHue((this._env.currentColor.getHue() + this._env.colorStepH) % 360);
+				this._env.colorStep--;
+				this._env.hp = cfg.envSpeedHp;
+			} else {
+				this._env.hp--;
+			}
 		}
 		var hcolor = this._env.currentColor
 			.setHue((this._env.currentColor.getHue() - 20) % 360)

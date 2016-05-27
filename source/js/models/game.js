@@ -13,6 +13,7 @@ define(function (require) {
 		this.start = require('models/gamestart').bind(this);
 		this.pause = require('models/gamepause').bind(this);
 		this.action = require('models/gameaction').bind(this);
+		this.addBlock = require('models/gameaddblock').bind(this);
 		this.destroy = destroy;
 		this.updateSize = updateSize;
 		this.keyGrabber = keyGrabber;

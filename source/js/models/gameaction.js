@@ -13,7 +13,8 @@ define(function (require) {
 			return;
 		}
 		this._score++;
-		alert('action');
+		this.addBlock();
+		console.log('action');
 	};
 
 	return actionFunc;
