@@ -39,10 +39,12 @@ define(function (require) {
 		this._env.currentColor = startColor;
 		this._env.colorStep = 0;
 		this._env.colorStepH = 0;
-		this._env.hp=0;
-		this._state = states.play;
-		this._engine.runRenderLoop(require('models/gamerender').bind(this));
+		this._env.hp = 0;
+		this._state = states.pause;
+		this.pause();
 
+		this._scene.registerBeforeRender(require('models/gameanimation').bind(this))
+		this._engine.runRenderLoop(require('models/gamerender').bind(this));
 
 		window.addEventListener('resize', this.updateSize.bind(null, this._canvas2d, this._engine));
 		window.addEventListener('keydown', this.keyGrabber.bind(null, this));

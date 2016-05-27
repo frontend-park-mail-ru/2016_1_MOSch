@@ -14,6 +14,9 @@ define(function (require) {
 		}
 		this._score++;
 		this.addBlock();
+		if (this._state === states.play) {
+			this._scoresElem.innerHTML = this._score;
+		}
 		console.log('action');
 	};
 
