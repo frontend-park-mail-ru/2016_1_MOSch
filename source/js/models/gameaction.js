@@ -9,6 +9,10 @@ define(function (require) {
 		_ = require('underscore');
 
 	var actionFunc = function () {
+		if (this._state !== states.play) {
+			return;
+		}
+		this._score++;
 		alert('action');
 	};
 

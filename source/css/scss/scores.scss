@@ -2,7 +2,7 @@
 
 .scores {
 	position: absolute;
-	z-index: 7;
+	z-index: 8;
 	top: 15vh;
 	color: white;
 	font-family: $bravo-font;
@@ -11,4 +11,5 @@
 	width: 100%;
 	text-align: center;
 	text-transform: capitalize;
+	pointer-events: none;
 }

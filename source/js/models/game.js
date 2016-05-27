@@ -6,7 +6,8 @@ define(function (require) {
 		states = require('models/states'),
 		ColorJS = require('color'),
 		cfg = require('models/gameconfig'),
-		_ = require('underscore');
+		_ = require('underscore'),
+		$ = require('jquery');
 
 	var Game = function (mode, user) {
 		this.start = require('models/gamestart').bind(this);
@@ -23,6 +24,7 @@ define(function (require) {
 		this._canvas3d = document.getElementById('3dcanvas');
 		this._scoresElem = document.getElementById('scores');
 		this._pauseButton = document.getElementById('pause');
+		this._fadeElem = document.getElementById('fade');
 		this._ctx = this._canvas2d.getContext('2d');
 		this._engine = new BABYLON.Engine(this._canvas3d, true);
 
@@ -32,6 +34,7 @@ define(function (require) {
 		this._env = {};
 		this._blocks = [];
 
+		$('#fade').hide();
 		updateSize(this._canvas2d, this._engine);
 	};
 

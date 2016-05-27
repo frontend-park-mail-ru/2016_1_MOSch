@@ -29,15 +29,12 @@ define(function (require) {
 		this._ctx.fillRect(0, 0, viewportWidth, viewportHeight);
 		if (this._state === states.play) {
 			this._scoresElem.innerHTML = this._score;
-			this._pauseButton.innerHTML = 'pause';
 		}
 		if (this._state === states.pause) {
 			this._scoresElem.innerHTML = 'paused';
-			this._pauseButton.innerHTML = 'play';
 		}
 		if (this._state === states.finish) {
 			this._scoresElem.innerHTML = 'your score: ' + this._score;
-			this._pauseButton.innerHTML = 'exit';
 		}
 
 		this._scene.render();

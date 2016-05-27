@@ -2,5 +2,6 @@
 	<canvas class="gamecanvas gamecanvas--ddd" id="3dcanvas"></canvas>
 	<canvas class="gamecanvas gamecanvas--dd" id="2dcanvas"></canvas>
 	<div class="scores" id="scores"></div>
-	<div class="pause" id="pause"></div>
+	<div class="pause" id="pause">PAUSE</div>
+	<div class="fade" id="fade"></div>
 </fest:template>
