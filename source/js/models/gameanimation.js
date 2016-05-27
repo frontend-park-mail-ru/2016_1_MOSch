@@ -4,12 +4,16 @@ define(function (require) {
 		BABYLON = require('babylon'),
 		modes = require('models/modes'),
 		states = require('models/states'),
+		crosses = require('models/crosses'),
 		ColorJS = require('color'),
 		cfg = require('models/gameconfig'),
 		_ = require('underscore'),
 		$ = require('jquery');
 
 	var animateFunc = function () {
+		if (this._state === states.pause) {
+			return;
+		}
 		var viewportWidth = this._ctx.canvas.width;
 		var viewportHeight = this._ctx.canvas.height;
 
@@ -22,6 +26,10 @@ define(function (require) {
 				this._env.hp--;
 			}
 		}
+
+		var block = this._blocks[this._blocks.length - 1];
+		// if (block.cross ===)
+		//
 	};
 
 	return animateFunc;

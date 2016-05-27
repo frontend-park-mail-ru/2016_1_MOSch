@@ -14,6 +14,7 @@ define(function (require) {
 			this._state = states.pause;
 			$('#fade').show();
 			$('#pause').hide();
+			$('#scores').css('font-size', '80px');
 		} else if (this._state === states.finish) {
 			Backbone.history.navigate('menu', {trigger: true});
 			return;
@@ -21,6 +22,7 @@ define(function (require) {
 			this._state = states.play;
 			$('#fade').hide();
 			$('#pause').show();
+			$('#scores').css('font-size', 'inherit');
 		}
 		if (this._state === states.pause) {
 			if ('ontouchstart' in window) {

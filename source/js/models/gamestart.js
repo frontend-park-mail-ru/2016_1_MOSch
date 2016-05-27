@@ -12,7 +12,7 @@ define(function (require) {
 		this._scene = new BABYLON.Scene(this._engine);
 		this._scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
-		this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(11, 6, -11), this._scene);
+		this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(11, 6, 11), this._scene);
 		this._camera.setTarget(BABYLON.Vector3.Zero());
 		this._camera.attachControl(this._canvas3d, true);
 

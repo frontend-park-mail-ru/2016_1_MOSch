@@ -11,9 +11,11 @@ define(function (require) {
 
 	var Game = function (mode, user) {
 		this.start = require('models/gamestart').bind(this);
+		this.finish = require('models/gamefinish').bind(this);
 		this.pause = require('models/gamepause').bind(this);
 		this.action = require('models/gameaction').bind(this);
 		this.addBlock = require('models/gameaddblock').bind(this);
+		this.trash = require('models/gametrash').bind(this);
 		this.destroy = destroy;
 		this.updateSize = updateSize;
 		this.keyGrabber = keyGrabber;
