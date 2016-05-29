@@ -13,8 +13,8 @@ define(function (require) {
 		initialize: function (options) {
 			this._user = options.user;
 			this._special = 0;
-			if (window.innerWidth <= 1024) {
-				this._special = function () {
+			if (window.innerWidth < 1024) {
+				this.special = function () {
 				};
 			}
 			this.$el.hide();

@@ -26,7 +26,7 @@ define(function (require) {
 			this._user = new User();
 			this._views = {};
 			this._currentView = null;
-			if (!('ontouchstart' in window)) {
+			if (window.innerWidth<1024) {
 				Backbone.Events.on('showToast', this.showToasts, this);
 				Backbone.Events.on('setBlur', this.setBlur, this);
 			}
