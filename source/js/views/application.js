@@ -26,8 +26,10 @@ define(function (require) {
 			this._user = new User();
 			this._views = {};
 			this._currentView = null;
-			Backbone.Events.on('showToast', this.showToasts, this);
-			Backbone.Events.on('setBlur', this.setBlur, this);
+			if (!('ontouchstart' in window)) {
+				Backbone.Events.on('showToast', this.showToasts, this);
+				Backbone.Events.on('setBlur', this.setBlur, this);
+			}
 		},
 		render: function (options) {
 			options = options || {};
