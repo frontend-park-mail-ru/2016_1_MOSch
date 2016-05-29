@@ -10,7 +10,9 @@
 		font-weight: bold;
 		color: $header-color;
 
-		&::before {
+		&--before {
+			display: inline-block;
+			width: 10px;
 			position: relative;
 			content: '<';
 			cursor: pointer;
@@ -18,7 +20,9 @@
 			top: 8px;
 		}
 
-		&::after {
+		&--after {
+			display: inline-block;
+			width: 10px;
 			position: relative;
 			content: '>';
 			cursor: pointer;
