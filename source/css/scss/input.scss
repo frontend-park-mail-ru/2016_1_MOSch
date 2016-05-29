@@ -1,12 +1,14 @@
 @import 'config';
 
 .input {
+	font-weight: 100;
 	display: block;
 	margin-top: 40px;
 	margin-bottom: 20px;
 	text-align: left;
 
 	&__text {
+		font-weight: 100;
 		display: block;
 		width: 100%;
 		font-family: $wire-font;
@@ -18,22 +20,26 @@
 		box-shadow: 5px 5px 50px -15px rgba(0, 0, 0, 0.8);
 
 		&:focus {
+			font-weight: 100;
 			border: none;
 			outline: none;
 			background-color: rgba(255, 255, 255, 0.7);
 			box-shadow: none;
 
 			&::placeholder {
+				font-weight: 100;
+				font-family: $wire-font;
 				color: $gray-color;
-				letter-spacing: 4px;
+				letter-spacing: -3px;
 				opacity: 0;
 			}
 		}
 
 		&::placeholder {
+			font-weight: 100;
 			font-family: $wire-font;
 			color: $gray-color;
-			letter-spacing: 4px;
+			letter-spacing: -3px;
 			opacity: 1;
 		}
 	}
@@ -62,11 +68,13 @@
 				transition-delay: 0.1s;
 
 				&::placeholder {
+					font-weight: 100;
 					transition: opacity 0.3s ease;
 				}
 			}
 
 			&::placeholder {
+				font-weight: 100;
 				transition: opacity 0.3s ease;
 			}
 		}
@@ -76,6 +84,7 @@
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 1023px) {
 	.input {
+		font-weight: 100;
 		width: calc(100% - 20px);
 
 		&__text {

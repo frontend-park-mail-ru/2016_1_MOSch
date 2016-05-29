@@ -15,11 +15,8 @@ define(function (require) {
 			var users = new Users();
 			Backbone.sync("read", users, {success: this.updateScores.bind(this)});
 			var data = {
-				items: users.toJSON()
+				items: []
 			};
-			for (var i = 0; i < data.items.length; i++) {
-				data.items[i].n = i + 1;
-			}
 			this.$el.html(this.template(data));
 			return this;
 		},
