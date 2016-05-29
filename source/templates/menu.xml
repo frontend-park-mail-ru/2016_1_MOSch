@@ -1,31 +1,35 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:include context_name="" src="./blocks/menu-button.xml"/>
-	<div class="userbar">waiting...</div>
-	<div class="exit">Logout</div>
 	<div class="content__wrapper">
+		<div class="userbar">waiting...</div>
 		<fest:get name="menu-button">{
 			name: "game",
 			url: "game",
 			title: "play",
 			comment: "Play offline or online"
-		}</fest:get>
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "upgrade",
 			url: "upgrade",
 			title: "skills",
 			comment: "Upgrade and improve your capabilities"
-		}</fest:get>
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "scoreboard",
 			url: "scoreboard",
 			title: "scores",
 			comment: "Ratings and achievements"
-		}</fest:get>
+			}
+		</fest:get>
 		<fest:get name="menu-button">{
 			name: "about",
 			url: "about",
 			title: "about us",
 			comment: "About us, about this site and something else"
-		}</fest:get>
+			}
+		</fest:get>
+		<div class="exit">Logout</div>
 	</div>
 </fest:template>

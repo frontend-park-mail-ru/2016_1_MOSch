@@ -9,10 +9,27 @@
 		font-size: 64px;
 		font-weight: bold;
 		color: $header-color;
+
+		&::before {
+			position: relative;
+			content: '<';
+			cursor: pointer;
+			right: 40px;
+			top: 13px;
+		}
+
+		&::after {
+			position: relative;
+			content: '>';
+			cursor: pointer;
+			left: 40px;
+			top: 13px;
+		}
 	}
 
 	&__table {
 		display: block;
-		width: 351px;
+		max-width: 350px;
+		margin: 0 auto;
 	}
 }

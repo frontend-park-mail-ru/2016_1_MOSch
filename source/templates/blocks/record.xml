@@ -2,12 +2,26 @@
 	<fest:set name="record">
 		<fest:if test="params">
 			<div class="record">
-				<div class="record__rate">
-					<fest:value>params.rate</fest:value>
+				<div class="record__n">
+					<fest:value>params.n</fest:value>
 				</div>
-				<div class="record__username">
-					<fest:value>params.username</fest:value>
+				<div class="record__score">
+					<fest:value>params.score</fest:value>
 				</div>
+				<fest:if test="!params.starBf">
+					<span class="record__username">
+						<span class="">
+							<fest:value>params.username</fest:value>
+						</span>
+					</span>
+				</fest:if>
+				<fest:if test="params.starBf">
+					<span class="record__username">
+						<span class="record__username--star">
+							<fest:value>params.username</fest:value>
+						</span>
+					</span>
+				</fest:if>
 			</div>
 		</fest:if>
 	</fest:set>

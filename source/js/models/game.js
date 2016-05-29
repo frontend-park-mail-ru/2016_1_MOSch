@@ -36,6 +36,7 @@ define(function (require) {
 		this._score = 0;
 		this._env = {};
 		this._blocks = [];
+		this._trash = [];
 
 		$('#fade').hide();
 		updateSize(this._canvas2d, this._engine);

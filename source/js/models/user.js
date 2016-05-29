@@ -1,5 +1,5 @@
 define(function (require) {
-	
+
 	var Backbone = require('backbone'),
 		JQuery = require('jquery');
 
@@ -14,9 +14,14 @@ define(function (require) {
 
 		defaults: {
 			username: null,
-			level: -1,
-			rate: -1,
-			info: {}
+			password: null,
+			score: 0,
+			actualScore: 0,
+			points: 0,
+			starBf: false,
+			accuracyBf: false,
+			speedBf: false,
+			delayBf: false
 		},
 
 		_logged_in: false,
@@ -78,7 +83,7 @@ define(function (require) {
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				xhr.responseJSON = xhr.responseJSON || {'message': 'please, try later'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
@@ -93,6 +98,9 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				model.set('actualScore', model.get('score'));
+				model.set('score', 0);
+
 				var data = localStorage.getItem('playerdata');
 				if (data) {
 					localStorage.removeItem('playerdata');
@@ -127,7 +135,7 @@ define(function (require) {
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				xhr.responseJSON = xhr.responseJSON || {'message': 'please, try later'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
@@ -164,6 +172,7 @@ define(function (require) {
 			}
 			if (!options.mymethod) {
 				alert('error!!!!');
+				return;
 			}
 			options.url = this.getCustomUrl(options.mymethod.toLowerCase());
 			arguments[0] = this.replaceMethod(options.mymethod.toLowerCase());
@@ -212,7 +221,8 @@ define(function (require) {
 				this.fetchData();
 			} else {
 				this.id = null;
-				this.username = null;
+				this.set('username', null);
+				this.set('password', null);
 			}
 			console.log('logged = ' + this._logged_in);
 			var route = this._logged_in ? 'menu' : 'main';
@@ -222,16 +232,16 @@ define(function (require) {
 		getInfo: function () {
 			return {
 				'username': this.get('username'),
-				'level': this.get('level'),
-				'rate': this.get('rate'),
-				'id': this.id
+				'score': this.get('actualScore'),
+				'points': this.get('points'),
+				'starBf': this.get('starBf'),
+				'id': this._logged_in ? this.id : null
 			}
 		},
 
 		loggedIn: function () {
 			return this._logged_in;
 		}
-
 	});
 
 	return UserModel;

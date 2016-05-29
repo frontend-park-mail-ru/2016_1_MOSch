@@ -1,11 +1,8 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<div class="allpage">
 		<div class="background"></div>
-		<div class="logo">
-			<a href="#main" class="logo__image"></a>
-		</div>
+		<a href="#main" class="logo"></a>
 		<div class="content"></div>
-		<div class="notice">
-		</div>
+		<div class="notice"></div>
 	</div>
 </fest:template>

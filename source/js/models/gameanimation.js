@@ -28,8 +28,41 @@ define(function (require) {
 		}
 
 		var block = this._blocks[this._blocks.length - 1];
-		// if (block.cross ===)
-		//
+		switch (block.x_dir) {
+			case crosses.px:
+				if (block.position.x > 5) {
+					block.position.x = 5;
+					block.x_dir = crosses.nx;
+				} else {
+					block.position.x += cfg.block_speed;
+				}
+				break;
+			case crosses.nx:
+				if (block.position.x < -5) {
+					block.position.x = -5;
+					block.x_dir = crosses.px;
+				} else {
+					block.position.x -= cfg.block_speed;
+				}
+				break;
+			case crosses.pz:
+				if (block.position.z > 5) {
+					block.position.z = 5;
+					block.x_dir = crosses.nz;
+				} else {
+					block.position.z += cfg.block_speed;
+				}
+				break;
+			case crosses.nz:
+				if (block.position.z < -5) {
+					block.position.z = -5;
+					block.x_dir = crosses.pz;
+				} else {
+					block.position.z -= cfg.block_speed;
+				}
+				break;
+		}
+
 	};
 
 	return animateFunc;

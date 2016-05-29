@@ -17,6 +17,9 @@ define(function (require) {
 			var data = {
 				items: users.toJSON()
 			};
+			for (var i = 0; i < data.items.length; i++) {
+				data.items[i].n = i + 1;
+			}
 			this.$el.html(this.template(data));
 			return this;
 		},
@@ -25,6 +28,9 @@ define(function (require) {
 			var datas = {
 				items: users
 			};
+			for (var i = 0; i < datas.items.length; i++) {
+				datas.items[i].n = i + 1;
+			}
 			this.$el.html(this.template(datas));
 		},
 

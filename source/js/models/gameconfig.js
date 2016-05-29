@@ -12,6 +12,8 @@ define(function (require) {
 		stepCnt: 5,
 		cntColoredStartBlocks: 15,
 		defaultBoxScaling: new BABYLON.Vector3(4, 0.5, 4),
-		colorJumpProbability: 0.2
+		colorJumpProbability: 0.2,
+		block_speed: 0.01
+
 	};
 });

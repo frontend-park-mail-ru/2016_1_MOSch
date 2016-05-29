@@ -36,6 +36,7 @@ define(function (require) {
 		}
 
 		if (false && isgameover) {
+			this.trash(block.position, block.scaling, this._color);
 			this.finish();
 		} else {
 			this._score++;
