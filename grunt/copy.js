@@ -81,5 +81,15 @@ module.exports = {
 				}
 			}
 		]
+	},
+	json_prod: {
+		files: [
+			{
+				expand: true,
+				cwd: 'source',
+				src: ['manifest.json'],
+				dest: 'static_prod/'				
+			}
+		]
 	}
 };

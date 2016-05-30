@@ -6,7 +6,6 @@ define(function (require) {
 		states = require('models/states'),
 		crosses = require('models/crosses'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore');
 
 	var actionFunc = function () {

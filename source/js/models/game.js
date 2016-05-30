@@ -5,7 +5,6 @@ define(function (require) {
 		modes = require('models/modes'),
 		states = require('models/states'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore'),
 		$ = require('jquery');
 
@@ -15,14 +14,15 @@ define(function (require) {
 		this.pause = require('models/gamepause').bind(this);
 		this.action = require('models/gameaction').bind(this);
 		this.addBlock = require('models/gameaddblock').bind(this);
+		this.fixBlock = require('models/gamefixblock').bind(this);
 		this.trash = require('models/gametrash').bind(this);
+		this.cfg = require('models/gameconfig');
 		this.destroy = destroy;
 		this.updateSize = updateSize;
 		this.keyGrabber = keyGrabber;
 
 		this._mode = mode || modes.unlogged;
 		this._user = user;
-
 		this._canvas2d = document.getElementById('2dcanvas');
 		this._canvas3d = document.getElementById('3dcanvas');
 		this._scoresElem = document.getElementById('scores');

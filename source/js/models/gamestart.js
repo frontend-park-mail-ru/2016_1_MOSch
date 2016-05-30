@@ -5,7 +5,6 @@ define(function (require) {
 		modes = require('models/modes'),
 		states = require('models/states'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore');
 
 	var startFunc = function () {
@@ -20,14 +19,14 @@ define(function (require) {
 		this._light.intensity = 0.6;
 
 		var startColorH = _.random(360);
-		var startColor = ColorJS({hue: startColorH, saturation: 0, lightness: cfg.colorL});
-		cfg.cntColoredStartBlocks = cfg.cntColoredStartBlocks || 1;
-		var stepS = cfg.colorS / cfg.cntColoredStartBlocks;
-		for (var i = -cfg.cntStartBlocks; i < 0; i++) {
+		var startColor = ColorJS({hue: startColorH, saturation: 0, lightness: this.cfg.colorL});
+		this.cfg.cntColoredStartBlocks = this.cfg.cntColoredStartBlocks || 1;
+		var stepS = this.cfg.colorS / this.cfg.cntColoredStartBlocks;
+		for (var i = -this.cfg.cntStartBlocks; i < 0; i++) {
 			var block = BABYLON.Mesh.CreateBox('box', 1.0, this._scene, true);
-			block.scaling = cfg.defaultBoxScaling;
-			block.position.y = i * cfg.defaultBoxScaling.y;
-			if (i >= -cfg.cntColoredStartBlocks) {
+			block.scaling = this.cfg.defaultBoxScaling;
+			block.position.y = i * this.cfg.defaultBoxScaling.y;
+			if (i >= -this.cfg.cntColoredStartBlocks) {
 				startColor = startColor.setSaturation(startColor.getSaturation() + stepS);
 			}
 			block.material = new BABYLON.StandardMaterial("texture", this._scene);
@@ -35,11 +34,12 @@ define(function (require) {
 			this._blocks.push(block);
 		}
 		this._color = startColor;
-		this._colorJumpStep = cfg.stepCnt;
+		this._colorJumpStep = this.cfg.stepCnt;
 		this._env.currentColor = startColor;
 		this._env.colorStep = 0;
 		this._env.colorStepH = 0;
 		this._env.hp = 0;
+		this._iters = 0;
 		this._state = states.pause;
 		this.pause();
 

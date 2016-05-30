@@ -5,13 +5,12 @@ define(function (require) {
 		modes = require('models/modes'),
 		states = require('models/states'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore'),
 		$ = require('jquery');
 
 	var trushFunc = function (position, scaling, color) {
 		var block = BABYLON.Mesh.CreateBox('box', 1.0, this._scene, true);
-		block.scaling = scaling || cfg.defaultBoxScaling;
+		block.scaling = scaling || this.cfg.defaultBoxScaling;
 		block.position = position || BABYLON.Vector3.Zero();
 		// TODO
 		block.position.y -= 100;

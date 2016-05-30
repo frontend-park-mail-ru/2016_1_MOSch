@@ -5,7 +5,6 @@ define(function (require) {
 		modes = require('models/modes'),
 		states = require('models/states'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore');
 
 	var renderFunc = function () {

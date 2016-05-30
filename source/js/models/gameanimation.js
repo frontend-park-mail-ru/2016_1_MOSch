@@ -6,7 +6,6 @@ define(function (require) {
 		states = require('models/states'),
 		crosses = require('models/crosses'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
 		_ = require('underscore'),
 		$ = require('jquery');
 
@@ -21,7 +20,7 @@ define(function (require) {
 			if (this._env.hp === 0) {
 				this._env.currentColor = this._env.currentColor.setHue((this._env.currentColor.getHue() + this._env.colorStepH) % 360);
 				this._env.colorStep--;
-				this._env.hp = cfg.envSpeedHp;
+				this._env.hp = this.cfg.envSpeedHp;
 			} else {
 				this._env.hp--;
 			}
@@ -33,34 +32,41 @@ define(function (require) {
 				if (block.position.x > 5) {
 					block.position.x = 5;
 					block.x_dir = crosses.nx;
+					this._iters++;
 				} else {
-					block.position.x += cfg.block_speed;
+					block.position.x += this.cfg.block_speed;
 				}
 				break;
 			case crosses.nx:
 				if (block.position.x < -5) {
 					block.position.x = -5;
 					block.x_dir = crosses.px;
+					this._iters++;
 				} else {
-					block.position.x -= cfg.block_speed;
+					block.position.x -= this.cfg.block_speed;
 				}
 				break;
 			case crosses.pz:
 				if (block.position.z > 5) {
 					block.position.z = 5;
 					block.x_dir = crosses.nz;
+					this._iters++;
 				} else {
-					block.position.z += cfg.block_speed;
+					block.position.z += this.cfg.block_speed;
 				}
 				break;
 			case crosses.nz:
 				if (block.position.z < -5) {
 					block.position.z = -5;
 					block.x_dir = crosses.pz;
+					this._iters++;
 				} else {
-					block.position.z -= cfg.block_speed;
+					block.position.z -= this.cfg.block_speed;
 				}
 				break;
+		}
+		if (this._iters == this.cfg.specIters) {
+			this._iters = 0;
 		}
 
 	};
