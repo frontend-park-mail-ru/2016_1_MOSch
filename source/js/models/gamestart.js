@@ -61,9 +61,9 @@ define(function (require) {
 			this._fadeElem.addEventListener('touchstart', this.pause.bind(this));
 			this._canvas3d.addEventListener('touchstart', this.action.bind(this));
 		} else {
-			this._pauseButton.addEventListener('click', this.pause.bind(this));
-			this._fadeElem.addEventListener('click', this.pause.bind(this));
-			this._canvas3d.addEventListener('click', this.action.bind(this));
+			this._pauseButton.addEventListener('mousedown', this.pause.bind(this));
+			this._fadeElem.addEventListener('mousedown', this.pause.bind(this));
+			this._canvas3d.addEventListener('mousedown', this.action.bind(this));
 		}
 	};
 
