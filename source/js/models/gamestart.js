@@ -49,11 +49,12 @@ define(function (require) {
 		this._state = states.pause;
 		this.pause();
 
-		this._scene.registerBeforeRender(require('models/gameanimation').bind(this))
+		this._scene.registerBeforeRender(require('models/gameanimation').bind(this));
 		this._engine.runRenderLoop(require('models/gamerender').bind(this));
-
-		window.addEventListener('resize', this.updateSize.bind(null, this._canvas2d, this._engine));
-		window.addEventListener('keydown', this.keyGrabber.bind(null, this));
+		this.updateSize = this.updateSize.bind(null, this._canvas2d, this._engine);
+		this.keyGrabber = this.keyGrabber.bind(null, this);
+		window.addEventListener('resize', this.updateSize);
+		window.addEventListener('keydown', this.keyGrabber);
 		if ('ontouchstart' in window) {
 			// mobile device (work only in modern browsers)
 			this._pauseButton.addEventListener('touchstart', this.pause.bind(this));

@@ -44,6 +44,8 @@ define(function (require) {
 
 	var destroy = function () {
 		this._engine.dispose();
+		window.removeEventListener('resize', this.updateSize);
+		window.removeEventListener('keydown', this.keyGrabber);
 	};
 
 	var updateSize = function (canvas, engine, evt) {
