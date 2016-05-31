@@ -65,10 +65,24 @@ define(function (require) {
 				}
 				break;
 		}
-		if (this._iters == this.cfg.specIters) {
-			this._iters = 0;
+		if (this._iters > this.cfg.specIters) {
+			if (block.x_cross === crosses.x) {
+				block.scaling.z -= this._trimRatio;
+				if (block.scaling.z <= 0) {
+					this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
+					this.finish();
+				}
+			} else {
+				block.scaling.x -= this._trimRatio;
+				if (block.scaling.x <= 0) {
+					this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
+					this.finish();
+				}
+			}
+			if (this._trimRatio > this.cfg.minTrimPixels) {
+				this._trimRatio -= this.cfg.trimFallRatio;
+			}
 		}
-
 	};
 
 	return animateFunc;

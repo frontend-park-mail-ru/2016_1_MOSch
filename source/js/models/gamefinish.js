@@ -19,6 +19,13 @@ define(function (require) {
 		} else {
 			this._scoresElem.innerHTML = 'your score: ' + this._score + '.<br />Click to exit';
 		}
+		if (this._mode === modes.singleplayer) {
+			if (this._user.loggedIn()) {
+				this._user.updateData({
+					score: this._score
+				})
+			}
+		}
 		console.log('finish');
 	};
 

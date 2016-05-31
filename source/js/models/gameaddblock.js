@@ -8,7 +8,7 @@ define(function (require) {
 		ColorJS = require('color'),
 		_ = require('underscore');
 
-	var addBlockFunc = function (scaling_new) {
+	var addBlockFunc = function () {
 		if (this._colorJumpStep == 0 && _.random(100000) / 100000 <= this.cfg.colorJumpProbability) {
 			var rnd = _.random(-500, 500) / 1000;
 			var sign = 1;
@@ -26,8 +26,8 @@ define(function (require) {
 		}
 		var block = BABYLON.Mesh.CreateBox('box', 1.0, this._scene, true);
 		var block_old = this._blocks[this._blocks.length - 1];
-		block.scaling = scaling_new || this.cfg.defaultBoxScaling;
-		block.position = BABYLON.Vector3.Zero();
+		block.scaling = block_old.scaling.clone();
+		block.position = block_old.position.clone();
 		block.position.y = this._blocks[this._blocks.length - 1].position.y + this.cfg.defaultBoxScaling.y;
 		this._camera.position.y += this.cfg.defaultBoxScaling.y;
 		block.material = new BABYLON.StandardMaterial("texture", this._scene);
@@ -41,6 +41,7 @@ define(function (require) {
 		}
 		this._blocks.push(block);
 		this._iters = 0;
+		this._trimRatio = this.cfg.trimPixels;
 		this.cfg.block_speed += this.cfg.block_speed_grow;
 		this._env.colorStep = this.cfg.envColorStepCnt;
 		this._env.colorStepH = this._color.getHue() - this._env.currentColor.getHue();

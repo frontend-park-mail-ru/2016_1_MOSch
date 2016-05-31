@@ -9,7 +9,12 @@ define(function (require) {
 		$ = require('jquery');
 
 	var fixBlockFunc = function (position, scaling) {
-		
+		if (!(position && scaling)) {
+			return;
+		}
+		var block = this._blocks[this._blocks.length - 1];
+		block.position = position.clone();
+		block.scaling = scaling.clone();
 	};
 
 	return fixBlockFunc;
