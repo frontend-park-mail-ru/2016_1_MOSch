@@ -60,6 +60,11 @@ define(function (require) {
 		},
 		start: function () {
 			console.log('Play ' + this._mode + ' mode!');
+			if (this._mode === modes.multiplayer) {
+				alert('Multiplayer not available yet. Come on project commissioning');
+				Backbone.history.navigate('menu', {trigger: true});
+				return;
+			}
 			this.$('.gameWrap').html(GameScreenTmpl());
 			this._game = new Game(this._mode, this._user);
 			this._game.start();
