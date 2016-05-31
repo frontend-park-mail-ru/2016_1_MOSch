@@ -11,7 +11,7 @@
 		font-weight: 100;
 		display: block;
 		width: 100%;
-		font-family: $wire-font;
+		font-family: $coremellow-font;
 		font-size: 56px;
 		vertical-align: text-bottom;
 		background-color: #FFFFFF;
@@ -28,7 +28,7 @@
 
 			&::placeholder {
 				font-weight: 100;
-				font-family: $wire-font;
+				font-family: $coremellow-font;
 				color: $gray-color;
 				letter-spacing: -3px;
 				opacity: 0;
@@ -37,7 +37,7 @@
 
 		&::placeholder {
 			font-weight: 100;
-			font-family: $wire-font;
+			font-family: $coremellow-font;
 			color: $gray-color;
 			letter-spacing: -3px;
 			opacity: 1;
