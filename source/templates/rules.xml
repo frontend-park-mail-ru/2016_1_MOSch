@@ -1,8 +1,33 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-	<div class="rules">
-		Пауза - клавиша P или ESC.<br></br>
-		Построй как можно более высокую башню.<br></br>
-		Удачи!
+	<div class="rules rules--single--mobile">
+		Your goal is to build a tower as high as possible. Put the tiles exactly on top of each other, and you will
+		achieve success.
+		<br/>
+		Good luck, my friend!
+	</div>
+	<div class="rules rules--single--pc">
+		Your goal is to build a tower as high as possible. Put the tiles exactly on top of each other, and you will
+		achieve success.
+		<br/>
+		Use &amp;lt;ESC&amp;gt; or &amp;lt;P&amp;gt; to pause the game, and space bar to put the tiles.
+		<br/>
+		Good luck, my friend!
+	</div>
+	<div class="rules rules--multi--mobile">
+		Your goal is to build a tower as high as possible. Be better than your opponent, and you get a lot of $$. Put
+		the tiles exactly on top of each other, and you will achieve success.
+		<br/>
+		Good luck, my friend!
+	</div>
+	<div class="rules rules--multi--pc">
+		Your goal is to build a tower as high as possible. Be better than your opponent, and you get a lot of $$. Put
+		the tiles exactly on top of each other, and you will achieve success.
+		<br/>
+		The height of the opponent's tower will be written under your results.
+		<br/>
+		Use &amp;lt;ESC&amp;gt; or &amp;lt;P&amp;gt; to pause the game, and space bar to put the tiles.
+		<br/>
+		Good luck, my friend!
 	</div>
 	<button class="submit-button" id="start">START</button>
 </fest:template>

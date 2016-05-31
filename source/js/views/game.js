@@ -54,6 +54,19 @@ define(function (require) {
 			this._mode = mode || modes.unlogged;
 			Backbone.Events.once('start', this.start, this);
 			this.$('.gameWrap').html(RulesTmpl());
+			if ('ontouchstart' in window) {
+				if (this._mode === modes.multiplayer) {
+					this.$('.rules--multi--mobile').show();
+				} else {
+					this.$('.rules--single--mobile').show();
+				}
+			} else {
+				if (this._mode === modes.multiplayer) {
+					this.$('.rules--multi--pc').show();
+				} else {
+					this.$('.rules--single--pc').show();
+				}
+			}
 			this.$('#start').click(function () {
 				Backbone.Events.trigger('start');
 			});

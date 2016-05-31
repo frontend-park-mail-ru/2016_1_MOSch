@@ -71,11 +71,6 @@ define(function (require) {
 				evt.preventDefault();
 				game.pause();
 				break;
-			// TODO !!!
-			// case KEYS.ENTER:
-			// 	evt.preventDefault();
-			// 	game.start();
-			// 	break;
 			case KEYS.SPACE:
 				evt.preventDefault();
 				game.action();

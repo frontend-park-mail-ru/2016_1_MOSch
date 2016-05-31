@@ -11,7 +11,10 @@ define(function (require) {
 	var finishFunc = function () {
 		$('#fade').show();
 		$('#pause').hide();
-		$('#scores').css('font-size', '80px');
+		$('#scores').css('font-size', '80px').css('bottom', '40vh');
+		if (window.innerHeight <= 400 || window.innerWidth <= 400) {
+			$('#scores').css('font-size', '62px');
+		}
 		this._state = states.finish;
 		if ('ontouchstart' in window) {
 			// mobile device (work only in modern browsers)
