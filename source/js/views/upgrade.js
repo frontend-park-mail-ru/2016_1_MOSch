@@ -13,17 +13,26 @@ define(function (require) {
 		},
 		render: function () {
 			var price = _.clone(require('models/price'));
+			this._user.set('points', 310000);
+			this._user.set('speedBf', true);
 			for (var pos = 0; pos < price.length; pos++) {
-				price[pos].sold = this._user.get(price[pos].name);
+				price[pos].money = true;
+				price[pos].sold = !this._user.get(price[pos].name);
+				if (price[pos].sold) {
+					if (price[pos].cost_int > this._user.get('points')) {
+						price[pos].money = false;
+						price[pos].sold = false;
+					}
+				}
 			}
 			this.$el.html(this.template(price));
 			return this;
 		},
 		show: function () {
-			if (!this._user.loggedIn()) {
-				Backbone.history.navigate('main', {trigger: true});
-				return;
-			}
+			// if (!this._user.loggedIn()) {
+			// 	Backbone.history.navigate('main', {trigger: true});
+			// 	return;
+			// }
 			Backbone.Events.trigger('setBlur', {
 				'status': 'dark'
 			});
