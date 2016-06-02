@@ -27,7 +27,7 @@ define(function (require) {
 			this.$el.html(this.template(this._price));
 			for (pos = 0; pos < this._price.length; pos++) {
 				if (this._price[pos].sold) {
-					var elemID = 'ocard' + pos;
+					var elemID = '#ocard' + pos;
 					console.log(elemID);
 					this.$(elemID).click(this.tryToBuy.bind(this, +pos));
 				}
