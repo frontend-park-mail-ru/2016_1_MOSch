@@ -91,6 +91,22 @@ define(function (require) {
 			this._ws.onclose = function (event) {
 				console.log(event);
 				alert('wss closed!!!');
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'Game was closed due to some error'
+				});
+				Backbone.history.navigate('menu', {trigger: true});
+			}.bind(this);
+
+			this._ws.onerror = function (error) {
+				alert('wss error');
+				console.log(error);
+				console.log("Error " + error.message);
+				Backbone.Events.trigger('showToast', {
+					'type': 'alert',
+					'text': 'No connection to the server, game was closed'
+				});
+				Backbone.history.navigate('menu', {trigger: true});
 			}.bind(this);
 		}
 	};
