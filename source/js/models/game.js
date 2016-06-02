@@ -49,6 +49,8 @@ define(function (require) {
 				this._ws.close(1000, 'Leave the game');
 			}
 		}
+		this._ws = null;
+		this._user.fetchData();
 	};
 
 	var updateSize = function (canvas, engine, evt) {

@@ -15,9 +15,10 @@ define(function (require) {
 		colorJumpProbability: 0.2,
 		block_speed: 0.13,
 		block_speed_grow: 0.0012,
-		specIters: 4,
-		trimPixels: 0.005,
-		minTrimPixels: 0.001,
-		trimFallRatio: 0.000015
+		specIters: 2,
+		trimPixels: 0.009,
+		minTrimPixels: 0.002,
+		trimFallRatio: 0.000015,
+		assumption: 0.001
 	};
 });
