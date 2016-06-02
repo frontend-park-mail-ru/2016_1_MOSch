@@ -76,6 +76,7 @@ define(function (require) {
 			if (this._mode === modes.multiplayer) {
 				this.$('#start').hide();
 				this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
+
 				this.ws.onerror = function (error) {
 					console.log("Error " + error.message);
 					Backbone.Events.trigger('showToast', {
@@ -84,6 +85,16 @@ define(function (require) {
 					});
 					Backbone.history.navigate('menu', {trigger: true});
 				}.bind(this);
+
+				this.ws.onclose = function (event) {
+					console.log("Error " + event.reason);
+					Backbone.Events.trigger('showToast', {
+						'type': 'alert',
+						'text': 'No connection to the server, please, try later'
+					});
+					Backbone.history.navigate('menu', {trigger: true});
+				}.bind(this);
+
 				this.ws.onmessage = function (event) {
 					var message = JSON.parse(event.data);
 					if (message.action === 'startGame') {
@@ -92,6 +103,7 @@ define(function (require) {
 					this._game._ws = this.ws;
 					this._game.start();
 				}.bind(this);
+
 				this.$('.rules').html('Please wait. We are looking for your opponent.<br/>If waiting is too long, return to the menu and try to play in singleplayer mode.');
 			} else {
 				this._game.start();
