@@ -69,9 +69,9 @@ define(function (require) {
 		setBlur: function (options) {
 			options = options || {};
 			if (options) {
-				var value = 'blur(8px) brightness(0.85)';
+				var value = 'brightness(0.8)';
 				if (options.status === 'dark') {
-					value = 'blur(16px) brightness(0.5)';
+					value = 'blur(8px) brightness(0.5)';
 				}
 				this.$('.background').css('filter', value);
 				this.$('.background').css('webkit-filter', value);
