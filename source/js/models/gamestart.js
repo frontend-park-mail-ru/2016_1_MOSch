@@ -81,10 +81,16 @@ define(function (require) {
 		if (this._mode === modes.multiplayer) {
 			$('#pause').hide();
 			this._ws.onmessage= function (event) {
+				console.log(event);
 				var message = JSON.parse(event.data);
 				if (message.action === 'buildOK' && this._game.opponent === message.builderName) {
 					this._opScore = message.height;
 				}
+			}.bind(this);
+
+			this._ws.onclose = function (event) {
+				console.log(event);
+				alert('wss closed!!!');
 			}.bind(this);
 		}
 	};

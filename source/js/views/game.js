@@ -77,7 +77,13 @@ define(function (require) {
 				this.$('#start').hide();
 				this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
 
+				this.ws.onopen = function() {
+					alert("wss: соединение установлено.");
+				};
+
 				this.ws.onerror = function (error) {
+					alert('wss error');
+					console.log(error);
 					console.log("Error " + error.message);
 					Backbone.Events.trigger('showToast', {
 						'type': 'alert',
@@ -87,6 +93,8 @@ define(function (require) {
 				}.bind(this);
 
 				this.ws.onclose = function (event) {
+					alert('wss close');
+					console.log(event);
 					console.log("Error " + event.reason);
 					Backbone.Events.trigger('showToast', {
 						'type': 'alert',
@@ -96,6 +104,8 @@ define(function (require) {
 				}.bind(this);
 
 				this.ws.onmessage = function (event) {
+					alert('wss message');
+					console.log(event);
 					var message = JSON.parse(event.data);
 					if (message.action === 'startGame') {
 						this._game.opponent = message.enemy.toUpperCase();
