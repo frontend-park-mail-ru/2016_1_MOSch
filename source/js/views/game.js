@@ -82,7 +82,7 @@ define(function (require) {
 				};
 
 				this.ws.onerror = function (error) {
-					alert('wss error');
+					console.log('wss error');
 					console.log(error);
 					console.log("Error " + error.message);
 					Backbone.Events.trigger('showToast', {
@@ -93,7 +93,7 @@ define(function (require) {
 				}.bind(this);
 
 				this.ws.onclose = function (event) {
-					alert('wss close');
+					console.log('wss close');
 					console.log(event);
 					console.log("Error " + event.reason);
 					Backbone.Events.trigger('showToast', {
@@ -104,7 +104,7 @@ define(function (require) {
 				}.bind(this);
 
 				this.ws.onmessage = function (event) {
-					alert('wss message');
+					console.log('wss message');
 					console.log(event);
 					var message = JSON.parse(event.data);
 					if (message.action === 'startGame') {

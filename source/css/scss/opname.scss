@@ -2,7 +2,7 @@
 
 .opname {
 	font-family: $bravo-font;
-	font-size: 64px;
+	font-size: 52px;
 	font-style: normal;
 	text-align: center;
 	pointer-events: none;
@@ -11,13 +11,13 @@
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 1023px) {
 	.opname {
-		font-size: 52px;
+		font-size: 48px;
 	}
 }
 
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 450px) {
 	.opname {
-		font-size: 44px;
+		font-size: 42px;
 	}
 }
