@@ -28,7 +28,8 @@ define(function (require) {
 			for (pos = 0; pos < this._price.length; pos++) {
 				if (this._price[pos].sold) {
 					var elemID = 'ocard' + pos;
-					this.$(elemID).click(this.tryToBuy.bind(this, pos));
+					console.log(elemID);
+					this.$(elemID).click(this.tryToBuy.bind(this, +pos));
 				}
 			}
 			return this;
@@ -54,7 +55,9 @@ define(function (require) {
 			return this;
 		},
 		tryToBuy: function (item) {
+			console.log(+item);
 			var diff = this._user.get('points') >= this._price[item].cost_int;
+			console.log(+diff);
 			if (diff >= 0 && !this._user.get(this._price[item].name)) {
 				var obj = {};
 				obj[this._price[item].name] = true;

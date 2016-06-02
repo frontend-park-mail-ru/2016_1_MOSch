@@ -18,9 +18,9 @@ define(function (require) {
 		this._state = states.finish;
 		if ('ontouchstart' in window) {
 			// mobile device (work only in modern browsers)
-			this._scoresElem.innerHTML = 'your score: ' + this._score + '<br />Tap to exit';
+			this._scoresElem.innerHTML = 'Your score: ' + this._score + '<br />Tap to exit';
 		} else {
-			this._scoresElem.innerHTML = 'your score: ' + this._score + '<br />Click to exit';
+			this._scoresElem.innerHTML = 'Your score: ' + this._score + '<br />Click to exit';
 		}
 		if (this._mode === modes.singleplayer) {
 			if (this._user.loggedIn()) {
