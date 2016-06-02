@@ -13,7 +13,8 @@ define(function (require) {
 		},
 		render: function () {
 			this._price = _.clone(require('models/price'));
-			for (var pos = 0; pos < price.length; pos++) {
+			var pos;
+			for (pos = 0; pos < this._price.length; pos++) {
 				this._price[pos].money = true;
 				this._price[pos].sold = !this._user.get(this._price[pos].name);
 				if (this._price[pos].sold) {
@@ -22,9 +23,14 @@ define(function (require) {
 						this._price[pos].sold = false;
 					}
 				}
-
 			}
 			this.$el.html(this.template(this._price));
+			for (pos = 0; pos < this._price.length; pos++) {
+				if (this._price[pos].sold) {
+					var elemID = 'ocard' + pos;
+					this.$(elemID).click(this.tryToBuy.bind(this, pos));
+				}
+			}
 			return this;
 		},
 		show: function () {
@@ -48,12 +54,17 @@ define(function (require) {
 			return this;
 		},
 		tryToBuy: function (item) {
-			if (this._user.get('points') >= this._price[item].cost_int && !this._user.get(this._price[item].name)) {
+			var diff = this._user.get('points') >= this._price[item].cost_int;
+			if (diff >= 0 && !this._user.get(this._price[item].name)) {
 				var obj = {};
 				obj[this._price[item].name] = true;
+				this._user.set(this._price[item].name, true);
+				this._user.set('points', diff);
+				this._user.once('change', this.render.bind(this));
+				console.log(obj);
 				this._user.updateData(obj);
-				Backbone.history.navigate('main', {trigger: true});
 			}
+			this.render();
 		}
 	});
 
