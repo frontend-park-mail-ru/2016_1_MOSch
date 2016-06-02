@@ -46,7 +46,15 @@ define(function (require) {
 		if (isgameover) {
 			this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
 			this.trash(block.position, block.scaling, this._color);
-			this.finish();
+			if (this._mode === modes.multiplayer) {
+				var msg2 = {
+					username: this._user.get('username'),
+					action: 'miss',
+					height: this._score
+				};
+				this._ws.send(JSON.stringify(msg2))
+			}
+			this.finish();			
 		} else {
 			this._score++;
 			this.fixBlock(positionnew, scalingnew);
