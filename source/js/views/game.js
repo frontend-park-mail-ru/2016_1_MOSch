@@ -45,6 +45,9 @@ define(function (require) {
 			if (this._game) {
 				this._game.destroy();
 			}
+			if (this.ws) {
+				this._ws.close(1000, 'Stopped waiting for a second player');
+			}
 			this.$('.gameWrap').html('');
 			this._game = null;
 			this._mode = null;
@@ -118,6 +121,7 @@ define(function (require) {
 					this.ws.onclose = null;
 					this.ws.onmessage = null;
 					this._game._ws = this.ws;
+					this.ws = null;
 					this._game.start();
 				}.bind(this);
 

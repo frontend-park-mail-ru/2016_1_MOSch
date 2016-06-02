@@ -70,44 +70,52 @@ define(function (require) {
 		window.addEventListener('keydown', this.keyGrabber);
 		if ('ontouchstart' in window) {
 			// mobile device (work only in modern browsers)
-			this._pauseButton.addEventListener('touchstart', this.pause.bind(this));
-			this._fadeElem.addEventListener('touchstart', this.pause.bind(this));
-			this._canvas3d.addEventListener('touchstart', this.action.bind(this));
+			this._pauseButton.addEventListener('touchstart', this.pause);
+			this._fadeElem.addEventListener('touchstart', this.pause);
+			this._canvas3d.addEventListener('touchstart', this.action);
 		} else {
-			this._pauseButton.addEventListener('mousedown', this.pause.bind(this));
-			this._fadeElem.addEventListener('mousedown', this.pause.bind(this));
-			this._canvas3d.addEventListener('mousedown', this.action.bind(this));
+			this._pauseButton.addEventListener('mousedown', this.pause);
+			this._fadeElem.addEventListener('mousedown', this.pause);
+			this._canvas3d.addEventListener('mousedown', this.action);
 		}
+
 		if (this._mode === modes.multiplayer) {
 			$('#pause').hide();
-			this._ws.onmessage= function (event) {
+			this._ws.onmessage = function (event) {
 				console.log(event);
 				var message = JSON.parse(event.data);
-				if (message.action === 'buildOK' && this.opponent === message.username.toUpperCase()) {
-					this._opScore = message.height;
+				switch (message.action) {
+					case 'buildOK':
+					{
+						if (this.opponent === message.username.toUpperCase()) {
+							this._opScore = message.height;
+							this.showScore();
+						}
+						break;
+					}
+					case 'gameFinished':
+					{
+						this.finish();
+						break;
+					}
 				}
-				this.showScore();
 			}.bind(this);
 
 			this._ws.onclose = function (event) {
-				console.log(event);
-				console.log('wss closed!!!');
-				Backbone.Events.trigger('showToast', {
-					'type': 'alert',
-					'text': 'Game was closed due to some error'
-				});
-				Backbone.history.navigate('menu', {trigger: true});
+				console.log('wss closed due to ' + event.reason);
+				if (this._state !== states.finish) {
+					Backbone.Events.trigger('showToast', {
+						'type': 'alert',
+						'text': 'Game was closed due to some error'
+					});
+					Backbone.history.navigate('menu', {trigger: true});
+				}
 			}.bind(this);
 
 			this._ws.onerror = function (error) {
 				console.log('wss error');
 				console.log(error);
 				console.log("Error " + error.message);
-				Backbone.Events.trigger('showToast', {
-					'type': 'alert',
-					'text': 'No connection to the server, game was closed'
-				});
-				Backbone.history.navigate('menu', {trigger: true});
 			}.bind(this);
 		}
 	};

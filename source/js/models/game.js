@@ -15,6 +15,7 @@ define(function (require) {
 		this.action = require('models/gameaction').bind(this);
 		this.addBlock = require('models/gameaddblock').bind(this);
 		this.fixBlock = require('models/gamefixblock').bind(this);
+		this.prettyClose = require('models/gameprettyclose').bind(this);
 		this.trash = require('models/gametrash').bind(this);
 		var config = require('models/gameconfig');
 		this.cfg = _.clone(config);
