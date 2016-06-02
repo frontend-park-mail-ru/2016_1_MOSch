@@ -14,7 +14,6 @@ define(function (require) {
 
 		this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(11, 6, 11), this._scene);
 		this._camera.setTarget(BABYLON.Vector3.Zero());
-		//this._camera.attachControl(this._canvas3d, true);
 
 		this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(6, 10, 2), this._scene);
 		this._light.intensity = 0.6;
@@ -49,6 +48,7 @@ define(function (require) {
 		this._state = states.pause;
 		this.pause();
 
+		
 		this._scene.registerBeforeRender(require('models/gameanimation').bind(this));
 		this._engine.runRenderLoop(require('models/gamerender').bind(this));
 		this.updateSize = this.updateSize.bind(null, this._canvas2d, this._engine);

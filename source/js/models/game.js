@@ -16,7 +16,8 @@ define(function (require) {
 		this.addBlock = require('models/gameaddblock').bind(this);
 		this.fixBlock = require('models/gamefixblock').bind(this);
 		this.trash = require('models/gametrash').bind(this);
-		this.cfg = require('models/gameconfig');
+		var config = require('models/gameconfig');
+		this.cfg = _.clone(config);
 		this.destroy = destroy;
 		this.updateSize = updateSize;
 		this.keyGrabber = keyGrabber;

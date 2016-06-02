@@ -11,9 +11,9 @@ define(function (require) {
 	var finishFunc = function () {
 		$('#fade').show();
 		$('#pause').hide();
-		$('#scores').css('font-size', '80px').css('bottom', '40vh');
+		$('#scores').css('font-size', '80px').css('bottom', '50vh');
 		if (window.innerHeight <= 400 || window.innerWidth <= 400) {
-			$('#scores').css('font-size', '62px');
+			$('#scores').css('font-size', '60px').css('bottom', '40vh');
 		}
 		this._state = states.finish;
 		if ('ontouchstart' in window) {
@@ -29,7 +29,6 @@ define(function (require) {
 				})
 			}
 		}
-		console.log('finish');
 	};
 
 	return finishFunc;

@@ -15,7 +15,9 @@ define(function (require) {
 			$('#pause').hide();
 			$('#scores').css('font-size', '80px');
 		} else if (this._state === states.finish) {
-			Backbone.history.navigate('menu', {trigger: true});
+			setTimeout(function () {
+				Backbone.history.navigate('menu', {trigger: true});
+			}, 100);
 			return;
 		} else if (this._state === states.pause) {
 			this._state = states.play;
@@ -33,7 +35,6 @@ define(function (require) {
 		} else if (this._state === states.play) {
 			this._scoresElem.innerHTML = this._score;
 		}
-		console.log(this._state);
 	};
 
 	return pauseFunc;

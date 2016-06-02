@@ -53,8 +53,6 @@ define(function (require) {
 			}
 		}
 		this._env.colorStepH /= this.cfg.envColorStepCnt;
-
-		console.log('addBlock');
 	};
 
 	return addBlockFunc;

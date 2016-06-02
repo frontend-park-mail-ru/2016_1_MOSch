@@ -56,7 +56,6 @@ define(function (require) {
 				this._scoresElem.innerHTML = this._score;
 			}
 		}
-		console.log('action');
 	};
 
 	return actionFunc;
