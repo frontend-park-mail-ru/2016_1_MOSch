@@ -52,8 +52,16 @@ define(function (require) {
 			this.fixBlock(positionnew, scalingnew);
 			//this.trash(block.position, block.scaling, this._color);
 			this.addBlock();
+			if (this._mode === modes.multiplayer) {
+				var msg = {
+					username: this._user.get('username'),
+					action: 'build',
+					height: this._score
+				};
+				this._ws.send(JSON.stringify(msg))
+			}
 			if (this._state === states.play) {
-				this._scoresElem.innerHTML = this._score;
+				this.showScore();
 			}
 		}
 	};

@@ -9,6 +9,12 @@ define(function (require) {
 		$ = require('jquery');
 
 	var pauseFunc = function () {
+		if (this._mode === modes.multiplayer) {
+			if (this._state === states.play) {
+				this.showScore();
+			}
+			return;
+		}
 		if (this._state === states.play) {
 			this._state = states.pause;
 			$('#fade').show();
@@ -17,7 +23,7 @@ define(function (require) {
 		} else if (this._state === states.finish) {
 			setTimeout(function () {
 				Backbone.history.navigate('menu', {trigger: true});
-			}, 100);
+			}, 200);
 			return;
 		} else if (this._state === states.pause) {
 			this._state = states.play;
@@ -33,7 +39,7 @@ define(function (require) {
 				this._scoresElem.innerHTML = 'Click to continue';
 			}
 		} else if (this._state === states.play) {
-			this._scoresElem.innerHTML = this._score;
+			this.showScore();
 		}
 	};
 

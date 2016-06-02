@@ -6,7 +6,6 @@ define(function (require) {
 		Game = require('models/game'),
 		SelectTmpl = require('tmpl/select'),
 		RulesTmpl = require('tmpl/rules'),
-		GameScreenTmpl = require('tmpl/gamescreen'),
 		modes = require('models/modes');
 
 	var gameView = Backbone.View.extend({
@@ -73,14 +72,30 @@ define(function (require) {
 		},
 		start: function () {
 			console.log('Play ' + this._mode + ' mode!');
-			if (this._mode === modes.multiplayer) {
-				alert('Multiplayer not available yet. Come on project commissioning');
-				Backbone.history.navigate('menu', {trigger: true});
-				return;
-			}
-			this.$('.gameWrap').html(GameScreenTmpl());
 			this._game = new Game(this._mode, this._user);
-			this._game.start();
+			if (this._mode === modes.multiplayer) {
+				this.$('#start').hide();
+				this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
+				this.ws.onerror = function (error) {
+					console.log("Error " + error.message);
+					Backbone.Events.trigger('showToast', {
+						'type': 'alert',
+						'text': 'No connection to the server, please, try later'
+					});
+					Backbone.history.navigate('menu', {trigger: true});
+				}.bind(this);
+				this.ws.onmessage = function (event) {
+					var message = JSON.parse(event.data);
+					if (message.action === 'startGame') {
+						this._game.opponent = message.enemy.toUpperCase();
+					}
+					this._game._ws = this.ws;
+					this._game.start();
+				}.bind(this);
+				this.$('.rules').html('Please wait. We are looking for your opponent.<br/>If waiting is too long, return to the menu and try to play in singleplayer mode.');
+			} else {
+				this._game.start();
+			}
 		}
 	});
 

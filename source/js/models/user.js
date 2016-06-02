@@ -71,11 +71,7 @@ define(function (require) {
 				debugger;
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
-					'text': 'Hello, ' + username
-				});
-				Backbone.Events.trigger('showToast', {
-					'type': 'info',
-					'text': 'ID: ' + model.id
+					'text': 'Hello, ' + username.toUpperCase()
 				});
 				model.changeAuthState(true);
 			};

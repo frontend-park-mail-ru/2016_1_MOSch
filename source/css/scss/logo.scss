@@ -24,12 +24,9 @@
 	}
 }
 
-// this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 450px) {
 	.logo {
-		height: 40%;
 		min-height: 145px;
 		margin: 8px auto;
-		background-size: 75% auto;
 	}
 }

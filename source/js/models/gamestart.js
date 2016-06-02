@@ -6,9 +6,22 @@ define(function (require) {
 		states = require('models/states'),
 		crosses = require('models/crosses'),
 		ColorJS = require('color'),
+		GameScreenTmpl = require('tmpl/gamescreen'),
 		_ = require('underscore');
 
 	var startFunc = function () {
+		$('.gameWrap').html(GameScreenTmpl());
+		$('#fade').hide();
+		this._canvas2d = document.getElementById('2dcanvas');
+		this._canvas3d = document.getElementById('3dcanvas');
+		this._scoresElem = document.getElementById('scores');
+		this._pauseButton = document.getElementById('pause');
+		this._fadeElem = document.getElementById('fade');
+		this._ctx = this._canvas2d.getContext('2d');
+		this._engine = new BABYLON.Engine(this._canvas3d, true);
+		this.updateSize(this._canvas2d, this._engine);
+
+
 		this._scene = new BABYLON.Scene(this._engine);
 		this._scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
@@ -48,7 +61,7 @@ define(function (require) {
 		this._state = states.pause;
 		this.pause();
 
-		
+
 		this._scene.registerBeforeRender(require('models/gameanimation').bind(this));
 		this._engine.runRenderLoop(require('models/gamerender').bind(this));
 		this.updateSize = this.updateSize.bind(null, this._canvas2d, this._engine);
@@ -64,6 +77,15 @@ define(function (require) {
 			this._pauseButton.addEventListener('mousedown', this.pause.bind(this));
 			this._fadeElem.addEventListener('mousedown', this.pause.bind(this));
 			this._canvas3d.addEventListener('mousedown', this.action.bind(this));
+		}
+		if (this._mode === modes.multiplayer) {
+			$('#pause').hide();
+			this._ws.onmessage= function (event) {
+				var message = JSON.parse(event.data);
+				if (message.action === 'buildOK' && this._game.opponent === message.builderName) {
+					this._opScore = message.height;
+				}
+			}.bind(this);
 		}
 	};
 

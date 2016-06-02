@@ -21,30 +21,24 @@ define(function (require) {
 		this.destroy = destroy;
 		this.updateSize = updateSize;
 		this.keyGrabber = keyGrabber;
+		this.showScore = showScore.bind(this);
 
 		this._mode = mode || modes.unlogged;
 		this._user = user;
-		this._canvas2d = document.getElementById('2dcanvas');
-		this._canvas3d = document.getElementById('3dcanvas');
-		this._scoresElem = document.getElementById('scores');
-		this._pauseButton = document.getElementById('pause');
-		this._fadeElem = document.getElementById('fade');
-		this._ctx = this._canvas2d.getContext('2d');
-		this._engine = new BABYLON.Engine(this._canvas3d, true);
 
 		this._scene = null;
 		this._state = null;
 		this._score = 0;
+		this._opScore = 0;
 		this._env = {};
 		this._blocks = [];
 		this._trash = [];
-
-		$('#fade').hide();
-		updateSize(this._canvas2d, this._engine);
 	};
 
 	var destroy = function () {
-		this._engine.dispose();
+		if (this._engine) {
+			this._engine.dispose();
+		}
 		window.removeEventListener('resize', this.updateSize);
 		window.removeEventListener('keydown', this.keyGrabber);
 	};
@@ -76,6 +70,13 @@ define(function (require) {
 				evt.preventDefault();
 				game.action();
 				break;
+		}
+	};
+
+	var showScore = function () {
+		this._scoresElem.innerHTML = this._score;
+		if (this._mode === modes.multiplayer) {
+			this._scoresElem.innerHTML = '<span class=".opname">YOU vs ' + this.opponent + '!</span><br/>' + this._score + ' &mdash; ' + this._opScore;
 		}
 	};
 
