@@ -24,7 +24,8 @@
 					</fest:if>
 
 					<fest:if test="!params.data.money">
-						<button class="submit-button card__button card__button--inactive">Not enough money
+						<button class="submit-button card__button card__button--inactive">Need<fest:space/>
+							<fest:value>params.data.cost</fest:value>
 						</button>
 					</fest:if>
 				</fest:if>

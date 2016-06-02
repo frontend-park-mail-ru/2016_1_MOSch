@@ -8,7 +8,10 @@ define(function (require) {
 		_ = require('underscore'),
 		$ = require('jquery');
 
-	var pauseFunc = function () {
+	var pauseFunc = function (event) {
+		if (event.button !== 0) {
+			return;
+		}
 		if (this._mode === modes.multiplayer) {
 			if (this._state === states.pause) {
 				this._state = states.play;

@@ -13,8 +13,6 @@ define(function (require) {
 		},
 		render: function () {
 			var price = _.clone(require('models/price'));
-			this._user.set('points', 310000);
-			this._user.set('speedBf', true);
 			for (var pos = 0; pos < price.length; pos++) {
 				price[pos].money = true;
 				price[pos].sold = !this._user.get(price[pos].name);
@@ -29,10 +27,10 @@ define(function (require) {
 			return this;
 		},
 		show: function () {
-			// if (!this._user.loggedIn()) {
-			// 	Backbone.history.navigate('main', {trigger: true});
-			// 	return;
-			// }
+			if (!this._user.loggedIn()) {
+				Backbone.history.navigate('main', {trigger: true});
+				return;
+			}
 			Backbone.Events.trigger('setBlur', {
 				'status': 'dark'
 			});

@@ -86,6 +86,7 @@ define(function (require) {
 				if (message.action === 'buildOK' && this.opponent === message.username.toUpperCase()) {
 					this._opScore = message.height;
 				}
+				this.showScore();
 			}.bind(this);
 
 			this._ws.onclose = function (event) {
