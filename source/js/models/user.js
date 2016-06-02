@@ -35,11 +35,9 @@ define(function (require) {
 			options.mymethod = 'check';
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
-				debugger;
 				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
-				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};
