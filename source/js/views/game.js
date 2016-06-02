@@ -15,6 +15,7 @@ define(function (require) {
 			this._user = options.user;
 			this._game = null;
 			this._mode = null;
+			this.ws = null;
 			this.$el.hide();
 		},
 		render: function () {
@@ -75,10 +76,12 @@ define(function (require) {
 			this._game = new Game(this._mode, this._user);
 			if (this._mode === modes.multiplayer) {
 				this.$('#start').hide();
-				this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
+				if (this.ws === null) {
+					this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
+				}
 
-				this.ws.onopen = function() {
-					alert("wss: соединение установлено.");
+				this.ws.onopen = function () {
+					console.log("wss: соединение установлено.");
 				};
 
 				this.ws.onerror = function (error) {

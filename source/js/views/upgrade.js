@@ -12,18 +12,19 @@ define(function (require) {
 			this.$el.hide();
 		},
 		render: function () {
-			var price = _.clone(require('models/price'));
+			this._price = _.clone(require('models/price'));
 			for (var pos = 0; pos < price.length; pos++) {
-				price[pos].money = true;
-				price[pos].sold = !this._user.get(price[pos].name);
-				if (price[pos].sold) {
-					if (price[pos].cost_int > this._user.get('points')) {
-						price[pos].money = false;
-						price[pos].sold = false;
+				this._price[pos].money = true;
+				this._price[pos].sold = !this._user.get(this._price[pos].name);
+				if (this._price[pos].sold) {
+					if (this._price[pos].cost_int > this._user.get('points')) {
+						this._price[pos].money = false;
+						this._price[pos].sold = false;
 					}
 				}
+
 			}
-			this.$el.html(this.template(price));
+			this.$el.html(this.template(this._price));
 			return this;
 		},
 		show: function () {
@@ -42,8 +43,17 @@ define(function (require) {
 			Backbone.Events.trigger('setBlur', {
 				'status': 'light'
 			});
+			this.$el.html('');
 			this.$el.hide();
 			return this;
+		},
+		tryToBuy: function (item) {
+			if (this._user.get('points') >= this._price[item].cost_int && !this._user.get(this._price[item].name)) {
+				var obj = {};
+				obj[this._price[item].name] = true;
+				this._user.updateData(obj);
+				Backbone.history.navigate('main', {trigger: true});
+			}
 		}
 	});
 

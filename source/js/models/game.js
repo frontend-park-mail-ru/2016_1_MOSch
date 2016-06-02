@@ -42,7 +42,11 @@ define(function (require) {
 		window.removeEventListener('resize', this.updateSize);
 		window.removeEventListener('keydown', this.keyGrabber);
 		if (this._ws) {
-			this._ws.close(1000, 'Leave the game');
+			if (this._state === states.finish) {
+				this._ws.close(1000, 'Finish the game');
+			} else {
+				this._ws.close(1000, 'Leave the game');
+			}
 		}
 	};
 
@@ -79,7 +83,7 @@ define(function (require) {
 	var showScore = function () {
 		this._scoresElem.innerHTML = this._score;
 		if (this._mode === modes.multiplayer) {
-			this._scoresElem.innerHTML = '<span class=".opname">YOU vs ' + this.opponent + '!</span><br/>' + this._score + ' &mdash; ' + this._opScore;
+			this._scoresElem.innerHTML = '<span class="opname">YOU vs ' + this.opponent + '!</span><br/>' + this._score + ' &ndash; ' + this._opScore;
 		}
 	};
 

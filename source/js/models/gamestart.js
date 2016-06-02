@@ -91,7 +91,7 @@ define(function (require) {
 
 			this._ws.onclose = function (event) {
 				console.log(event);
-				alert('wss closed!!!');
+				console.log('wss closed!!!');
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Game was closed due to some error'
@@ -100,7 +100,7 @@ define(function (require) {
 			}.bind(this);
 
 			this._ws.onerror = function (error) {
-				alert('wss error');
+				console.log('wss error');
 				console.log(error);
 				console.log("Error " + error.message);
 				Backbone.Events.trigger('showToast', {
