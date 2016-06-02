@@ -1,5 +1,41 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:include context_name="" src="./blocks/card.xml"/>
 	<div class="content__wrapper">
-
+		<div class="cards__star">
+			<fest:get name="card">{
+				title: "Leo sign",
+				rus_title: "Знак Льва",
+				description: "The best reward! Everyone wants to get it",
+				data: data[0],
+				id: "ocard0"
+				}
+			</fest:get>
+		</div>
+		<div class="cards__other">
+			<fest:get name="card">{
+				title: "Falcon eye",
+				rus_title: "Глаз Сокола",
+				description: "It allows you to be more accurate",
+				data: data[1],
+				id: "ocard1"
+				}
+			</fest:get>
+			<fest:get name="card">{
+				title: "Paws cheetahs",
+				rus_title: "Лапы Гепарда",
+				description: "It accelerates your movements",
+				data: data[2],
+				id: "ocard2"
+				}
+			</fest:get>
+			<fest:get name="card">{
+				title: "Tortoise shell",
+				rus_title: "Панцирь Черепахи",
+				description: "It slows down the flow of time",
+				data: data[3],
+				id: "ocard3"
+				}
+			</fest:get>
+		</div>
 	</div>
 </fest:template>

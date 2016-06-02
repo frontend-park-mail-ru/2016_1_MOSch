@@ -1,6 +1,7 @@
 define(function (require) {
 
 	var Backbone = require('backbone'),
+		_ = require('underscore'),
 		tmpl = require('tmpl/upgrade');
 
 	var upgradeView = Backbone.View.extend({
@@ -11,7 +12,11 @@ define(function (require) {
 			this.$el.hide();
 		},
 		render: function () {
-			this.$el.html(this.template());
+			var price = _.clone(require('models/price'));
+			for (var pos = 0; pos < price.length; pos++) {
+				price[pos].sold = this._user.get(price[pos].name);
+			}
+			this.$el.html(this.template(price));
 			return this;
 		},
 		show: function () {
@@ -19,11 +24,17 @@ define(function (require) {
 				Backbone.history.navigate('main', {trigger: true});
 				return;
 			}
+			Backbone.Events.trigger('setBlur', {
+				'status': 'dark'
+			});
 			this.render();
 			this.$el.show();
 			return this;
 		},
 		hide: function () {
+			Backbone.Events.trigger('setBlur', {
+				'status': 'light'
+			});
 			this.$el.hide();
 			return this;
 		}
