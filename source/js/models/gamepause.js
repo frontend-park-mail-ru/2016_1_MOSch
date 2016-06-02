@@ -9,7 +9,7 @@ define(function (require) {
 		$ = require('jquery');
 
 	var pauseFunc = function (event) {
-		if (event.button && event.button !== 0) {
+		if (event && event.button && event.button !== 0) {
 			return;
 		}
 		if (this._mode === modes.multiplayer) {
