@@ -41,6 +41,9 @@ define(function (require) {
 		}
 		window.removeEventListener('resize', this.updateSize);
 		window.removeEventListener('keydown', this.keyGrabber);
+		if (this._ws) {
+			this._ws.close(1000, 'Leave the game');
+		}
 	};
 
 	var updateSize = function (canvas, engine, evt) {

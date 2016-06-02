@@ -83,7 +83,7 @@ define(function (require) {
 			this._ws.onmessage= function (event) {
 				console.log(event);
 				var message = JSON.parse(event.data);
-				if (message.action === 'buildOK' && this._game.opponent === message.builderName.toUpperCase()) {
+				if (message.action === 'buildOK' && this.opponent === message.username.toUpperCase()) {
 					this._opScore = message.height;
 				}
 			}.bind(this);
