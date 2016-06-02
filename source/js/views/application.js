@@ -71,7 +71,7 @@ define(function (require) {
 			if (options) {
 				var value = 'brightness(0.8)';
 				if (options.status === 'dark') {
-					value = 'blur(8px) brightness(0.5)';
+					value = 'brightness(0.5)';
 				}
 				this.$('.background').css('filter', value);
 				this.$('.background').css('webkit-filter', value);
