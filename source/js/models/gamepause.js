@@ -10,6 +10,9 @@ define(function (require) {
 
 	var pauseFunc = function () {
 		if (this._mode === modes.multiplayer) {
+			if (this._state === states.pause) {
+				this._state = states.play;
+			}
 			if (this._state === states.play) {
 				this.showScore();
 			}
