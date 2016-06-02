@@ -34,6 +34,9 @@ define(function (require) {
 		render: function (options) {
 			options = options || {};
 			this.$el.html(this.template());
+			if (window.innerHeight < 355 || window.innerWidth < 355) {
+				jQuery('.background').css('height', '130%');
+			}
 		},
 		show: function (options) {
 			options = options || {'view': 'main'};

@@ -74,31 +74,32 @@ define(function (require) {
 		start: function () {
 			console.log('Play ' + this._mode + ' mode!');
 			this._game = new Game(this._mode, this._user);
-			if (this._mode === modes.multiplayer) {
+			if (this._mode !== modes.multiplayer) {
+				this._game.start();
+			} else {
 				this.$('#start').hide();
-				if (this.ws === null) {
-					this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
+
+				if (this.ws !== null) {
+					return;
 				}
+
+				this.ws = new WebSocket("wss://buildthetower.ru/api/gameplay");
 
 				this.ws.onopen = function () {
 					console.log("wss: соединение установлено.");
 				};
-
 				this.ws.onerror = function (error) {
-					console.log('wss error');
-					console.log(error);
 					console.log("Error " + error.message);
+					console.log(error);
 					Backbone.Events.trigger('showToast', {
 						'type': 'alert',
 						'text': 'No connection to the server, please, try later'
 					});
 					Backbone.history.navigate('menu', {trigger: true});
 				}.bind(this);
-
 				this.ws.onclose = function (event) {
-					console.log('wss close');
+					console.log("Close due to " + event.reason);
 					console.log(event);
-					console.log("Error " + event.reason);
 					Backbone.Events.trigger('showToast', {
 						'type': 'alert',
 						'text': 'No connection to the server, please, try later'
@@ -113,13 +114,14 @@ define(function (require) {
 					if (message.action === 'startGame') {
 						this._game.opponent = message.enemy.toUpperCase();
 					}
+					this.ws.onerror = null;
+					this.ws.onclose = null;
+					this.ws.onmessage = null;
 					this._game._ws = this.ws;
 					this._game.start();
 				}.bind(this);
 
 				this.$('.rules').html('Please wait. We are looking for your opponent.<br/>If waiting is too long, return to the menu and try to play in singleplayer mode.');
-			} else {
-				this._game.start();
 			}
 		}
 	});
