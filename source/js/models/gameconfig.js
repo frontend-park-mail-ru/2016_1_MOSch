@@ -16,9 +16,27 @@ define(function (require) {
 		block_speed: 0.13,
 		block_speed_grow: 0.0012,
 		specIters: 2,
-		trimPixels: 0.009,
-		minTrimPixels: 0.002,
-		trimFallRatio: 0.000015,
-		assumption: 0.001
+		trimPixels: 0.01,
+		minTrimPixels: 0.005,
+		trimFallRatio: 0.00002,
+		assumption: 0.001,
+		bafs: [
+			'accuracyBf',
+			'speedBf',
+			'delayBf'
+		],
+		accuracyBf: {
+			assumption: 0.005
+		},
+		speedBf: {
+			block_speed: 0.11,
+			block_speed_grow: 0.001
+		},
+		delayBf: {
+			specIters: 3,
+			trimPixels: 0.005,
+			minTrimPixels: 0.002,
+			trimFallRatio: 0.000025
+		}
 	};
 });

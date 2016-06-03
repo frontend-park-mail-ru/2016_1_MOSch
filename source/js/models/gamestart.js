@@ -20,6 +20,7 @@ define(function (require) {
 		this._ctx = this._canvas2d.getContext('2d');
 		this._engine = new BABYLON.Engine(this._canvas3d, true);
 		this.updateSize(this._canvas2d, this._engine);
+		this.modifyConfig();
 
 
 		this._scene = new BABYLON.Scene(this._engine);
