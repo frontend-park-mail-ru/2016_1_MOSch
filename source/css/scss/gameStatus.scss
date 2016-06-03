@@ -7,14 +7,14 @@
 	pointer-events: none;
 	position: absolute;
 	z-index: 8;
-	bottom: 65vh;
+	bottom: 60vh;
 	color: white;
 	width: 100%;
 
 	&__help {
 
 		&--normal {
-			font-size: 124px;
+			font-size: 112px;
 		}
 
 		&--small {
@@ -42,7 +42,7 @@
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 1023px) {
 	.gameStatus {
-		bottom: 65vh;
+		bottom: 60vh;
 
 		&__help {
 
@@ -75,7 +75,7 @@
 // this query for portrait iPads and mobile-browsers
 @media screen and (max-width: 550px) {
 	.gameStatus {
-		bottom: 60vh;
+		bottom: 55vh;
 
 		&__help {
 
