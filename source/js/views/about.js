@@ -50,11 +50,10 @@ define(function (require) {
 				this.$('.rectangle').remove();
 				if (this._user.loggedIn()) {
 					var ans = this._user.get('answer');
-					if (ans !== 'yes' && ans !== 'no') {
-						this._user.updateData({
-							answer: 'no'
-						});
-					}
+					console.log(ans);
+					this._user.updateData({
+						answer: 'no'
+					});
 				}
 			}.bind(this));
 			this.$('.rectangle__answers--no').click(this.joke.bind(this));
@@ -62,12 +61,12 @@ define(function (require) {
 
 		joke: function () {
 			if (this._user.loggedIn()) {
+				console.log('log1');
 				var ans = this._user.get('answer');
-				if (ans !== 'yes' && ans !== 'no') {
-					this._user.updateData({
-						answer: 'yes'
-					});
-				}
+				console.log(ans);
+				this._user.updateData({
+					answer: 'yes'
+				});
 			}
 			this.$('.rectangle__question').remove();
 			this.$('.rectangle__answers').remove();
