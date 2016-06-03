@@ -1,6 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:include context_name="" src="./blocks/card.xml"/>
 	<div class="content__wrapper">
+		<div class="userbar">waiting...</div>
 		<div class="cards__star">
 			<fest:get name="card">{
 				title: "Leo Sign",

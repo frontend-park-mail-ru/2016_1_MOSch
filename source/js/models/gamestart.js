@@ -93,9 +93,11 @@ define(function (require) {
 						}
 						break;
 					}
-					case 'gameFinished':
+					case 'finishGame':
 					{
+						console.log('finish the game');
 						this.finish();
+						console.log('game finished');
 						break;
 					}
 				}

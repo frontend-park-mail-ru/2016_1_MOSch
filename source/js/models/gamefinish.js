@@ -9,6 +9,7 @@ define(function (require) {
 		$ = require('jquery');
 
 	var finishFunc = function () {
+		this._state = states.finish;
 		$('#fade').show();
 		$('#pause').hide();
 		if (window.innerHeight <= 400 || window.innerWidth <= 400) {
@@ -16,7 +17,6 @@ define(function (require) {
 		} else {
 			$('#scores').css('font-size', '80px').css('bottom', '50vh');
 		}
-		this._state = states.finish;
 		window.removeEventListener('keydown', this.keyGrabber);
 		if ('ontouchstart' in window) {
 			// mobile device (work only in modern browsers)

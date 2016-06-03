@@ -9,7 +9,9 @@ define(function (require) {
 		$ = require('jquery');
 
 	var prettyCloseFunc = function () {
-		Backbone.history.navigate('menu', {trigger: true});
+		setTimeout(function () {
+			Backbone.history.navigate('menu', {trigger: true});
+		}, 300);
 	};
 
 	return prettyCloseFunc;

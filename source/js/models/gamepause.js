@@ -26,11 +26,6 @@ define(function (require) {
 			$('#fade').show();
 			$('#pause').hide();
 			$('#scores').css('font-size', '80px');
-		} else if (this._state === states.finish) {
-			setTimeout(function () {
-				Backbone.history.navigate('menu', {trigger: true});
-			}, 200);
-			return;
 		} else if (this._state === states.pause) {
 			this._state = states.play;
 			$('#fade').hide();

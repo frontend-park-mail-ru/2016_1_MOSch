@@ -8,7 +8,10 @@ define(function (require) {
 		ColorJS = require('color'),
 		_ = require('underscore');
 
-	var actionFunc = function () {
+	var actionFunc = function (event) {
+		if (event && event.button && event.button !== 0) {
+			return;
+		}
 		if (this._state !== states.play) {
 			return;
 		}
