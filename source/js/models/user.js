@@ -97,7 +97,6 @@ define(function (require) {
 
 				var data = localStorage.getItem('playerdata');
 				if (data) {
-					localStorage.removeItem('playerdata');
 					var obj = JSON.parse(data);
 					if (obj.username === model.get('username')) {
 						model.updateData(obj);
@@ -145,12 +144,29 @@ define(function (require) {
 			options.mydata = JSON.stringify(data || this.toJSON());
 			options.success = function (model, response, options) {
 				debugger;
+				localStorage.removeItem('playerdata');
 				model.fetchData();
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				options.mydata = JSON.parse(options.mydata);
-				options.mydata.username = model.get('username');
+
+				var score = JSON.parse(options.mydata).score;
+				if (!score) {
+					score = 0;
+				}
+				var dataOld = localStorage.getItem('playerdata');
+				if (dataOld) {
+					var objold = JSON.parse(dataOld);
+					if (objold.username === model.get('username')) {
+						if (objold.score > score) {
+							score = objold.score;
+						}
+					}
+				}
+				options.mydata = {
+					score: score,
+					username: model.get('username')
+				};
 				var data = JSON.stringify(options.mydata);
 				localStorage.setItem('playerdata', data);
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};

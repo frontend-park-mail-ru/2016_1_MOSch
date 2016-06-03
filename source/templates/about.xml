@@ -54,6 +54,12 @@
 				href: "https://www.facebook.com/profile.php?id=100000754504684"
 				}
 			</fest:get>
+			<fest:get name="person">{
+				name: "Shubin Egor",
+				city: "Moscow",
+				href: "https://vk.com/esin88"
+				}
+			</fest:get>
 			<div class="spec">
 				<fest:get name="person">{
 					name: "Mezin Artemiy",
@@ -63,9 +69,15 @@
 				</fest:get>
 			</div>
 			<fest:get name="person">{
-				name: "Shubin Egor",
+				name: "Frolov Dmitriy",
 				city: "Moscow",
-				href: "https://vk.com/esin88"
+				href: "#about"
+				}
+			</fest:get>
+			<fest:get name="person">{
+				name: "Soloviev Konstantin",
+				city: "Moscow",
+				href: "https://vk.com/id2641727"
 				}
 			</fest:get>
 		</div>
