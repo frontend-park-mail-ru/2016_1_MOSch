@@ -70,13 +70,25 @@ define(function (require) {
 				block.scaling.z -= this._trimRatio;
 				if (block.scaling.z <= 0) {
 					this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
-					this.finish();
+					var msg2 = {
+						username: this._user.get('username'),
+						action: 'miss',
+						height: this._score
+					};
+					this._ws.send(JSON.stringify(msg2));
+					this._state = states.pause;
 				}
 			} else {
 				block.scaling.x -= this._trimRatio;
 				if (block.scaling.x <= 0) {
 					this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
-					this.finish();
+					var msg2 = {
+						username: this._user.get('username'),
+						action: 'miss',
+						height: this._score
+					};
+					this._ws.send(JSON.stringify(msg2));
+					this._state = states.pause;
 				}
 			}
 			if (this._trimRatio > this.cfg.minTrimPixels) {

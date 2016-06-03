@@ -52,7 +52,7 @@ define(function (require) {
 					var ans = this._user.get('answer');
 					if (ans !== 'yes' && ans !== 'no') {
 						this._user.updateData({
-							action: 'no'
+							answer: 'no'
 						});
 					}
 				}
@@ -65,7 +65,7 @@ define(function (require) {
 				var ans = this._user.get('answer');
 				if (ans !== 'yes' && ans !== 'no') {
 					this._user.updateData({
-						action: 'yes'
+						answer: 'yes'
 					});
 				}
 			}
