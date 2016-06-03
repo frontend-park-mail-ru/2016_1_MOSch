@@ -98,6 +98,8 @@ define(function (require) {
 					case 'finishGame':
 					{
 						console.log('finish the game');
+						this._score = message.myScore;
+						this._opScore = message.enemyScore;
 						this.finish();
 						console.log('game finished');
 						break;

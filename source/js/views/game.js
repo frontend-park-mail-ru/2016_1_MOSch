@@ -52,6 +52,7 @@ define(function (require) {
 			this.$('.gameWrap').html('');
 			this._game = null;
 			this._mode = null;
+			this.ws = null;
 			return this;
 		},
 		startGame: function (mode) {

@@ -30,10 +30,10 @@ define(function (require) {
 			} else {
 				if (dist <= this.cfg.assumption) {
 					scalingnew = block_down.scaling.clone();
-					positionnew = block_down.position.clone();					
+					positionnew = block_down.position.clone();
 				} else {
 					positionnew.x = (block.position.x + block_down.position.x) / 2;
-					scalingnew.x = (len - dist);					
+					scalingnew.x = (len - dist);
 				}
 			}
 		} else {
@@ -44,30 +44,30 @@ define(function (require) {
 			} else {
 				if (dist <= this.cfg.assumption) {
 					scalingnew = block_down.scaling.clone();
-					positionnew = block_down.position.clone();					
+					positionnew = block_down.position.clone();
 				} else {
 					positionnew.z = (block.position.z + block_down.position.z) / 2;
-					scalingnew.z = (len - dist);					
+					scalingnew.z = (len - dist);
 				}
 			}
 		}
 		positionnew.y = block.position.y;
 		if (isgameover) {
 			this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
-			this.trash(block.position, block.scaling, this._color);
 			if (this._mode === modes.multiplayer) {
 				var msg2 = {
 					username: this._user.get('username'),
 					action: 'miss',
 					height: this._score
 				};
-				this._ws.send(JSON.stringify(msg2))
+				this._ws.send(JSON.stringify(msg2));
+				this._state = states.pause;
+			} else {
+				this.finish();
 			}
-			this.finish();
 		} else {
 			this._score++;
 			this.fixBlock(positionnew, scalingnew);
-			//this.trash(block.position, block.scaling, this._color);
 			this.addBlock();
 			if (this._mode === modes.multiplayer) {
 				var msg = {

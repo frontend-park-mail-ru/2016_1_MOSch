@@ -96,7 +96,7 @@ define(function (require) {
 			helpText: ''
 		};
 		if (this._mode === modes.multiplayer) {
-			data.mainText = this._score + ' &amp;ndash; ' + this._opScore;
+			data.mainText = this._score + ' : ' + this._opScore;
 			data.helpText = 'YOU vs ' + this.opponent + '!';
 		} else {
 			data.mainText = ' ' + this._score + ' ';
