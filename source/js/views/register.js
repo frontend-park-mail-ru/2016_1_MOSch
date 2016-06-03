@@ -39,8 +39,8 @@ define(function (require) {
 
 		submitForm: function (e) {
 			e.preventDefault();
-			var username = String(this.$('#username').val());
-			var password = String(this.$('#password').val());
+			var username = $.trim(String(this.$('#username').val()));
+			var password = $.trim(String(this.$('#password').val()));
 			var check = true;
 
 			if (username === '') {
