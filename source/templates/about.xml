@@ -71,7 +71,7 @@
 			<fest:get name="person">{
 				name: "Frolov Dmitriy",
 				city: "Moscow",
-				href: "#about"
+				href: "https://park.mail.ru/profile/d.frolov/"
 				}
 			</fest:get>
 			<fest:get name="person">{

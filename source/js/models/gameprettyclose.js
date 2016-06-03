@@ -11,7 +11,7 @@ define(function (require) {
 	var prettyCloseFunc = function () {
 		setTimeout(function () {
 			Backbone.history.navigate('menu', {trigger: true});
-		}, 300);
+		}, 200);
 	};
 
 	return prettyCloseFunc;

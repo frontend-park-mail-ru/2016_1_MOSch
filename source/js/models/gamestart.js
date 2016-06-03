@@ -7,14 +7,15 @@ define(function (require) {
 		crosses = require('models/crosses'),
 		ColorJS = require('color'),
 		GameScreenTmpl = require('tmpl/gamescreen'),
-		_ = require('underscore');
+		_ = require('underscore'),
+		$ = require('jquery'),
+		GameCaptureTmpl = require('tmpl/gamecapture');
 
 	var startFunc = function () {
 		$('.gameWrap').html(GameScreenTmpl());
 		$('#fade').hide();
 		this._canvas2d = document.getElementById('2dcanvas');
 		this._canvas3d = document.getElementById('3dcanvas');
-		this._scoresElem = document.getElementById('scores');
 		this._pauseButton = document.getElementById('pause');
 		this._fadeElem = document.getElementById('fade');
 		this._ctx = this._canvas2d.getContext('2d');
@@ -101,17 +102,43 @@ define(function (require) {
 						console.log('game finished');
 						break;
 					}
+					case 'enemyLeft':
+					{
+						console.log('finish the game');
+						this.finish();
+						console.log('game finished');
+						break;
+					}
+
 				}
 			}.bind(this);
 
 			this._ws.onclose = function (event) {
 				console.log('wss closed due to ' + event.reason);
 				if (this._state !== states.finish) {
-					Backbone.Events.trigger('showToast', {
-						'type': 'alert',
-						'text': 'Game was closed due to some error'
-					});
-					Backbone.history.navigate('menu', {trigger: true});
+					$('#fade').show();
+					$('#pause').hide();
+					var data = {
+						exitText: false,
+						mainSize: 'small',
+						mainText: this.opponent + ' leave the game',
+						helpSize: 'small',
+						helpText: false
+					};
+					window.removeEventListener('keydown', this.keyGrabber);
+					if ('ontouchstart' in window) {
+						// mobile device (work only in modern browsers)
+						this._fadeElem.removeEventListener('touchstart', this.pause);
+						this._fadeElem.addEventListener('touchstart', this.prettyClose);
+						data.exitText = 'Tap to exit';
+					} else {
+						this._fadeElem.removeEventListener('mousedown', this.pause);
+						this._fadeElem.addEventListener('mousedown', this.prettyClose);
+						data.exitText = 'Click to exit';
+					}
+
+					window.removeEventListener('keydown', this.keyGrabber);
+					$('#gameStatus').html(GameCaptureTmpl(data));
 				}
 			}.bind(this);
 

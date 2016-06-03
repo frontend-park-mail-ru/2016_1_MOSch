@@ -14,7 +14,7 @@ define(function (require) {
 		defaultBoxScaling: new BABYLON.Vector3(4, 0.5, 4),
 		colorJumpProbability: 0.2,
 		block_speed: 0.13,
-		block_speed_grow: 0.0012,
+		block_speed_grow: 0.0015,
 		specIters: 2,
 		trimPixels: 0.01,
 		minTrimPixels: 0.005,
@@ -33,7 +33,7 @@ define(function (require) {
 			block_speed_grow: 0.001
 		},
 		delayBf: {
-			specIters: 3,
+			specIters: 4,
 			trimPixels: 0.005,
 			minTrimPixels: 0.002,
 			trimFallRatio: 0.000025

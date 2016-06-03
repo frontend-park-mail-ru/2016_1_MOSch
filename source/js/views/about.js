@@ -48,11 +48,27 @@ define(function (require) {
 			this.$('.rectangle').show();
 			this.$('.rectangle__answers--yes').click(function () {
 				this.$('.rectangle').remove();
+				if (this._user.loggedIn()) {
+					var ans = this._user.get('answer');
+					if (ans !== 'yes' && ans !== 'no') {
+						this._user.updateData({
+							action: 'no'
+						});
+					}
+				}
 			}.bind(this));
 			this.$('.rectangle__answers--no').click(this.joke.bind(this));
 		},
 
 		joke: function () {
+			if (this._user.loggedIn()) {
+				var ans = this._user.get('answer');
+				if (ans !== 'yes' && ans !== 'no') {
+					this._user.updateData({
+						action: 'yes'
+					});
+				}
+			}
 			this.$('.rectangle__question').remove();
 			this.$('.rectangle__answers').remove();
 			this.$('.rectangle__img').show();

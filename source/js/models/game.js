@@ -6,7 +6,8 @@ define(function (require) {
 		states = require('models/states'),
 		ColorJS = require('color'),
 		_ = require('underscore'),
-		$ = require('jquery');
+		$ = require('jquery'),
+		GameCaptureTmpl = require('tmpl/gamecapture');
 
 	var Game = function (mode, user) {
 		this.start = require('models/gamestart').bind(this);
@@ -87,10 +88,21 @@ define(function (require) {
 	};
 
 	var showScore = function () {
-		this._scoresElem.innerHTML = this._score;
+		var data = {
+			exitText: false,
+			mainSize: 'normal',
+			mainText: '',
+			helpSize: 'normal',
+			helpText: ''
+		};
 		if (this._mode === modes.multiplayer) {
-			this._scoresElem.innerHTML = '<span class="opname">YOU vs ' + this.opponent + '!</span><br/>' + this._score + ' &ndash; ' + this._opScore;
+			data.mainText = this._score + ' &ndash; ' + this._opScore;
+			data.helpText = 'YOU vs ' + this.opponent + '!';
+		} else {
+			data.mainText = ' ' + this._score + ' ';
+			data.helpText = false;
 		}
+		$('#gameStatus').html(GameCaptureTmpl(data));
 	};
 
 	return Game;

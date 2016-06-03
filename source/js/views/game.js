@@ -80,7 +80,9 @@ define(function (require) {
 			if (this._mode !== modes.multiplayer) {
 				this._game.start();
 			} else {
-				this.$('#start').hide();
+				this.$('#start').html('Cancel').click(function () {
+					Backbone.history.navigate('menu', {trigger: true});
+				});
 
 				if (this.ws !== null) {
 					return;
