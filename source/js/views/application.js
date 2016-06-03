@@ -26,17 +26,12 @@ define(function (require) {
 			this._user = new User();
 			this._views = {};
 			this._currentView = null;
-			if (window.innerWidth >= 1024) {
-				Backbone.Events.on('showToast', this.showToasts, this);
-			}
+			Backbone.Events.on('showToast', this.showToasts, this);
 			Backbone.Events.on('setBlur', this.setBlur, this);
 		},
 		render: function (options) {
 			options = options || {};
 			this.$el.html(this.template());
-			if (window.innerHeight < 355 || window.innerWidth < 355) {
-				jQuery('.background').css('height', '130%');
-			}
 		},
 		show: function (options) {
 			options = options || {'view': 'main'};

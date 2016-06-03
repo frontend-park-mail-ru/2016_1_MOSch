@@ -10,7 +10,7 @@ define(function (require) {
 		$ = require('jquery');
 
 	var animateFunc = function () {
-		if (this._state === states.pause) {
+		if (this._state !== states.play) {
 			return;
 		}
 		var viewportWidth = this._ctx.canvas.width;
