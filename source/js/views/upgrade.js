@@ -2,13 +2,15 @@ define(function (require) {
 
 	var Backbone = require('backbone'),
 		_ = require('underscore'),
-		tmpl = require('tmpl/upgrade');
+		tmpl = require('tmpl/upgrade'),
+		tmplUserbar = require('tmpl/userbar');
 
 	var upgradeView = Backbone.View.extend({
 
 		template: tmpl,
 		initialize: function (options) {
 			this._user = options.user;
+			this._user.on('change', this.render.bind(this));
 			this.$el.hide();
 		},
 		render: function () {
@@ -32,6 +34,11 @@ define(function (require) {
 					this.$(elemID).click(this.tryToBuy.bind(this, +pos));
 				}
 			}
+			var info = {};
+			if (this._user.loggedIn()) {
+				info = this._user.getInfo();
+			}
+			this.$('.userbar').html(tmplUserbar(info));
 			return this;
 		},
 		show: function () {
@@ -63,7 +70,6 @@ define(function (require) {
 				obj[this._price[item].name] = true;
 				this._user.set(this._price[item].name, true);
 				this._user.set('points', diff);
-				this._user.once('change', this.render.bind(this));
 				console.log(obj);
 				this._user.updateData(obj);
 			}
