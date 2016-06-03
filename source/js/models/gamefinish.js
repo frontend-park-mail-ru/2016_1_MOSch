@@ -23,10 +23,10 @@ define(function (require) {
 		if (this._mode === modes.multiplayer) {
 			if (this._score < this._opScore) {
 				data.mainText = 'You lose';
-				data.helpText = 'Your score is ' + this._score + ', but ' + this.opponent + '\'s score is ' + this._opScore;
+				data.helpText = 'Your score: ' + this._score + ', ' + this.opponent + '\'s score: ' + this._opScore;
 			} else if (this._score > this._opScore) {
 				data.mainText = 'You win!';
-				data.helpText = this.opponent + '\'s score is ' + this._opScore + ', but your score is ' + this._score;
+				data.helpText = this.opponent + '\'s score: ' + this._opScore + ', your score: ' + this._score;
 			} else {
 				data.mainText = 'Dead heat...';
 				data.helpText = 'YOU vs ' + this.opponent + '!';

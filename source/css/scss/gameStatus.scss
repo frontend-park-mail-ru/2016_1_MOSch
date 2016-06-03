@@ -14,11 +14,11 @@
 	&__help {
 
 		&--normal {
-			font-size: 134px;
+			font-size: 124px;
 		}
 
 		&--small {
-			font-size: 108px;
+			font-size: 86px;
 		}
 	}
 
@@ -34,6 +34,7 @@
 	}
 
 	&__exit {
+		color: lightgrey !important;
 		font-size: 74px;
 	}
 }
@@ -50,7 +51,7 @@
 			}
 
 			&--small {
-				font-size: 74px;
+				font-size: 64px;
 			}
 		}
 
