@@ -51,7 +51,9 @@ define(function (require) {
 			}
 		}
 		this._ws = null;
-		this._user.fetchData();
+		if (this._user.loggedIn()) {
+			this._user.fetchData();
+		}
 	};
 
 	var updateSize = function (canvas, engine, evt) {

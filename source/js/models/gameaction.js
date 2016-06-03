@@ -28,8 +28,13 @@ define(function (require) {
 			if (dist >= len) {
 				isgameover = true;
 			} else {
-				positionnew.x = (block.position.x + block_down.position.x) / 2;
-				scalingnew.x = (len - dist);
+				if (dist <= this.cfg.assumption) {
+					scalingnew = block_down.scaling.clone();
+					positionnew = block_down.position.clone();					
+				} else {
+					positionnew.x = (block.position.x + block_down.position.x) / 2;
+					scalingnew.x = (len - dist);					
+				}
 			}
 		} else {
 			dist = Math.abs(block.position.z - block_down.position.z);
@@ -37,11 +42,16 @@ define(function (require) {
 			if (dist >= len) {
 				isgameover = true;
 			} else {
-				positionnew.z = (block.position.z + block_down.position.z) / 2;
-				scalingnew.z = (len - dist);
+				if (dist <= this.cfg.assumption) {
+					scalingnew = block_down.scaling.clone();
+					positionnew = block_down.position.clone();					
+				} else {
+					positionnew.z = (block.position.z + block_down.position.z) / 2;
+					scalingnew.z = (len - dist);					
+				}
 			}
 		}
-
+		positionnew.y = block.position.y;
 		if (isgameover) {
 			this.fixBlock(BABYLON.Vector3.Zero(), BABYLON.Vector3.Zero());
 			this.trash(block.position, block.scaling, this._color);
@@ -53,7 +63,7 @@ define(function (require) {
 				};
 				this._ws.send(JSON.stringify(msg2))
 			}
-			this.finish();			
+			this.finish();
 		} else {
 			this._score++;
 			this.fixBlock(positionnew, scalingnew);

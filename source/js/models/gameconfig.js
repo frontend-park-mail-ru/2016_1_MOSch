@@ -19,14 +19,14 @@ define(function (require) {
 		trimPixels: 0.01,
 		minTrimPixels: 0.005,
 		trimFallRatio: 0.00002,
-		assumption: 0.001,
+		assumption: 0.05,
 		bafs: [
 			'accuracyBf',
 			'speedBf',
 			'delayBf'
 		],
 		accuracyBf: {
-			assumption: 0.005
+			assumption: 0.08
 		},
 		speedBf: {
 			block_speed: 0.11,
