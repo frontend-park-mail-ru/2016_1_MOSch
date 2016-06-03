@@ -62,7 +62,7 @@
 			</fest:get>
 			<div class="spec">
 				<fest:get name="person">{
-					name: "Mezin Artemiy",
+					name: "Mezin Artsiom",
 					city: "Moscow",
 					href: "https://www.facebook.com/iketari"
 					}

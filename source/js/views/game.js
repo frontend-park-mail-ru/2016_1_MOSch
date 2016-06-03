@@ -46,6 +46,7 @@ define(function (require) {
 				this._game.destroy();
 			}
 			if (this.ws) {
+				this.ws.onclose = null;
 				this.ws.close(1000, 'Stopped waiting for a second player');
 			}
 			this.$('.gameWrap').html('');
@@ -82,7 +83,7 @@ define(function (require) {
 			} else {
 				this.$('#start').html('Cancel').click(function () {
 					Backbone.history.navigate('menu', {trigger: true});
-				});
+				}.bind(this));
 
 				if (this.ws !== null) {
 					return;
@@ -93,15 +94,13 @@ define(function (require) {
 				this.ws.onopen = function () {
 					console.log("wss: соединение установлено.");
 				};
+
 				this.ws.onerror = function (error) {
 					console.log("Error " + error.message);
 					console.log(error);
-					Backbone.Events.trigger('showToast', {
-						'type': 'alert',
-						'text': 'No connection to the server, please, try later'
-					});
 					Backbone.history.navigate('menu', {trigger: true});
 				}.bind(this);
+
 				this.ws.onclose = function (event) {
 					console.log("Close due to " + event.reason);
 					console.log(event);
