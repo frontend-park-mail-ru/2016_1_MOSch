@@ -53,7 +53,7 @@ define(function (require) {
 			if (this._user.loggedIn()) {
 				this._user.updateData({
 					score: this._score
-				})
+				});
 			}
 		}
 	};
