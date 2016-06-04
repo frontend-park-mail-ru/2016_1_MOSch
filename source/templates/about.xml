@@ -12,7 +12,7 @@
 					at the Technopark Mail.RU. The game is a casual arcade with elements of strategy and RPG. For more
 					information check the page of the game on
 					<fest:space/>
-					<a href="https://github.com/frontend-park-mail-ru/2016_1_MOSch">GitHub</a>.
+					<a href="https://github.com/TP-MOSch/2016_1_MOSch">GitHub</a>.
 				</p>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 			<fest:get name="person">{
 				name: "Dorofeev Dmitriy",
 				city: "Moscow",
-				href: "https://vk.com/dorofeevdmitry"
+				href: "https://dmitrydorofeev.ru/"
 				}
 			</fest:get>
 		</div>
