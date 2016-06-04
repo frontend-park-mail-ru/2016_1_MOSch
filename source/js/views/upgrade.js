@@ -63,7 +63,7 @@ define(function (require) {
 		},
 		tryToBuy: function (item) {
 			console.log(+item);
-			var diff = this._user.get('points') >= this._price[item].cost_int;
+			var diff = this._user.get('points') - this._price[item].cost_int;
 			console.log(+diff);
 			if (diff >= 0 && !this._user.get(this._price[item].name)) {
 				var obj = {};
