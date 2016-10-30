@@ -1,5 +1,5 @@
 define(function (require) {
-	
+
 	var Backbone = require('backbone'),
 		JQuery = require('jquery');
 
@@ -14,9 +14,14 @@ define(function (require) {
 
 		defaults: {
 			username: null,
-			level: -1,
-			rate: -1,
-			info: {}
+			password: null,
+			score: 0,
+			actualScore: 0,
+			points: 0,
+			starBf: false,
+			accuracyBf: false,
+			speedBf: false,
+			delayBf: false
 		},
 
 		_logged_in: false,
@@ -30,11 +35,9 @@ define(function (require) {
 			options.mymethod = 'check';
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
-				debugger;
 				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
-				debugger;
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 			};
@@ -68,17 +71,13 @@ define(function (require) {
 				debugger;
 				Backbone.Events.trigger('showToast', {
 					'type': 'info',
-					'text': 'Hello, ' + username
-				});
-				Backbone.Events.trigger('showToast', {
-					'type': 'info',
-					'text': 'ID: ' + model.id
+					'text': 'Hello, ' + username.toUpperCase()
 				});
 				model.changeAuthState(true);
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				xhr.responseJSON = xhr.responseJSON || {'message': 'please, try later'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
@@ -93,9 +92,11 @@ define(function (require) {
 			options.dataType = 'json';
 			options.success = function (model, response, options) {
 				debugger;
+				model.set('actualScore', model.get('score'));
+				model.set('score', 0);
+
 				var data = localStorage.getItem('playerdata');
 				if (data) {
-					localStorage.removeItem('playerdata');
 					var obj = JSON.parse(data);
 					if (obj.username === model.get('username')) {
 						model.updateData(obj);
@@ -127,7 +128,7 @@ define(function (require) {
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
+				xhr.responseJSON = xhr.responseJSON || {'message': 'please, try later'};
 				console.log('Error: ' + xhr.statusText + '. Message: ' + xhr.responseJSON.message);
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
@@ -143,12 +144,29 @@ define(function (require) {
 			options.mydata = JSON.stringify(data || this.toJSON());
 			options.success = function (model, response, options) {
 				debugger;
+				localStorage.removeItem('playerdata');
 				model.fetchData();
 			};
 			options.error = function (model, xhr, options) {
 				debugger;
-				options.mydata = JSON.parse(options.mydata);
-				options.mydata.username = model.get('username');
+
+				var score = JSON.parse(options.mydata).score;
+				if (!score) {
+					score = 0;
+				}
+				var dataOld = localStorage.getItem('playerdata');
+				if (dataOld) {
+					var objold = JSON.parse(dataOld);
+					if (objold.username === model.get('username')) {
+						if (objold.score > score) {
+							score = objold.score;
+						}
+					}
+				}
+				options.mydata = {
+					score: score,
+					username: model.get('username')
+				};
 				var data = JSON.stringify(options.mydata);
 				localStorage.setItem('playerdata', data);
 				xhr.responseJSON = xhr.responseJSON || {'message': 'none'};
@@ -164,6 +182,7 @@ define(function (require) {
 			}
 			if (!options.mymethod) {
 				alert('error!!!!');
+				return;
 			}
 			options.url = this.getCustomUrl(options.mymethod.toLowerCase());
 			arguments[0] = this.replaceMethod(options.mymethod.toLowerCase());
@@ -212,7 +231,8 @@ define(function (require) {
 				this.fetchData();
 			} else {
 				this.id = null;
-				this.username = null;
+				this.set('username', null);
+				this.set('password', null);
 			}
 			console.log('logged = ' + this._logged_in);
 			var route = this._logged_in ? 'menu' : 'main';
@@ -222,16 +242,16 @@ define(function (require) {
 		getInfo: function () {
 			return {
 				'username': this.get('username'),
-				'level': this.get('level'),
-				'rate': this.get('rate'),
-				'id': this.id
+				'score': this.get('actualScore'),
+				'points': this.get('points'),
+				'starBf': this.get('starBf'),
+				'id': this._logged_in ? this.id : null
 			}
 		},
 
 		loggedIn: function () {
 			return this._logged_in;
 		}
-
 	});
 
 	return UserModel;

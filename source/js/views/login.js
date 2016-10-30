@@ -39,8 +39,8 @@ define(function (require) {
 
 		submitForm: function (e) {
 			e.preventDefault();
-			var username = String(this.$('#username').val());
-			var password = String(this.$('#password').val());
+			var username = $.trim(String(this.$('#username').val()));
+			var password = $.trim(String(this.$('#password').val()));
 			var check = true;
 
 			if (username === '') {
@@ -49,7 +49,7 @@ define(function (require) {
 					'text': 'Enter username'
 				});
 				check = false;
-			} else if (!/^[A-Za-z0-9]{1,32}$/.test(username)) {
+			} else if (!/^[A-Za-z0-9]{1,20}$/.test(username)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid username'
@@ -63,7 +63,7 @@ define(function (require) {
 					'text': 'Enter password'
 				});
 				check = false;
-			} else if (!/^[A-Za-z0-9]{6,32}$/.test(password)) {
+			} else if (!/^[A-Za-z0-9]{6,20}$/.test(password)) {
 				Backbone.Events.trigger('showToast', {
 					'type': 'alert',
 					'text': 'Enter valid password'

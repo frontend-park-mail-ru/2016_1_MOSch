@@ -6,13 +6,13 @@
 				input_name: "username",
 				type: "text",
 				placeholder: "Your username",
-				label: "Enter your username (latin letters and digits only)"
+				label: "Enter your username (less than 20 characters: latin letters and digits only)"
 			}</fest:get>
 			<fest:get name="input">{
 				input_name: "password",
-				type: "text",
+				type: "password",
 				placeholder: "Your password",
-				label: "Choose your password (6-32 characters: latin letters and digits only)"
+				label: "Choose your password (6-20 characters: latin letters and digits only)"
 			}</fest:get>
 			<button type="submit" class="submit-button">Sign Up</button>
 		</form>

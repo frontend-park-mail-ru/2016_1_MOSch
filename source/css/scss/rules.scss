@@ -1,11 +1,11 @@
 @import 'config';
 
 .rules {
-	margin: calc((100vh - 270px) / 2) auto 30px;
+	margin: 15vh auto 30px;
 	text-align: justify;
 	color: white;
 	font-family: $bravo-font;
-
+	display: none;
 	font-style: normal;
 }
 
@@ -13,7 +13,7 @@
 @media screen and (min-width: 1024px) {
 	.rules {
 		width: 50%;
-		min-width: 355px;
+		min-width: 750px;
 		font-size: 52px;
 	}
 }
@@ -22,7 +22,7 @@
 @media screen and (max-width: 1023px) {
 	.rules {
 		width: 90%;
-		min-width: 355px;
-		font-size: 42px;
+		min-width: 320px;
+		font-size: 40px;
 	}
 }

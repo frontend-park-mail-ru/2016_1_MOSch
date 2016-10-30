@@ -2,9 +2,7 @@
 
 .person {
 	display: inline-block;
-	margin-left: 29px;
-	margin-right: 29px;
-	margin-bottom: 15px;
+	margin: 5px 15px 20px;
 
 	&__name {
 		margin-top: -3px;
@@ -15,10 +13,8 @@
 		letter-spacing: 0.1px;
 
 		&:first-letter {
-			font-family: $wire-font;
 			font-size: 120%;
 			text-transform: uppercase;
-			font-weight: bold;
 		}
 	}
 

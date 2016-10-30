@@ -1,6 +1,23 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<fest:if test="data.id">
-		Hello,<fest:space/><fest:value>data.username</fest:value>!<fest:space/>Your scores is<fest:space/><fest:value>data.level</fest:value>:<fest:value>data.rate</fest:value>.
+		Hello,
+		<fest:space/>
+		<fest:if test="!data.starBf">
+			<span class="userbar__username">
+				<fest:value>data.username</fest:value>
+			</span>
+		</fest:if>
+		<fest:if test="data.starBf">
+			<span class="userbar__username userbar__username--star">
+				<fest:value>data.username</fest:value>
+			</span>
+		</fest:if>
+		!
+		<br/>Your score is
+		<fest:space/>
+		<fest:value>data.score</fest:value>.
+		<fest:space/>You&amp;nbsp;have&amp;nbsp;$
+		<fest:value>data.points/1000</fest:value>k
 	</fest:if>
 	<fest:if test="!data.id">
 		Waiting...

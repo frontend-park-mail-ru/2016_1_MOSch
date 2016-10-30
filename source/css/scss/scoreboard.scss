@@ -5,14 +5,35 @@
 	&__title {
 		display: block;
 		margin-bottom: 15px;
-		font-family: $wire-font;
+		font-family: $coremellow-font;
 		font-size: 64px;
 		font-weight: bold;
 		color: $header-color;
+
+		&--before {
+			display: inline-block;
+			width: 10px;
+			position: relative;
+			content: '<';
+			cursor: pointer;
+			right: 40px;
+			top: 8px;
+		}
+
+		&--after {
+			display: inline-block;
+			width: 10px;
+			position: relative;
+			content: '>';
+			cursor: pointer;
+			left: 40px;
+			top: 8px;
+		}
 	}
 
 	&__table {
 		display: block;
-		width: 351px;
+		max-width: 350px;
+		margin: 0 auto;
 	}
 }

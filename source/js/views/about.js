@@ -13,8 +13,8 @@ define(function (require) {
 		initialize: function (options) {
 			this._user = options.user;
 			this._special = 0;
-			if (window.innerWidth <= 1024) {
-				this._special = function () {
+			if (window.innerWidth < 1024) {
+				this.special = function () {
 				};
 			}
 			this.$el.hide();
@@ -48,11 +48,26 @@ define(function (require) {
 			this.$('.rectangle').show();
 			this.$('.rectangle__answers--yes').click(function () {
 				this.$('.rectangle').remove();
+				if (this._user.loggedIn()) {
+					var ans = this._user.get('answer');
+					console.log(ans);
+					this._user.updateData({
+						answer: 'no'
+					});
+				}
 			}.bind(this));
 			this.$('.rectangle__answers--no').click(this.joke.bind(this));
 		},
 
 		joke: function () {
+			if (this._user.loggedIn()) {
+				console.log('log1');
+				var ans = this._user.get('answer');
+				console.log(ans);
+				this._user.updateData({
+					answer: 'yes'
+				});
+			}
 			this.$('.rectangle__question').remove();
 			this.$('.rectangle__answers').remove();
 			this.$('.rectangle__img').show();

@@ -1,16 +1,32 @@
 @import 'config';
 
 .exit {
-	display: block;
-	position: fixed;
-	top: 50px;
-	right: 20px;
-	height: 25px;
-	font-size: 25px;
 	font-family: $bravo-font;
 	text-transform: uppercase;
 	text-decoration: underline;
 	cursor: pointer;
-	text-align: right;
 	color: lightgrey
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.exit {
+		display: block;
+		position: fixed;
+		top: 85px;
+		right: 20px;
+		font-size: 30px;
+		text-align: right;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.exit {
+		display: block;
+		width: 100%;
+		max-width: 550px;
+		margin: 20px auto 30px;
+		font-size: 54px;
+	}
 }

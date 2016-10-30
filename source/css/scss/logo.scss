@@ -11,16 +11,6 @@
 	.logo {
 		height: 35%;
 		margin-bottom: 15px;
-
-		&__image {
-			position: absolute;
-			width: 700px;
-			height: 220px;
-			margin-left: 50%;
-			left: -350px;
-			bottom: 25px;
-			background-size: 100%;
-		}
 	}
 }
 
@@ -28,14 +18,15 @@
 @media screen and (max-width: 1023px) {
 	.logo {
 		height: 40%;
-		min-height: 160px;
-		margin: 55px auto;
+		min-height: 220px;
+		margin: 10px auto;
 		background-size: 75% auto;
+	}
+}
 
-		&__image {
-			display: block;
-			width: 100%;
-			height: 160px;
-		}
+@media screen and (max-width: 450px) {
+	.logo {
+		min-height: 145px;
+		margin: 8px auto;
 	}
 }

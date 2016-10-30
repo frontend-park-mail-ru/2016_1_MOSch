@@ -1,0 +1,36 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:set name="card">
+		<fest:if test="params">
+			<div class="card">
+				<abbr class="card__title" title="{params.rus_title}">
+					<fest:value>params.title</fest:value>
+				</abbr>
+				<div class="card__description">
+					<fest:value>params.description</fest:value>
+				</div>
+
+				<fest:if test="params.data.sold">
+					<button class="submit-button card__button card__button--active" id="{params.id}">Buy for
+						<fest:space/>
+						<fest:value>params.data.cost</fest:value>
+					</button>
+				</fest:if>
+
+				<fest:if test="!params.data.sold">
+					<fest:if test="params.data.money">
+						<button class="submit-button card__button card__button--inactive">You already
+							have it
+						</button>
+					</fest:if>
+
+					<fest:if test="!params.data.money">
+						<button class="submit-button card__button card__button--inactive">Need<fest:space/>
+							<fest:value>params.data.cost</fest:value>
+						</button>
+					</fest:if>
+				</fest:if>
+
+			</div>
+		</fest:if>
+	</fest:set>
+</fest:template>

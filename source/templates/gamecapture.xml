@@ -1,0 +1,19 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+	<fest:if test="data.helpText">
+		<div class="gameStatus__help gameStatus__help--{data.helpSize}">
+			<fest:value>data.helpText</fest:value>
+		</div>
+	</fest:if>
+
+	<fest:if test="data.mainText">
+		<div class="gameStatus__main gameStatus__main--{data.mainSize}">
+			<fest:value>data.mainText</fest:value>
+		</div>
+	</fest:if>
+
+	<fest:if test="data.exitText">
+		<div class="gameStatus__exit">
+			<fest:value>data.exitText</fest:value>
+		</div>
+	</fest:if>
+</fest:template>

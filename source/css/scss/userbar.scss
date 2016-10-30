@@ -1,13 +1,39 @@
 @import 'config';
 
 .userbar {
-	display: block;
-	position: fixed;
-	top: 20px;
-	right: 20px;
-	height: 25px;
-	font-size: 27px;
 	font-family: $bravo-font;
 	text-align: right;
 	color: $header-color;
+
+	&__username {
+		font-weight: bold;
+		text-transform: uppercase;
+
+		&--star::before {
+			content: '\2605';
+		}
+	}
+}
+
+// this query for desktop-browsers and landscape iPads
+@media screen and (min-width: 1024px) {
+	.userbar {
+		display: block;
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		font-size: 32px;
+	}
+}
+
+// this query for portrait iPads and mobile-browsers
+@media screen and (max-width: 1023px) {
+	.userbar {
+		display: block;
+		width: 100%;
+		max-width: 550px;
+		margin: 10px auto 20px;
+		font-size: 38px;
+		text-align: center;
+	}
 }

@@ -3,24 +3,24 @@
 	"short_name": "Build The Tower",
 	"icons": [
 		{
-			"src": "res/favicon_64.png",
+			"src": "img/favicon_64.png",
 			"type": "image/png",
 			"sizes": "64x64"
 		},
 		{
-			"src": "res/favicon_128.png",
+			"src": "img/favicon_128.png",
 			"type": "image/png",
 			"sizes": "128x128"
 		},
 		{
-			"src": "res/favicon_256.png",
+			"src": "img/favicon_256.png",
 			"type": "image/png",
 			"sizes": "256x256"
 		}
 	],
 	"start_url": "/",
 	"display": "fullscreen",
-	"orientation": "landscape",
-	"background_color": "#2C17E7",
-	"theme_color": "#2C17E7"
+	"orientation": "portrait",
+	"background_color": "#0F0848",
+	"theme_color": "#0F0848"
 }

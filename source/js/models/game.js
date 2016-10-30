@@ -5,36 +5,59 @@ define(function (require) {
 		modes = require('models/modes'),
 		states = require('models/states'),
 		ColorJS = require('color'),
-		cfg = require('models/gameconfig'),
-		_ = require('underscore');
+		_ = require('underscore'),
+		$ = require('jquery'),
+		GameCaptureTmpl = require('tmpl/gamecapture');
 
 	var Game = function (mode, user) {
-		this.start = start;
+		this.start = require('models/gamestart').bind(this);
+		this.finish = require('models/gamefinish').bind(this);
+		this.pause = require('models/gamepause').bind(this);
+		this.action = require('models/gameaction').bind(this);
+		this.addBlock = require('models/gameaddblock').bind(this);
+		this.fixBlock = require('models/gamefixblock').bind(this);
+		this.prettyClose = require('models/gameprettyclose').bind(this);
+		this.modifyConfig = require('models/gamemodifyconfig').bind(this);
+		this.trash = require('models/gametrash').bind(this);
+		var config = require('models/gameconfig');
+		this.cfg = _.clone(config);
 		this.destroy = destroy;
 		this.updateSize = updateSize;
-		this._canvas2d = document.getElementById('2dcanvas');
-		this._canvas3d = document.getElementById('3dcanvas');
-		this._scoresElem = document.getElementById('scores');
-		this._pauseButton = document.getElementById('pause');
-		this._ctx = this._canvas2d.getContext('2d');
-		this._engine = new BABYLON.Engine(this._canvas3d, true);
-		this._scene = null;
-		this.updateSize(this._canvas2d, this._engine);
-		this._mode = mode;
-		this._user = user;
-		this._score = 0;
-		this._state = null;
-	};
+		this.keyGrabber = keyGrabber;
+		this.showScore = showScore.bind(this);
 
-	var start = function () {
-		
+		this._mode = mode || modes.unlogged;
+		this._user = user;
+
+		this._scene = null;
+		this._state = null;
+		this._score = 0;
+		this._opScore = 0;
+		this._env = {};
+		this._blocks = [];
+		this._trash = [];
 	};
 
 	var destroy = function () {
-		this._engine.dispose();
-	};	
+		if (this._engine) {
+			this._engine.dispose();
+		}
+		window.removeEventListener('resize', this.updateSize);
+		window.removeEventListener('keydown', this.keyGrabber);
+		if (this._ws) {
+			if (this._state === states.finish) {
+				this._ws.close(1000, 'Finish the game');
+			} else {
+				this._ws.close(1000, 'Leave the game');
+			}
+		}
+		this._ws = null;
+		if (this._user.loggedIn()) {
+			this._user.fetchData();
+		}
+	};
 
-	var updateSize = function (canvas, engine) {
+	var updateSize = function (canvas, engine, evt) {
 		var displayWidth = Math.floor(window.innerWidth);
 		var displayHeight = Math.floor(window.innerHeight);
 		if (canvas.width != displayWidth || canvas.height != displayHeight) {
@@ -42,6 +65,44 @@ define(function (require) {
 			canvas.height = displayHeight;
 		}
 		engine.resize();
+	};
+
+	var keyGrabber = function (game, evt) {
+		const KEYS = {
+			'ESC': 27,
+			'SPACE': 32,
+			'PAUSE': 80,
+			'ENTER': 13
+		};
+		switch (evt.keyCode) {
+			case KEYS.ESC:
+			case KEYS.PAUSE:
+				evt.preventDefault();
+				game.pause();
+				break;
+			case KEYS.SPACE:
+				evt.preventDefault();
+				game.action();
+				break;
+		}
+	};
+
+	var showScore = function () {
+		var data = {
+			exitText: false,
+			mainSize: 'normal',
+			mainText: '',
+			helpSize: 'normal',
+			helpText: ''
+		};
+		if (this._mode === modes.multiplayer) {
+			data.mainText = this._score + ' : ' + this._opScore;
+			data.helpText = 'YOU vs ' + this.opponent + '!';
+		} else {
+			data.mainText = ' ' + this._score + ' ';
+			data.helpText = false;
+		}
+		$('#gameStatus').html(GameCaptureTmpl(data));
 	};
 
 	return Game;

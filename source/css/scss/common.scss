@@ -12,12 +12,10 @@
 }
 
 @font-face {
-	font-family: 'Wire One';
-	src: local('Wire One'),
-	local('WireOne'),
-	url('/res/wireone.woff2') format('woff2'),
-	url('/res/wireone.woff') format('woff'),
-	url('/res/wireone.ttf') format('truetype');
-	font-weight: 400;
+	font-family: 'Core Mellow';
+	src: local('Core Mellow'),
+	local('CoreMellow'),
+	url('/res/coremellow-extralight.otf') format('opentype');
+	font-weight: 100;
 	font-style: normal;
 }
